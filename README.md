@@ -1,0 +1,1 @@
+A microproductivity app. The user creates a list of small tasks, each with a time assigned to it. When the user has some free time (e.g., 5 minutes) and wants to do something productive, the user tells the app the amount of free time available, and the app suggests a task from the list based on that time criterion.
