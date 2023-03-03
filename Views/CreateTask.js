@@ -2,6 +2,8 @@ import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 /*
     {
         
@@ -10,7 +12,7 @@ import { useState } from 'react';
 
 export default function CreateTask() {
 
-    const [taskTitle, setTaskTitle] = useState('yo');
+    const [taskTitle, setTaskTitle] = useState('');
     const [taskTime, setTaskTime] = useState('');
 
     const [open, setOpen] = useState(false);
@@ -18,14 +20,32 @@ export default function CreateTask() {
     const [items, setItems] = useState([
       {label: 'Daily', value: 'daily'},
       {label: 'Weekly', value: 'weekly'},
-      {label: 'Every other week', value: 'biweekly'},
+      {label: 'Every other week', value: 'fortnightly'},
       {label: 'Monthly', value: 'monthly'},
       {label: 'Only once', value: 'once'}
     ]);
   
 
-    function addTask() {
-        alert(`added task: ${taskTitle}, which will take ${taskTime} minutes, to be performed ${taskCadence}`);
+     async function addTask () {
+        const today = new Date();
+        const id = uuidv4();
+        const newTask = {
+            id: id,
+            title: taskTitle,
+            time: taskTime,
+            cadence: taskCadence,
+            created: today,
+            lastPerfomed: null,
+            tags: []
+        }
+        try {
+            const serializedTask = JSON.stringify(newTask);
+            await AsyncStorage.setItem(id, serializedTask);
+        } catch (e) {
+            console.log("error creating task:", e);
+            alert("Sorry! \n We encoutered an error attempting to create this task!")
+        }
+        alert(`added task: \n ${taskTitle}, \n which will take ${taskTime} minutes, \n to be performed ${taskCadence}`);
     }
 
     return (
@@ -39,7 +59,7 @@ export default function CreateTask() {
             }}
             onChangeText={setTaskTitle}
             value={taskTitle}
-            placeholder="Enter a task..." 
+            placeholder="Create a task..." 
             />
             <Text>How many minutes will this task take?</Text>
             <TextInput             
@@ -51,7 +71,7 @@ export default function CreateTask() {
                 onChangeText={setTaskTime} 
                 keyboardType="numeric" />
             
-            <Text>How often should this task be performed? ℹ️</Text>
+            <Text>How frequently should this task be performed? ℹ️</Text>
             <DropDownPicker
                 open={open}
                 value={taskCadence}

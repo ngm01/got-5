@@ -23,7 +23,7 @@ export default function TaskList() {
             time: 15,
             title: 'vacuum living room',
             lastPerformed: null,
-            cadence: 'bimonthly',
+            cadence: 'fortnightly',
             created: null,
             tags: []
         },
