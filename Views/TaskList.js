@@ -1,38 +1,35 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect, useState } from 'react';
 
 export default function TaskList() {
 
-    const fakeData = [
-        {
-            time: 1,
-            title: 'start laundry',
-            lastPerformed: null,
-            cadence: 'weekly',
-            created: null,
-            tags: []
-        },
-        {
-            time: 15,
-            title: 'do the dishes',
-            lastPerformed: null,
-            cadence: 'daily',
-            created: null,
-            tags: []
-        },
-        {
-            time: 15,
-            title: 'vacuum living room',
-            lastPerformed: null,
-            cadence: 'fortnightly',
-            created: null,
-            tags: []
-        },
-    ]
+    const [tasks, setTasks] = useState([])
+
+    useEffect(() => {
+
+    }, [tasks])
+
+    async function getAllKeys() {
+        try {
+            return await AsyncStorage.getAllKeys();
+        } catch (e) {
+            console.log("error getting keys:", e)
+        }
+    }
+
+    async function getOneTask(key) {
+        try {
+            return await AsyncStorage.getItem(key);
+        } catch (e) {
+            console.log("error getting task", e)
+        }
+    }
 
     return (
          <View>
-            <FlatList data={fakeData}
-                renderItem={({item}) => <Text>{item.title}</Text>} />
+            <FlatList data={keys}
+                renderItem={({item}) => <Text>{item}</Text>} />
         </View>
     )
 }

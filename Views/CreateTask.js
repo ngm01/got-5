@@ -18,11 +18,11 @@ export default function CreateTask() {
     const [open, setOpen] = useState(false);
     const [taskCadence, setTaskCadence] = useState('weekly');
     const [items, setItems] = useState([
-      {label: 'Daily', value: 'daily'},
-      {label: 'Weekly', value: 'weekly'},
-      {label: 'Every other week', value: 'fortnightly'},
-      {label: 'Monthly', value: 'monthly'},
-      {label: 'Only once', value: 'once'}
+      {label: 'Daily', value: 1},
+      {label: 'Weekly', value: 7},
+      {label: 'Every other week', value: 14},
+      {label: 'Monthly', value: 30},
+      {label: 'Only once', value: 0}
     ]);
   
 
@@ -45,7 +45,7 @@ export default function CreateTask() {
             console.log("error creating task:", e);
             alert("Sorry! \n We encoutered an error attempting to create this task!")
         }
-        alert(`added task: \n ${taskTitle}, \n which will take ${taskTime} minutes, \n to be performed ${taskCadence}`);
+        alert(`added task:\n${taskTitle}`);
     }
 
     return (
