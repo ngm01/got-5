@@ -26,7 +26,7 @@ export default function CreateTask() {
     ]);
   
 
-     async function addTask () {
+     async function createNewTask () {
         const today = new Date();
         const id = uuidv4();
         const newTask = {
@@ -45,7 +45,7 @@ export default function CreateTask() {
             console.log("error creating task:", e);
             alert("Sorry! \n We encoutered an error attempting to create this task!")
         }
-        alert(`added task:\n${taskTitle}`);
+        alert(`created task:\n${taskTitle}`);
     }
 
     return (
@@ -83,7 +83,7 @@ export default function CreateTask() {
             <Button
                 title="Add Task"
                 color="#fb4d3d"
-                onPress={addTask}
+                onPress={createNewTask}
              />
         </View>
     )
