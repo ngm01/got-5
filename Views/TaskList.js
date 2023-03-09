@@ -12,7 +12,6 @@ export default function TaskList() {
             const allKeys = await AsyncStorage.getAllKeys();
             const allTasks = await AsyncStorage.multiGet(allKeys);
             let parsedTasks = allTasks.map(task =>  JSON.parse(task[1]))
-            console.log("tasks:", parsedTasks);
             setTasks(parsedTasks);
         }
 
