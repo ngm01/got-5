@@ -1,7 +1,5 @@
-import { Text, View } from "react-native-web";
+import { Text, View } from "react-native";
 
 export default function Test () {
-    return <View>
-        <Text>Testing 123</Text>
-    </View>
+    return <Text>Testing 123</Text>
 }
