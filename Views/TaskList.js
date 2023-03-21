@@ -1,23 +1,20 @@
 import { FlatList, StyleSheet, Text, Button, View } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react';
+import { selectAllTasks, getTasks } from '../state/reducers/tasks';
 
 export default function TaskList() {
 
-    const [tasks, setTasks] = useState([])
+    const dispatch = useDispatch()
+    const tasks = useSelector(selectAllTasks);
+    const taskStatus = useSelector((state) => state.tasks.status);
+    const error = useSelector((state) => state.tasks.error);
 
     useEffect(() => {
-
-        async function getAllTasks() {
-            const allKeys = await AsyncStorage.getAllKeys();
-            const allTasks = await AsyncStorage.multiGet(allKeys);
-            let parsedTasks = allTasks.map(task =>  JSON.parse(task[1]))
-            setTasks(parsedTasks);
+        if(taskStatus === 'idle') {
+            dispatch(getTasks())
         }
-
-        getAllTasks();
-
-    }, [])
+    }, [taskStatus, dispatch])
 
     function renderItem({item}) {
         return  <View style={styles.task}>
@@ -26,20 +23,30 @@ export default function TaskList() {
                 </View>
     }
 
+    let content = <div></div>;
+
+    if(taskStatus === 'loading') {
+        content = <p>Loading...</p>
+    } else if(taskStatus === 'succeeded') {
+        content = ( 
+            tasks.length ?
+            <FlatList 
+            data={foobar}
+            renderItem={renderItem}
+            keyExtractor={item => item.id} 
+        /> :
+            <View>
+                <Text>You don't have any tasks yet.</Text> 
+                <Button title="Click here to create one!" /> 
+            </View>
+        )
+    } else if(taskStatus === 'failed') {
+        content = <p>Error</p>
+    }
+
     return (
          <View style={styles.taskList}>
-            {
-                tasks.length ?
-                <FlatList 
-                data={tasks}
-                renderItem={renderItem}
-                keyExtractor={item => item.id} 
-            /> :
-                <View>
-                    <Text>You don't have any tasks yet.</Text> 
-                    <Button title="Click here to create one!" /> 
-                </View>
-            }
+            {content}
             </View> 
     )
 }
