@@ -19,6 +19,10 @@ export const createTask = createAsyncThunk('/tasks/createTask', async (taskToCre
     await AsyncStorage.setItem(id, serializedTask);
 })
 
+export const deleteTask = createAsyncThunk('/tasks/deleteTask', async (taskId) => {
+    await AsyncStorage.removeItem(taskId);
+})
+
 export const taskSlice = createSlice({
     name: "tasks",
     initialState: initialState,
@@ -48,6 +52,16 @@ export const taskSlice = createSlice({
             })
             .addCase(createTask.fulfilled, (state, action) => {
                 state.posts.push(action.payload)
+            })
+            .addCase(deleteTask.pending, (state, action) => {
+                state.status = 'loading'
+            })
+            .addCase(deleteTask.fulfilled, (state, action) => {
+                state.status = 'succeeded'
+            })
+            .addCase(deleteTask.rejected, (state, action) => {
+                state.status = 'failed'
+                state.error = action.error.message
             })
     }
 })

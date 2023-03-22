@@ -1,7 +1,7 @@
-import { FlatList, StyleSheet, Text, Button, View } from 'react-native';
+import { FlatList, StyleSheet, Text, Button, View, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react';
-import { selectAllTasks, getTasks } from '../state/reducers/tasks';
+import { selectAllTasks, getTasks, deleteTask } from '../state/reducers/tasks';
 
 export default function TaskList() {
 
@@ -16,22 +16,36 @@ export default function TaskList() {
         }
     }, [taskStatus, dispatch])
 
+    const confirmDelete = (id) => {
+
+    }
+
+    const removeTask = async (id) => {
+        dispatch(deleteTask(id));
+    }
+
+
     function renderItem({item}) {
         return  <View style={styles.task}>
                     <Text style={styles.taskText}>Title: {item.title}</Text>
                     <Text style={styles.taskText}>Time: {item.time} minutes</Text>
+                    <Button 
+                        title='Delete Task'
+                        color='#fb4d3d'
+                        onPress={() => {removeTask(item.id)}}
+                    />
                 </View>
     }
 
-    let content = <div></div>;
+    let content;
 
     if(taskStatus === 'loading') {
-        content = <p>Loading...</p>
+        content = <Text>Loading...</Text>
     } else if(taskStatus === 'succeeded') {
         content = ( 
             tasks.length ?
             <FlatList 
-            data={foobar}
+            data={tasks}
             renderItem={renderItem}
             keyExtractor={item => item.id} 
         /> :
@@ -41,7 +55,7 @@ export default function TaskList() {
             </View>
         )
     } else if(taskStatus === 'failed') {
-        content = <p>Error</p>
+        content = <Text>Error</Text>
     }
 
     return (
