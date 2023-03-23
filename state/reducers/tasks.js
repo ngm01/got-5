@@ -20,7 +20,9 @@ export const createTask = createAsyncThunk('/tasks/createTask', async (taskToCre
 })
 
 export const deleteTask = createAsyncThunk('/tasks/deleteTask', async (taskId) => {
-    await AsyncStorage.removeItem(taskId);
+    const response = await AsyncStorage.removeItem(taskId);
+    console.log("What response do we get from aysyncStorage?:", response);
+    return {taskId};
 })
 
 export const taskSlice = createSlice({
@@ -51,13 +53,17 @@ export const taskSlice = createSlice({
                 state.error = action.error.message
             })
             .addCase(createTask.fulfilled, (state, action) => {
-                state.posts.push(action.payload)
+                state.tasks.push(action.payload)
             })
             .addCase(deleteTask.pending, (state, action) => {
                 state.status = 'loading'
             })
             .addCase(deleteTask.fulfilled, (state, action) => {
                 state.status = 'succeeded'
+                const {id} = action.payload;
+                const tasks = state.tasks.filter(task => task.id !== id);
+                state.tasks = tasks;
+
             })
             .addCase(deleteTask.rejected, (state, action) => {
                 state.status = 'failed'

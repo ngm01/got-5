@@ -1,11 +1,13 @@
 import { FlatList, StyleSheet, Text, Button, View, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react';
 import { selectAllTasks, getTasks, deleteTask } from '../state/reducers/tasks';
 
 export default function TaskList() {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigation = useNavigation();
     const tasks = useSelector(selectAllTasks);
     const taskStatus = useSelector((state) => state.tasks.status);
     const error = useSelector((state) => state.tasks.error);
@@ -50,8 +52,8 @@ export default function TaskList() {
             keyExtractor={item => item.id} 
         /> :
             <View>
-                <Text>You don't have any tasks yet.</Text> 
-                <Button title="Click here to create one!" /> 
+                <Text style={styles.taskText}>You don't have any tasks yet.</Text> 
+                <Button onPress={() => navigation.navigate('CreateTask')} title="Click here to create one!" /> 
             </View>
         )
     } else if(taskStatus === 'failed') {
