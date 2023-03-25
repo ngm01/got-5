@@ -15,14 +15,15 @@ export const getTasks = createAsyncThunk('/tasks/getTasks', async () => {
 })
 
 export const createTask = createAsyncThunk('/tasks/createTask', async (taskToCreate) => {
+    const {id} = taskToCreate;
     const serializedTask = JSON.stringify(taskToCreate);
     await AsyncStorage.setItem(id, serializedTask);
+    return taskToCreate;
 })
 
-export const deleteTask = createAsyncThunk('/tasks/deleteTask', async (taskId) => {
-    const response = await AsyncStorage.removeItem(taskId);
-    console.log("What response do we get from aysyncStorage?:", response);
-    return {taskId};
+export const deleteTask = createAsyncThunk('/tasks/deleteTask', async (id) => {
+    const response = await AsyncStorage.removeItem(id);
+    return {id};
 })
 
 export const taskSlice = createSlice({
@@ -37,6 +38,9 @@ export const taskSlice = createSlice({
                 taskToUpdate.time = time;
                 taskToUpdate.cadence = cadence;
             }
+        },
+        taskAdded(state, action) {
+            console.log("added task:", action.payload)
         }
     },
     extraReducers(builder) {
@@ -46,13 +50,14 @@ export const taskSlice = createSlice({
             })
             .addCase(getTasks.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                state.tasks = state.tasks.concat(action.payload)
+                state.tasks = action.payload;
             })
             .addCase(getTasks.rejected, (state, action) => {
                 state.status = 'failed'
                 state.error = action.error.message
             })
             .addCase(createTask.fulfilled, (state, action) => {
+                state.status = 'succeeded'
                 state.tasks.push(action.payload)
             })
             .addCase(deleteTask.pending, (state, action) => {
@@ -61,9 +66,7 @@ export const taskSlice = createSlice({
             .addCase(deleteTask.fulfilled, (state, action) => {
                 state.status = 'succeeded'
                 const {id} = action.payload;
-                const tasks = state.tasks.filter(task => task.id !== id);
-                state.tasks = tasks;
-
+                state.tasks = state.tasks.filter(task => task.id !== id);
             })
             .addCase(deleteTask.rejected, (state, action) => {
                 state.status = 'failed'

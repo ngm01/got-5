@@ -1,4 +1,6 @@
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { getTasks, createTask } from '../state/reducers/tasks';
 import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
@@ -11,6 +13,8 @@ import { v4 as uuidv4 } from 'uuid';
 */
 
 export default function CreateTask() {
+
+    const dispatch = useDispatch();
 
     const [taskTitle, setTaskTitle] = useState('');
     const [taskTime, setTaskTime] = useState('');
@@ -39,8 +43,8 @@ export default function CreateTask() {
             tags: []
         }
         try {
-            const serializedTask = JSON.stringify(newTask);
-            await AsyncStorage.setItem(id, serializedTask);
+            await dispatch(createTask(newTask));
+            dispatch(getTasks());
         } catch (e) {
             console.log("error creating task:", e);
             alert("Sorry! \n We encoutered an error attempting to create this task!")

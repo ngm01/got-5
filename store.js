@@ -4,5 +4,6 @@ import taskReducer from './state/reducers/tasks';
 export default configureStore({
     reducer: {
         tasks: taskReducer
-    }
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false})
 })

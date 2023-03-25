@@ -13,17 +13,16 @@ export default function TaskList() {
     const error = useSelector((state) => state.tasks.error);
 
     useEffect(() => {
-        if(taskStatus === 'idle') {
-            dispatch(getTasks())
-        }
-    }, [taskStatus, dispatch])
+        dispatch(getTasks())
+    }, [dispatch])
 
     const confirmDelete = (id) => {
 
     }
 
     const removeTask = async (id) => {
-        dispatch(deleteTask(id));
+        await dispatch(deleteTask(id));
+        dispatch(getTasks())
     }
 
 
