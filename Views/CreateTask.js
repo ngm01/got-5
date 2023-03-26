@@ -20,7 +20,7 @@ export default function CreateTask() {
     const [taskTime, setTaskTime] = useState('');
 
     const [open, setOpen] = useState(false);
-    const [taskCadence, setTaskCadence] = useState('weekly');
+    const [taskCadence, setTaskCadence] = useState(1);
     const [items, setItems] = useState([
       {label: 'Daily', value: 1},
       {label: 'Weekly', value: 7},

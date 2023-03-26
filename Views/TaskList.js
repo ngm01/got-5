@@ -6,8 +6,8 @@ import { selectAllTasks, getTasks, deleteTask } from '../state/reducers/tasks';
 
 export default function TaskList() {
 
-    const dispatch = useDispatch();
     const navigation = useNavigation();
+    const dispatch = useDispatch();
     const tasks = useSelector(selectAllTasks);
     const taskStatus = useSelector((state) => state.tasks.status);
     const error = useSelector((state) => state.tasks.error);
