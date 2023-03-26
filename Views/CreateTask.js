@@ -73,6 +73,7 @@ export default function CreateTask() {
                 borderWidth: 1,
                 }}
                 onChangeText={setTaskTime} 
+                returnKeyType='done'
                 keyboardType="numeric" />
             
             <Text>How frequently should this task be performed? ℹ️</Text>

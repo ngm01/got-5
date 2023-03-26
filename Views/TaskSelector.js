@@ -1,9 +1,7 @@
-import { getTasks } from '../state/reducers/tasks';
 import { StyleSheet, Text, View, Pressable, Alert, TextInput } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getTasks } from '../state/reducers/tasks';
 import { selectAllTasks, getTasks } from '../state/reducers/tasks';
 
 function TaskSelector({ setTaskToDo }) {
@@ -23,7 +21,8 @@ function TaskSelector({ setTaskToDo }) {
             Alert.alert(`You don't have any tasks that can be done in ${taskTime} minutes or less`)
         } else {
             const selectedTask = tasksInTime[Math.floor(Math.random() * tasksInTime.length)]
-            setTaskToDo(selectedTask);
+            Alert.alert(selectedTask.title)
+            //setTaskToDo(selectedTask);
         }
     }    
 
@@ -34,11 +33,14 @@ function TaskSelector({ setTaskToDo }) {
             <TextInput 
                 onChangeText={setTaskTime} 
                 keyboardType="numeric"
+                returnKeyType='done'
                 value={taskTime}
             />
             <Text>minutes</Text>
             </View>
-            <Pressable onPress={handlePress}>Get a Task</Pressable>
+            <Pressable onPress={handlePress}>
+                <Text>Get a Task</Text>
+            </Pressable>
         </View>
      );
 }

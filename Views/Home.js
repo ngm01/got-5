@@ -1,18 +1,10 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getTasks } from '../state/reducers/tasks';
-import { selectAllTasks, getTasks } from '../state/reducers/tasks';
 import { StyleSheet, Text, View } from 'react-native';
 import TaskButtons from './TaskButtons';
+import TaskSelector from './TaskSelector'
 
 export default function Home() {
-
-    const dispatch = useDispatch();
-    const tasks = useSelector(selectAllTasks);
-
-    useEffect(() => {
-        dispatch(getTasks());
-    }, [])
 
     return (
         <View style={styles.container}>
