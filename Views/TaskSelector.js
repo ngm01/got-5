@@ -27,8 +27,7 @@ function TaskSelector({ setTaskToDo }) {
                 Alert.alert("Looks like you have no tasks to perform! Enjoy some well earned rest!")
             }
             const selectedTask = availableTasks[Math.floor(Math.random() * availableTasks.length)]
-            Alert.alert(selectedTask.title)
-            //setTaskToDo(selectedTask);
+            setTaskToDo(selectedTask);
         }
     }
     
