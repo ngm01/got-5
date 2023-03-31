@@ -39,7 +39,7 @@ export default function CreateTask() {
             time: taskTime,
             cadence: taskCadence,
             created: today,
-            lastPerfomed: null,
+            lastPerformed: null,
             tags: []
         }
         try {
