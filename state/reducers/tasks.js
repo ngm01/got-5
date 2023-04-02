@@ -21,6 +21,13 @@ export const createTask = createAsyncThunk('/tasks/createTask', async (taskToCre
     return taskToCreate;
 })
 
+export const updateTask = createAsyncThunk('/tasks/updateTask', async (taskToUpdate) => {
+    const {id} = taskToUpdate;
+    const serializedTask = JSON.stringify(taskToUpdate);
+    await AsyncStorage.setItem(id, serializedTask);
+    return taskToUpdate;
+})
+
 export const deleteTask = createAsyncThunk('/tasks/deleteTask', async (id) => {
     const response = await AsyncStorage.removeItem(id);
     return {id};
@@ -59,6 +66,18 @@ export const taskSlice = createSlice({
             .addCase(createTask.fulfilled, (state, action) => {
                 state.status = 'succeeded'
                 state.tasks.push(action.payload)
+            })
+            .addCase(updateTask.pending, (state, action) => {
+                state.status = 'loading'
+            })
+            .addCase(updateTask.fulfilled, (state, action) => {
+                state.status = 'succeeded'
+                const index = state.tasks.findIndex(task => task.id === action.payload.id);
+                state.tasks[index] = action.payload;
+            })
+            .addCase(updateTask.rejected, (state, action) => {
+                state.status = 'failed'
+                state.error = action.error.message
             })
             .addCase(deleteTask.pending, (state, action) => {
                 state.status = 'loading'

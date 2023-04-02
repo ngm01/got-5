@@ -25,11 +25,17 @@ export default function TaskList() {
         dispatch(getTasks())
     }
 
+    const getDateString = (date) => {
+        const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+        return date ? date.toLocaleDateString('us-EN', options).replaceAll(',', '') : 'Never'
+    }
+
 
     function renderItem({item}) {
         return  <View style={styles.task}>
                     <Text style={styles.taskText}>Title: {item.title}</Text>
                     <Text style={styles.taskText}>Time: {item.time} minutes</Text>
+                    <Text style={styles.taskText}>Last Performed: {getDateString(item.lastPerformed)}</Text>
                     <Button 
                         title='Delete Task'
                         color='#fb4d3d'

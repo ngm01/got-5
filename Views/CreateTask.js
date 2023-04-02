@@ -2,15 +2,9 @@ import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { getTasks, createTask } from '../state/reducers/tasks';
 import DropDownPicker from 'react-native-dropdown-picker';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
-/*
-    {
-        
-    }
-*/
 
 export default function CreateTask() {
 

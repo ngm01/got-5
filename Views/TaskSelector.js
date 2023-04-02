@@ -18,16 +18,16 @@ function TaskSelector({ setTaskToDo }) {
     const handlePress = () => {
         const tasksInTime = tasks.filter(task => task.time <= taskTime);
         if(tasksInTime.length === 0) {
-            Alert.alert(`You don't have any tasks that can be done in ${taskTime} minutes or less`)
+            const minutes = taskTime == 1 ? 'minute' : 'minutes'
+            Alert.alert(`You haven't created any tasks that can be done in ${taskTime} ${minutes} or less`)
         } else {
             const availableTasks = tasksInTime.filter(checkCanPerform)
             if(availableTasks.length) {
-
+                const selectedTask = availableTasks[Math.floor(Math.random() * availableTasks.length)]
+                setTaskToDo(selectedTask);
             } else {
                 Alert.alert("Looks like you have no tasks to perform! Enjoy some well earned rest!")
             }
-            const selectedTask = availableTasks[Math.floor(Math.random() * availableTasks.length)]
-            setTaskToDo(selectedTask);
         }
     }
     
