@@ -13,13 +13,17 @@ function TaskSelector({ setTaskToDo }) {
         dispatch(getTasks());
     }, [])
 
-    const [taskTime, setTaskTime] = useState(5)
+    const [taskTime, setTaskTime] = useState(0)
 
     const handlePress = () => {
+        if(taskTime === 0 || taskTime === null) {
+            Alert.alert("Please enter a time.");
+            return;
+        }
         const tasksInTime = tasks.filter(task => task.time <= taskTime);
         if(tasksInTime.length === 0) {
             const minutes = taskTime == 1 ? 'minute' : 'minutes'
-            Alert.alert(`You haven't created any tasks that can be done in ${taskTime} ${minutes} or less`)
+            Alert.alert(`You haven't created any tasks that can be done in ${taskTime} ${minutes} or less.`)
         } else {
             const availableTasks = tasksInTime.filter(checkCanPerform)
             if(availableTasks.length) {
@@ -35,10 +39,11 @@ function TaskSelector({ setTaskToDo }) {
         if(task.lastPerformed === null) {
             return true;
         } else {
+            const lastPerformed = new Date(task.lastPerformed);
             const cadenceCheck = new Date(
-                task.lastPerformed.getFullYear(),
-                task.lastPerformed.getMonth(),
-                task.lastPerformed.getDate() + task.cadence.value
+                lastPerformed.getFullYear(),
+                lastPerformed.getMonth(),
+                lastPerformed.getDate() + task.cadence.value
             )
             const today = new Date();
             return today > cadenceCheck;

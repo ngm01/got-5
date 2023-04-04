@@ -14,16 +14,20 @@ export default function Home() {
     [taskToDo, setTaskToDo] = useState(null);
     [isTimerRunning, setIsTimerRunning] = useState(false);
 
-    const toggleIsTimerRunning = () => {
-        setIsTimerRunning(current => !current)
+    const handleTimerStart = () => {
+        if(taskToDo === null) {
+            Alert.alert("Please select a task.")
+        } else { 
+            setIsTimerRunning(current => !current)
+        }
     }
 
     const handleComplete = () => {
-        setTaskToDo(current => {return {...current, lastPerformed: new Date()}})
-        dispatch(updateTask(taskToDo));
+        const updatedTask = {...taskToDo, lastPerformed: new Date()}
+        dispatch(updateTask(updatedTask));
         dispatch(getTasks());
         setTaskToDo(null);
-        toggleIsTimerRunning();
+        setIsTimerRunning(current => !current)
     }
 
     return (
@@ -36,11 +40,12 @@ export default function Home() {
                 colorsTime={[7, 5, 2, 0]}
                 onComplete={handleComplete}
             >
-                {({ remainingTime }) => <Text style={styles.text}>{remainingTime}</Text>}
+                {({ remainingTime }) => 
+                <Text style={styles.text}>{taskToDo ? taskToDo.title : ''} {remainingTime < 0 ? 0 : remainingTime}</Text>
+                }
             </CountdownCircleTimer>
-            <Text style={styles.text}>{taskToDo ? taskToDo.title : ''}</Text>
             <Button 
-                onPress={toggleIsTimerRunning}
+                onPress={handleTimerStart}
                 title={isTimerRunning ? "STOP" : "START"}
                 color="#fb4d3d"
                 accessibilityLabel="Timer Start/Stop Button"

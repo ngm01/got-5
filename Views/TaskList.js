@@ -27,7 +27,8 @@ export default function TaskList() {
 
     const getDateString = (date) => {
         const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-        return date ? date.toLocaleDateString('us-EN', options).replaceAll(',', '') : 'Never'
+        const myDate =  date ? new Date(date).toLocaleDateString('us-EN', options).replaceAll(',', '') : 'Never'
+        return myDate;
     }
 
 
