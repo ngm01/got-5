@@ -3,6 +3,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllTasks, getTasks } from '../state/reducers/tasks';
+import styles from '../styles';
 
 function TaskSelector({ setTaskToDo }) {
 
@@ -53,9 +54,9 @@ function TaskSelector({ setTaskToDo }) {
     return ( 
         <View>
             <Text style={styles.text}>How much time do you have?</Text>
-            <View style={styles.inputContainer}>
+            <View style={styles.timeInputContainer}>
                 <TextInput 
-                    style={styles.input}
+                    style={styles.timeInput}
                     onChangeText={setTaskTime} 
                     keyboardType="numeric"
                     returnKeyType='done'
@@ -67,26 +68,5 @@ function TaskSelector({ setTaskToDo }) {
         </View>
      );
 }
-
-const styles = StyleSheet.create({
-    inputContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    input: {
-        height: 40,
-        margin: 12,
-        borderWidth: 1,
-        padding: 10,
-        width: 80,
-        borderColor: 'gray',
-        backgroundColor: '#fff'
-      },
-      text: {
-        color: '#fff'
-      }
-})
 
 export default TaskSelector;

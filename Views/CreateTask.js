@@ -5,6 +5,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { useState } from 'react';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
+import styles from '../styles';
 
 export default function CreateTask() {
 
@@ -50,22 +51,14 @@ export default function CreateTask() {
         <View>
             <Text>What do you want to call this task?</Text>
             <TextInput         
-            style={{
-            height: 40,
-            borderColor: 'gray',
-            borderWidth: 1,
-            }}
+            style={styles.taskInput}
             onChangeText={setTaskTitle}
             value={taskTitle}
             placeholder="Create a task..." 
             />
             <Text>How many minutes will this task take?</Text>
             <TextInput             
-                style={{
-                height: 40,
-                borderColor: 'gray',
-                borderWidth: 1,
-                }}
+                style={styles.taskInput}
                 onChangeText={setTaskTime} 
                 returnKeyType='done'
                 keyboardType="numeric" />
@@ -87,7 +80,3 @@ export default function CreateTask() {
         </View>
     )
 }
-
-StyleSheet.create({
-
-})

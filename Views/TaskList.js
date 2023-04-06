@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react';
 import { selectAllTasks, getTasks, deleteTask } from '../state/reducers/tasks';
+import styles from '../styles';
 
 export default function TaskList() {
 
@@ -72,21 +73,3 @@ export default function TaskList() {
             </View> 
     )
 }
-
-const styles = StyleSheet.create({
-    taskList: {
-        backgroundColor: '#011627',
-        height: '100%'
-    },
-    task: {
-        borderWidth: '5px',
-        borderColor: '#fb4d3d',
-        padding: '2%',
-        marginBottom: '2%',
-        backgroundColor: '#3581b8',
-        width: '50%'
-    },
-    taskText: {
-        color: '#ece8ef',
-    }
-})
