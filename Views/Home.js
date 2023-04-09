@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTasks, updateTask } from '../state/reducers/tasks';
-import { Alert, Button, StyleSheet, Text, View } from 'react-native';
+import { Alert, Button, Pressable, StyleSheet, Text, View } from 'react-native';
 import TaskButtons from './TaskButtons';
 import TaskSelector from './TaskSelector';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
@@ -44,12 +44,11 @@ export default function Home() {
                 <Text style={styles.text}>{taskToDo ? taskToDo.title : ''} {remainingTime < 0 ? 0 : remainingTime}</Text>
                 }
             </CountdownCircleTimer>
-            <Button 
+            <Pressable 
                 onPress={handleTimerStart}
-                title={isTimerRunning ? "STOP" : "START"}
-                color="#fb4d3d"
-                accessibilityLabel="Timer Start/Stop Button"
-            />
+                style={styles.basicButton}>
+                <Text>{isTimerRunning ? "STOP" : "START"}</Text>
+            </Pressable>
             <TaskButtons />
         </View>
     )

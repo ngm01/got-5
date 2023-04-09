@@ -64,7 +64,11 @@ function TaskSelector({ setTaskToDo }) {
                 />
                 <Text style={styles.text}>minutes</Text>
             </View>
-            <Button title="GET A TASK" color="#fb4d3d" onPress={handlePress} />
+            <Pressable 
+                onPress={handlePress}
+                style={styles.basicButton}>
+                <Text>Get a Task</Text>
+            </Pressable>
         </View>
      );
 }

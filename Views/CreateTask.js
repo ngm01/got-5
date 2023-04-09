@@ -1,4 +1,4 @@
-import { Button, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, Text, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { getTasks, createTask } from '../state/reducers/tasks';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -84,11 +84,11 @@ export default function CreateTask() {
                 </View>
                 {
                     open ? <></> :                 
-                    <Button
-                    title="Add Task"
-                    color="#fb4d3d"
-                    onPress={createNewTask}
-                />
+                    <Pressable 
+                        onPress={createNewTask}
+                        style={styles.basicButton}>
+                        <Text>Create Task</Text>
+                    </Pressable>
                 }
             </View>
         </View>

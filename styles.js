@@ -17,20 +17,31 @@ export const colors = {
 
 const styles = StyleSheet.create({
     homeContainer: {
-        flex: '1',
         display: 'flex',
         backgroundColor: colors.primary,
         alignItems: 'center',
         justifyContent: 'center',
+        height: '100%'
     },
     text: {
         color: colors.secondary,
     },
     homeButtons: {
-        flex: '1',
         display: 'flex',
         flexDirection: 'row',
-        alignItems: 'center'
+        justifyContent: 'space-around',
+        width: '100%'
+    },
+    basicButton: {
+        display: 'flex',
+        alignItems: 'center',
+        borderRadius: 25,
+        backgroundColor: colors.action,
+        color: colors.secondary,
+        padding: 20,
+        marginTop: 20,
+        marginBottom: 20
+
     },
     taskInputComponent: {
         height: '100%',
