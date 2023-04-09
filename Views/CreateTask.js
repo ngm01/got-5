@@ -79,10 +79,7 @@ export default function CreateTask() {
                     setValue={setTaskCadence}
                     setItems={setItems}
                     style={styles.createTaskDropdown}
-                    containerStyle={{
-                        width: 250,
-                        zIndex: 2000
-                    }}
+                    containerStyle={{width: 250}}
                 />
                 </View>
                 {

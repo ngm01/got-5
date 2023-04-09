@@ -37,7 +37,6 @@ function TaskSelector({ setTaskToDo }) {
     }
     
     const checkCanPerform = (task) => {
-        console.log(task.cadence)
         if(task.lastPerformed === null) {
             return true;
         } else {
