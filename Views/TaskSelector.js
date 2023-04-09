@@ -37,6 +37,7 @@ function TaskSelector({ setTaskToDo }) {
     }
     
     const checkCanPerform = (task) => {
+        console.log(task.cadence)
         if(task.lastPerformed === null) {
             return true;
         } else {
@@ -44,7 +45,7 @@ function TaskSelector({ setTaskToDo }) {
             const cadenceCheck = new Date(
                 lastPerformed.getFullYear(),
                 lastPerformed.getMonth(),
-                lastPerformed.getDate() + task.cadence.value
+                lastPerformed.getDate() + task.cadence
             )
             const today = new Date();
             return today > cadenceCheck;

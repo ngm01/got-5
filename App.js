@@ -7,6 +7,7 @@ import Home from './Views/Home';
 import CreateTask from './Views/CreateTask';
 import TaskList from './Views/TaskList';
 import TaskButtons from './Views/TaskButtons';
+import { colors } from './styles';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,14 +15,26 @@ export default function App() {
   return (
     <Provider store={store}>
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: colors.primary,
+              },
+              headerTintColor: colors.secondary,
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+          >
             <Stack.Screen
               name="Home"
               component={Home}
+              options={{ title: '' }}
             /> 
             <Stack.Screen 
               name="TaskList"
               component={TaskList}
+              options={{ title: 'Task List' }}
             />
             <Stack.Screen 
               name="TaskButtons"
@@ -30,6 +43,7 @@ export default function App() {
             <Stack.Screen 
               name="CreateTask"
               component={CreateTask}
+              options={{ title: 'Create a Task' }}
             />
           </Stack.Navigator>
         </NavigationContainer>
@@ -41,19 +55,8 @@ const styles = StyleSheet.create({
   container: {
     flex: '1',
     display: 'flex',
-    backgroundColor: '#011627',
+    backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
-
-/*
-provisional colors:
-background: #011627
-buttons: #fb4d3d
-white text: #ece8ef
-blue highlight: #3581b8
-green highlight: #538083
-*/
-
-// TODO: Add storage: https://react-native-async-storage.github.io/async-storage/docs/api

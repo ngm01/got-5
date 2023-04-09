@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { getTasks, createTask } from '../state/reducers/tasks';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -48,35 +48,53 @@ export default function CreateTask() {
     }
 
     return (
-        <View>
-            <Text>What do you want to call this task?</Text>
-            <TextInput         
-            style={styles.taskInput}
-            onChangeText={setTaskTitle}
-            value={taskTitle}
-            placeholder="Create a task..." 
-            />
-            <Text>How many minutes will this task take?</Text>
-            <TextInput             
+        <View style={styles.taskInputComponent}>
+            <View style={styles.taskInputContainer}>
+                <Text style={styles.text}>What do you want to call this task?</Text>
+                <TextInput         
                 style={styles.taskInput}
-                onChangeText={setTaskTime} 
-                returnKeyType='done'
-                keyboardType="numeric" />
-            
-            <Text>How frequently should this task be performed? ℹ️</Text>
-            <DropDownPicker
-                open={open}
-                value={taskCadence}
-                items={items}
-                setOpen={setOpen}
-                setValue={setTaskCadence}
-                setItems={setItems}
-             />
-            <Button
-                title="Add Task"
-                color="#fb4d3d"
-                onPress={createNewTask}
-             />
+                onChangeText={setTaskTitle}
+                value={taskTitle}
+                placeholder="Example: pushups for 1 minute"
+                placeholderTextColor="rgba(255, 255, 255, .25)"
+                />
+                <Text style={styles.text}>How many minutes will this task take?</Text>
+                <TextInput             
+                    style={styles.taskInput}
+                    onChangeText={setTaskTime} 
+                    returnKeyType='done'
+                    placeholder='1'
+                    placeholderTextColor="rgba(255, 255, 255, .25)"
+                    keyboardType="numeric" />
+                
+                <Text style={styles.text}>How frequently should this task be performed? 
+                    <Pressable><Text>ℹ️</Text></Pressable>
+                </Text>
+                <View style={styles.createTaskDropdownContainer}>
+                <DropDownPicker
+                    open={open}
+                    value={taskCadence}
+                    items={items}
+                    setOpen={setOpen}
+                    setValue={setTaskCadence}
+                    setItems={setItems}
+                    style={styles.createTaskDropdown}
+                    containerStyle={{
+                        width: 250,
+                        zIndex: 2000
+                    }}
+                />
+                </View>
+                {
+                    open ? <></> :                 
+                    <Button
+                    title="Add Task"
+                    color="#fb4d3d"
+                    onPress={createNewTask}
+                />
+                }
+            </View>
         </View>
+
     )
 }

@@ -9,16 +9,22 @@ import { StyleSheet} from 'react-native';
   green highlight: #538083
   */
 
+export const colors = {
+    primary: '#011627',
+    secondary: '#ece8ef',
+    action: '#fb4d3d'
+  }
+
 const styles = StyleSheet.create({
     homeContainer: {
         flex: '1',
         display: 'flex',
-        backgroundColor: '#011627',
+        backgroundColor: colors.primary,
         alignItems: 'center',
         justifyContent: 'center',
     },
     text: {
-        color: '#ece8ef',
+        color: colors.secondary,
     },
     homeButtons: {
         flex: '1',
@@ -26,11 +32,31 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center'
     },
+    taskInputComponent: {
+        height: '100%',
+        backgroundColor: colors.primary,
+    },
+    taskInputContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        top: 25
+    },
     taskInput: {
         height: 40,
-        borderColor: 'gray',
+        width: 250,
+        borderColor: colors.secondary,
         borderWidth: 1,
+        marginBottom: 25,
+        borderColor: 'transparent',
+        borderBottomColor: colors.action,
+        color: colors.secondary
     },
+    createTaskDropdown: {
+        width: 250,
+        zIndex: '2000'
+    },
+    // Task selector
     timeInputContainer: {
         display: 'flex',
         flexDirection: 'row',
@@ -43,24 +69,26 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
         width: 80,
-        borderColor: 'gray',
-        backgroundColor: '#fff'
+        borderColor: 'transparent',
+        borderBottomColor: colors.action,
+        backgroundColor: colors.primary,
+        color: colors.secondary
     },
     // TaskList
     taskList: {
-        backgroundColor: '#011627',
+        backgroundColor: colors.primary,
         height: '100%'
     },
     task: {
         borderWidth: '5px',
-        borderColor: '#fb4d3d',
+        borderColor: colors.secondary,
         padding: '2%',
         marginBottom: '2%',
-        backgroundColor: '#3581b8',
+        backgroundColor: colors.primary,
         width: '50%'
     },
     taskText: {
-        color: '#ece8ef',
+        color: colors.secondary,
     }
 })
 
