@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         backgroundColor: colors.primary,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'normal',
         height: '100%'
     },
     text: {
@@ -32,10 +32,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         width: '100%'
     },
+    timerText: {
+        display: 'flex',
+        color: colors.secondary
+    },
     basicButton: {
         display: 'flex',
         alignItems: 'center',
-        borderRadius: 25,
+        borderRadius: 15,
         backgroundColor: colors.action,
         color: colors.secondary,
         padding: 20,
@@ -83,7 +87,8 @@ const styles = StyleSheet.create({
         borderColor: 'transparent',
         borderBottomColor: colors.action,
         backgroundColor: colors.primary,
-        color: colors.secondary
+        color: colors.secondary,
+        textAlign: 'center'
     },
     // TaskList
     taskList: {

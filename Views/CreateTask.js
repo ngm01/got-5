@@ -1,4 +1,4 @@
-import { Pressable, Text, TextInput, View } from 'react-native';
+import { Alert, Pressable, Text, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { getTasks, createTask } from '../state/reducers/tasks';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -23,28 +23,32 @@ export default function CreateTask() {
       {label: 'Monthly', value: 30},
       {label: 'Only once', value: 0}
     ]);
-  
 
      async function createNewTask () {
-        const today = new Date();
-        const id = uuidv4();
-        const newTask = {
-            id: id,
-            title: taskTitle,
-            time: taskTime,
-            cadence: taskCadence,
-            created: today,
-            lastPerformed: null,
-            tags: []
+        const parsedTime = parseInt(taskTime);
+        if(parsedTime > 60 || parsedTime === NaN || parsedTime === 0) {
+            Alert.alert("Please enter a time, in minutes, between 1 and 60.")
+        } else {
+            const today = new Date();
+            const id = uuidv4();
+            const newTask = {
+                id: id,
+                title: taskTitle,
+                time: taskTime,
+                cadence: taskCadence,
+                created: today,
+                lastPerformed: null,
+                tags: []
+            }
+            try {
+                await dispatch(createTask(newTask));
+                dispatch(getTasks());
+            } catch (e) {
+                console.log("error creating task:", e);
+                Alert.alert("Sorry! \n We encoutered an error attempting to create this task!")
+            }
+            Alert.alert(`created task:\n${taskTitle}`);
         }
-        try {
-            await dispatch(createTask(newTask));
-            dispatch(getTasks());
-        } catch (e) {
-            console.log("error creating task:", e);
-            alert("Sorry! \n We encoutered an error attempting to create this task!")
-        }
-        alert(`created task:\n${taskTitle}`);
     }
 
     return (

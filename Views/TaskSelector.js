@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Pressable, Alert, TextInput, Button } from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
+//import { Picker } from '@react-native-picker/picker';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllTasks, getTasks } from '../state/reducers/tasks';
@@ -15,10 +15,11 @@ function TaskSelector({ setTaskToDo }) {
     }, [])
 
     const [taskTime, setTaskTime] = useState(0)
+    const [selectedTime, setSelectedTime] = useState(5);
 
     const handlePress = () => {
-        if(taskTime === 0 || taskTime === null) {
-            Alert.alert("Please enter a time.");
+        if(taskTime === 0 || taskTime === null || taskTime > 60) {
+            Alert.alert("Please enter a time in minutes between 1 and 60.");
             return;
         }
         const tasksInTime = tasks.filter(task => task.time <= taskTime);

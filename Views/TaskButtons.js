@@ -7,10 +7,10 @@ export default function TaskButtons() {
     return (
         <View style={styles.homeButtons}>
             <Pressable style={styles.basicButton} onPress={() => navigation.navigate('CreateTask')}>
-                <Text>Create a Task</Text>
+                <Text style={styles.text}>Create a Task</Text>
             </Pressable>
             <Pressable style={styles.basicButton} onPress={() => navigation.navigate('TaskList')}>
-                <Text>View Task List</Text>
+                <Text style={styles.text}>View Task List</Text>
             </Pressable>
         </View>
     )
