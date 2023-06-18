@@ -18,6 +18,7 @@ function TaskSelector({ setTaskToDo }) {
     const [selectedTime, setSelectedTime] = useState(5);
 
     const handlePress = () => {
+        console.log("Task time is:", taskTime);
         if(taskTime === 0 || taskTime === null || taskTime > 60) {
             Alert.alert("Please enter a time in minutes between 1 and 60.");
             return;
@@ -30,6 +31,7 @@ function TaskSelector({ setTaskToDo }) {
             const availableTasks = tasksInTime.filter(checkCanPerform)
             if(availableTasks.length) {
                 const selectedTask = availableTasks[Math.floor(Math.random() * availableTasks.length)]
+                console.log("typeof selectedTask.time:", typeof selectedTask.time);
                 setTaskToDo(selectedTask);
             } else {
                 Alert.alert("Looks like you have no tasks to perform! Enjoy some well earned rest!")
@@ -68,7 +70,7 @@ function TaskSelector({ setTaskToDo }) {
             <Pressable 
                 onPress={handlePress}
                 style={styles.basicButton}>
-                <Text>Get a Task</Text>
+                <Text style={styles.text}>Get a Task</Text>
             </Pressable>
         </View>
      );

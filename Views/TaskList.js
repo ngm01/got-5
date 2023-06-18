@@ -36,7 +36,7 @@ export default function TaskList() {
     function renderItem({item}) {
         return  <View style={styles.task}>
                     <Text style={styles.taskText}>Title: {item.title}</Text>
-                    <Text style={styles.taskText}>Time: {item.time} minutes</Text>
+                    <Text style={styles.taskText}>Time: {item.time} {item.time === 1 ? 'minute' : 'minutes'}</Text>
                     <Text style={styles.taskText}>Last Performed: {getDateString(item.lastPerformed)}</Text>
                     <Button 
                         title='Delete Task'

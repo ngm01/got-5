@@ -12,10 +12,10 @@ export default function CreateTask() {
     const dispatch = useDispatch();
 
     const [taskTitle, setTaskTitle] = useState('');
-    const [taskTime, setTaskTime] = useState('');
+    const [taskTime, setTaskTime] = useState(null);
+    const [taskCadence, setTaskCadence] = useState(1);
 
     const [open, setOpen] = useState(false);
-    const [taskCadence, setTaskCadence] = useState(1);
     const [items, setItems] = useState([
       {label: 'Daily', value: 1},
       {label: 'Weekly', value: 7},
@@ -34,7 +34,7 @@ export default function CreateTask() {
             const newTask = {
                 id: id,
                 title: taskTitle,
-                time: taskTime,
+                time: parsedTime,
                 cadence: taskCadence,
                 created: today,
                 lastPerformed: null,
@@ -48,6 +48,9 @@ export default function CreateTask() {
                 Alert.alert("Sorry! \n We encoutered an error attempting to create this task!")
             }
             Alert.alert(`created task:\n${taskTitle}`);
+            setTaskTitle('');
+            setTaskTime(null);
+            setTaskCadence(1);
         }
     }
 
@@ -58,6 +61,7 @@ export default function CreateTask() {
                 <TextInput         
                 style={styles.taskInput}
                 onChangeText={setTaskTitle}
+                returnKeyType='done'
                 value={taskTitle}
                 placeholder="Example: pushups for 1 minute"
                 placeholderTextColor="rgba(255, 255, 255, .25)"

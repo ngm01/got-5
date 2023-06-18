@@ -15,6 +15,12 @@ export const colors = {
     action: '#fb4d3d'
   }
 
+export const fontSizes = {
+    small: '10',
+    medium: '18',
+    large: '30'
+}
+
 const styles = StyleSheet.create({
     homeContainer: {
         display: 'flex',
@@ -25,6 +31,11 @@ const styles = StyleSheet.create({
     },
     text: {
         color: colors.secondary,
+        fontSize: fontSizes.medium
+    },
+    bigText: {
+        color: colors.secondary,
+        fontSize: fontSizes.large
     },
     homeButtons: {
         display: 'flex',
@@ -34,6 +45,9 @@ const styles = StyleSheet.create({
     },
     timerText: {
         display: 'flex',
+        flexDirection: 'column',
+        textAlign: 'center',
+        width: '50%',
         color: colors.secondary
     },
     basicButton: {
