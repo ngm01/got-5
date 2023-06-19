@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         backgroundColor: colors.primary,
         alignItems: 'center',
-        justifyContent: 'normal',
+        justifyContent: 'space-between',
         height: '100%'
     },
     text: {
@@ -37,11 +37,17 @@ const styles = StyleSheet.create({
         color: colors.secondary,
         fontSize: fontSizes.large
     },
-    homeButtons: {
+    navbar: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-around',
-        width: '100%'
+        width: '100%',
+        backgroundColor: colors.action
+    },
+    navbarButton: {
+        color: colors.secondary,
+        display: 'flex',
+        'alignSelf': 'flex-end'
     },
     timerText: {
         display: 'flex',
@@ -64,6 +70,9 @@ const styles = StyleSheet.create({
     taskInputComponent: {
         height: '100%',
         backgroundColor: colors.primary,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     },
     taskInputContainer: {
         display: 'flex',
@@ -119,6 +128,13 @@ const styles = StyleSheet.create({
     },
     taskText: {
         color: colors.secondary,
+    },
+    adBanner: {
+        width: 320,
+        height: 50,
+        borderWidth: '1px',
+        borderStyle: "dashed",
+        borderColor: colors.secondary
     }
 })
 

@@ -6,6 +6,7 @@ import { useState } from 'react';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import styles from '../styles';
+import NavBar from './NavBar';
 
 export default function CreateTask() {
 
@@ -75,9 +76,7 @@ export default function CreateTask() {
                     placeholderTextColor="rgba(255, 255, 255, .25)"
                     keyboardType="numeric" />
                 
-                <Text style={styles.text}>How frequently should this task be performed? 
-                    <Pressable><Text>ℹ️</Text></Pressable>
-                </Text>
+                <Text style={styles.text}>How frequently should this task be performed?</Text>
                 <View style={styles.createTaskDropdownContainer}>
                 <DropDownPicker
                     open={open}
@@ -99,6 +98,7 @@ export default function CreateTask() {
                     </Pressable>
                 }
             </View>
+            <NavBar />
         </View>
 
     )

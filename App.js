@@ -6,7 +6,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './Views/Home';
 import CreateTask from './Views/CreateTask';
 import TaskList from './Views/TaskList';
-import TaskButtons from './Views/TaskButtons';
 import { colors } from './styles';
 
 const Stack = createNativeStackNavigator();
@@ -35,10 +34,6 @@ export default function App() {
               name="TaskList"
               component={TaskList}
               options={{ title: 'Task List' }}
-            />
-            <Stack.Screen 
-              name="TaskButtons"
-              component={TaskButtons}
             />
             <Stack.Screen 
               name="CreateTask"

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTasks, updateTask } from '../state/reducers/tasks';
 import { Alert, Button, Pressable, StyleSheet, Text, View } from 'react-native';
-import TaskButtons from './TaskButtons';
+import NavBar from './NavBar';
 import TaskSelector from './TaskSelector';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import styles from '../styles';
@@ -40,6 +40,9 @@ export default function Home() {
 
     return (
         <View style={styles.homeContainer}>
+            <View style={styles.adBanner}>
+                <Text style={{'color': '#fff'}}>Add banner goes here</Text>
+            </View>
             <TaskSelector setTaskToDo={setTaskToDo} />
             <CountdownCircleTimer
                 isPlaying={isTimerRunning}
@@ -58,7 +61,7 @@ export default function Home() {
                 style={styles.basicButton}>
                 <Text style={styles.text}>{isTimerRunning ? "STOP" : "START"}</Text>
             </Pressable>
-            <TaskButtons />
+            <NavBar />
         </View>
     )
 }
