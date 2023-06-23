@@ -9,10 +9,13 @@ import { StyleSheet} from 'react-native';
   green highlight: #538083
   */
 
+  //background: linear-gradient(to top, #2F80ED, #56CCF2);
+
 export const colors = {
     primary: '#011627',
     secondary: '#ece8ef',
-    action: '#fb4d3d'
+    action: '#fb4d3d',
+    selected: '#f77468'
   }
 
 export const fontSizes = {
@@ -37,6 +40,16 @@ const styles = StyleSheet.create({
         color: colors.secondary,
         fontSize: fontSizes.large
     },
+    basicButton: {
+        display: 'flex',
+        alignItems: 'center',
+        borderRadius: 15,
+        backgroundColor: colors.action,
+        color: colors.secondary,
+        padding: 20,
+        marginTop: 20,
+        marginBottom: 20
+    },
     navbar: {
         display: 'flex',
         flexDirection: 'row',
@@ -45,6 +58,29 @@ const styles = StyleSheet.create({
         backgroundColor: colors.action
     },
     navbarButton: {
+        display: 'flex',
+        alignItems: 'center',
+        backgroundColor: colors.action,
+        paddingVertical: 35,
+        paddingHorizontal: 50,
+        // marginTop: 20,
+        // marginBottom: 20
+    },
+    selectedNavbar: {
+        display: 'flex',
+        alignItems: 'center',
+        backgroundColor: colors.selected,
+        paddingVertical: 35,
+        paddingHorizontal: 50,
+        // marginTop: 20,
+        // marginBottom: 20
+    },
+    navbarIcon: {
+        color: colors.primary,
+        display: 'flex',
+        'alignSelf': 'flex-end'
+    },
+    navbarIconSelected: {
         color: colors.secondary,
         display: 'flex',
         'alignSelf': 'flex-end'
@@ -55,17 +91,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         width: '50%',
         color: colors.secondary
-    },
-    basicButton: {
-        display: 'flex',
-        alignItems: 'center',
-        borderRadius: 15,
-        backgroundColor: colors.action,
-        color: colors.secondary,
-        padding: 20,
-        marginTop: 20,
-        marginBottom: 20
-
     },
     taskInputComponent: {
         height: '100%',

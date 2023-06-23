@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react';
 import { selectAllTasks, getTasks, deleteTask } from '../state/reducers/tasks';
 import styles from '../styles';
+import NavBar from './NavBar';
 
 export default function TaskList() {
 
@@ -70,6 +71,7 @@ export default function TaskList() {
     return (
          <View style={styles.taskList}>
             {content}
+            <NavBar current={'list'}/>
             </View> 
     )
 }

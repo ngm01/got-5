@@ -98,7 +98,7 @@ export default function CreateTask() {
                     </Pressable>
                 }
             </View>
-            <NavBar />
+            <NavBar current={'create'} />
         </View>
 
     )

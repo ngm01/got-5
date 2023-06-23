@@ -5,18 +5,18 @@ import { faHome, faListCheck, faCirclePlus } from '@fortawesome/free-solid-svg-i
 
 import styles from '../styles';
 
-export default function NavBar() {
+export default function NavBar({current}) {
     const navigation= useNavigation();
     return (
         <View style={styles.navbar}>
-            <Pressable style={styles.basicButton} onPress={() => navigation.navigate('Home')}>
-                <FontAwesomeIcon size={32} icon={faHome} style={styles.navbarButton} />
+            <Pressable style={(current === 'home' ? styles.selectedNavbar : styles.navbarButton)} onPress={() => navigation.navigate('Home')}>
+                <FontAwesomeIcon size={32} style={(current === 'home' ? styles.navbarIconSelected : styles.navbarIcon)} icon={faHome} />
             </Pressable>
-            <Pressable style={styles.basicButton} onPress={() => navigation.navigate('CreateTask')}>
-                <FontAwesomeIcon size={32} style={styles.navbarButton} icon={faCirclePlus} />
+            <Pressable style={(current === 'create' ? styles.selectedNavbar : styles.navbarButton)} onPress={() => navigation.navigate('CreateTask')}>
+                <FontAwesomeIcon size={32} style={(current === 'create' ? styles.navbarIconSelected : styles.navbarIcon)} icon={faCirclePlus} />
             </Pressable>
-            <Pressable style={styles.basicButton} onPress={() => navigation.navigate('TaskList')}>
-                <FontAwesomeIcon size={32} style={styles.navbarButton} icon={faListCheck} />
+            <Pressable style={(current === 'list' ? styles.selectedNavbar : styles.navbarButton)} onPress={() => navigation.navigate('TaskList')}>
+                <FontAwesomeIcon size={32} style={(current === 'list' ? styles.navbarIconSelected : styles.navbarIcon)} icon={faListCheck} />
             </Pressable>
         </View>
     )

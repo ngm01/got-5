@@ -1,21 +1,21 @@
 import { StyleSheet, Text, View, Pressable, Alert, TextInput, Button } from 'react-native';
-//import { Picker } from '@react-native-picker/picker';
-import { useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllTasks, getTasks } from '../state/reducers/tasks';
+import { TaskContext } from '../App';
 import styles from '../styles';
 
 function TaskSelector({ setTaskToDo }) {
 
     const dispatch = useDispatch();
     const tasks = useSelector(selectAllTasks);
+    const [currentTask, setCurrentTask] = useContext(TaskContext);
 
     useEffect(() => {
         dispatch(getTasks());
     }, [])
 
-    const [taskTime, setTaskTime] = useState(0)
-    const [selectedTime, setSelectedTime] = useState(5);
+    const [taskTime, setTaskTime] = useState(0);
 
     const handlePress = () => {
         if(taskTime === 0 || taskTime === null || taskTime > 60) {
@@ -30,7 +30,7 @@ function TaskSelector({ setTaskToDo }) {
             const availableTasks = tasksInTime.filter(checkCanPerform)
             if(availableTasks.length) {
                 const selectedTask = availableTasks[Math.floor(Math.random() * availableTasks.length)]
-                setTaskToDo(selectedTask);
+                setCurrentTask(selectedTask);
             } else {
                 Alert.alert("Looks like you have no tasks to perform! Enjoy some well earned rest!")
             }
