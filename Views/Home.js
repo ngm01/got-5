@@ -8,16 +8,8 @@ import { TaskContext } from '../App';
 
 export default function Home() {
 
+    const navigation = useNavigation();
     const [currentTask, setCurrentTask] = useContext(TaskContext);
-    // TODO: some kind of start timer ref...
-
-    const startTimer = () => {
-        if(currentTask === null) {
-            Alert.alert("Please select a task.")
-        } else { 
-            useNavigation('Timer')
-        }
-    }
 
     return (
         <View style={styles.homeContainer}>
@@ -25,9 +17,10 @@ export default function Home() {
                 <Text style={{'color': '#fff'}}>Add banner goes here</Text>
             </View>
             <TaskSelector />
-            <Text>TODO: Task selection visualizer...</Text>
+            <Text style={styles.text}>{currentTask ? currentTask.title : 'TODO: Visualizer...'}</Text>
             <Pressable 
-                onPress={startTimer}
+                onPress={() => {navigation.navigate('Timer')}}
+                disabled={!currentTask}
                 style={styles.basicButton}>
                 <Text style={styles.text}>START</Text>
             </Pressable>

@@ -94,7 +94,7 @@ export default function CreateTask() {
                     <Pressable 
                         onPress={createNewTask}
                         style={styles.basicButton}>
-                        <Text>Create Task</Text>
+                        <Text style={styles.text}>Create Task</Text>
                     </Pressable>
                 }
             </View>

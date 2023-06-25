@@ -6,7 +6,7 @@ import { faHome, faListCheck, faCirclePlus } from '@fortawesome/free-solid-svg-i
 import styles from '../styles';
 
 export default function NavBar({current}) {
-    const navigation= useNavigation();
+    const navigation = useNavigation();
     return (
         <View style={styles.navbar}>
             <Pressable style={(current === 'home' ? styles.selectedNavbar : styles.navbarButton)} onPress={() => navigation.navigate('Home')}>

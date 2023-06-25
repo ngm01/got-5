@@ -10,6 +10,7 @@ import styles from '../styles';
 export default function Timer() {
 
     const dispatch = useDispatch();
+    const navigation = useNavigation()
 
     const [currentTask, setCurrentTask] = useContext(TaskContext)
 
@@ -32,10 +33,16 @@ export default function Timer() {
         dispatch(updateTask(updatedTask));
         dispatch(getTasks());
         setCurrentTask(null);
-        useNavigation('Home')
+        navigation.navigate('Home')
     }
 
-    return <View>
+    const handleCancel = () => {
+        setIsTimerRunning(false);
+        setCurrentTask(null);
+        navigation.navigate('Home')
+    }
+
+    return <View style={styles.homeContainer}>
         <CountdownCircleTimer
                 isPlaying={isTimerRunning}
                 duration={currentTask ? currentTask.time * 60 : 0}
@@ -54,10 +61,9 @@ export default function Timer() {
                 <Text style={styles.text}>{isTimerRunning ? "PAUSE" : "RESUME"}</Text>
             </Pressable>
         <Pressable 
-            onPress={() => {useNavigation('Home')}}
+            onPress={handleCancel}
             style={styles.basicButton}>
             <Text style={styles.text}>CANCEL</Text>
         </Pressable>
-        {/* <Text style={styles.text}>Testing 123</Text> */}
     </View>
 }
