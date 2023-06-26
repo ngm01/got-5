@@ -1,25 +1,20 @@
 import store from './store';
-import { createContext, useState } from 'react';
+import { useState } from 'react';
 import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import TaskContext from './state/TaskContext';
 import Home from './Views/Home';
 import CreateTask from './Views/CreateTask';
 import TaskList from './Views/TaskList';
 import Timer from './Views/Timer';
 import { colors } from './styles';
-import { useEffect } from 'react';
 
 const Stack = createNativeStackNavigator();
-export const TaskContext = createContext();
 
 export default function App() {
  
   [currentTask, setCurrentTask] = useState(null)
-
-  useEffect(() => {
-    console.log("new current task:", currentTask)
-  }, [currentTask])
 
   return (
     <TaskContext.Provider value={[currentTask, setCurrentTask]}>

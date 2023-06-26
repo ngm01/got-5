@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import NavBar from './NavBar';
 import TaskSelector from './TaskSelector';
 import styles from '../styles';
-import { TaskContext } from '../App';
+import TaskContext from '../state/TaskContext';
 
 export default function Home() {
 

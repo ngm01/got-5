@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Pressable, Alert, TextInput, Button } from 'rea
 import { useContext, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllTasks, getTasks } from '../state/reducers/tasks';
-import { TaskContext } from '../App';
+import TaskContext from '../state/TaskContext';
 import styles from '../styles';
 
 function TaskSelector({ setTaskToDo }) {

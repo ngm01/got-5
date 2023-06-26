@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { getTasks, updateTask } from '../state/reducers/tasks';
 import { Pressable, Text, View } from 'react-native';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
-import { TaskContext } from '../App';
+import TaskContext from '../state/TaskContext';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../styles';
 
@@ -24,8 +24,10 @@ export default function Timer() {
         const minutes = Math.floor(remainingTime / 60)
         let seconds = remainingTime % 60
         seconds = seconds === 0 ? '00' : seconds;
+        let miliseconds = seconds % 60;
+        miliseconds = miliseconds === 0 ? '00' : miliseconds;
       
-        return `${minutes}:${seconds}`
+        return `${minutes}:${seconds}:${miliseconds}`
     }
 
     const handleComplete = () => {
