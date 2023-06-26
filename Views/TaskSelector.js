@@ -5,7 +5,7 @@ import { selectAllTasks, getTasks } from '../state/reducers/tasks';
 import TaskContext from '../state/TaskContext';
 import styles from '../styles';
 
-function TaskSelector({ setTaskToDo }) {
+function TaskSelector() {
 
     const dispatch = useDispatch();
     const tasks = useSelector(selectAllTasks);
@@ -68,8 +68,9 @@ function TaskSelector({ setTaskToDo }) {
             <Pressable 
                 onPress={handlePress}
                 style={styles.basicButton}>
-                <Text style={styles.text}>Get a Task</Text>
+                <Text style={styles.text}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
             </Pressable>
+            <Text style={styles.bigText}>{currentTask ? currentTask.title : 'TODO: Visualizer...'}</Text>
         </View>
      );
 }

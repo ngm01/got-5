@@ -15,13 +15,15 @@ export const colors = {
     primary: '#011627',
     secondary: '#ece8ef',
     action: '#fb4d3d',
-    selected: '#f77468'
+    selected: '#f77468',
+    disabled: 'gray'
   }
 
 export const fontSizes = {
     small: '10',
     medium: '18',
-    large: '30'
+    large: '30',
+    xlarge: '40'
 }
 
 const styles = StyleSheet.create({
@@ -45,6 +47,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 15,
         backgroundColor: colors.action,
+        color: colors.secondary,
+        padding: 20,
+        marginTop: 20,
+        marginBottom: 20
+    },
+    basicButtonDisabled: {
+        display: 'flex',
+        alignItems: 'center',
+        borderRadius: 15,
+        backgroundColor: colors.disabled,
         color: colors.secondary,
         padding: 20,
         marginTop: 20,
@@ -84,13 +96,6 @@ const styles = StyleSheet.create({
         color: colors.secondary,
         display: 'flex',
         'alignSelf': 'flex-end'
-    },
-    timerText: {
-        display: 'flex',
-        flexDirection: 'column',
-        textAlign: 'center',
-        width: '50%',
-        color: colors.secondary
     },
     taskInputComponent: {
         height: '100%',
@@ -139,21 +144,63 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     // TaskList
-    taskList: {
+
+    taskListContainer: {
         backgroundColor: colors.primary,
         height: '100%'
+    },
+    taskList: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
     task: {
         borderWidth: '5px',
         borderColor: colors.secondary,
+        borderRadius: '25%',
         padding: '2%',
         marginBottom: '2%',
-        backgroundColor: colors.primary,
-        width: '50%'
+        backgroundColor: colors.secondary,
+        width: '75%'
     },
     taskText: {
-        color: colors.secondary,
+        color: colors.primary,
     },
+    taskTextBold: {
+        color: colors.primary,
+        fontWeight: 'bold'
+    },
+    taskButtonContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '100%',
+        marginTop: '5%'
+    },
+    // Timer screen
+    timerContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: colors.primary,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        height: '100%'
+    },
+    timerButtonsContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '100%'
+    },
+    timerText: {
+        display: 'flex',
+        flexDirection: 'column',
+        textAlign: 'center',
+        width: '75%',
+        color: colors.secondary,
+        fontSize: fontSizes.xlarge
+    },
+    // Misc
     adBanner: {
         width: 320,
         height: 50,

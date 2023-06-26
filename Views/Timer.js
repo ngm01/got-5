@@ -21,13 +21,19 @@ export default function Timer() {
     }, [])
 
     const formatTime = (remainingTime) => {
+
+        const formatSeconds = (sec) => {
+            if (sec === 0) return '00';
+            if (sec <= 9) return '0' + sec;
+            return sec;
+        }
+
         const minutes = Math.floor(remainingTime / 60)
         let seconds = remainingTime % 60
-        seconds = seconds === 0 ? '00' : seconds;
-        let miliseconds = seconds % 60;
-        miliseconds = miliseconds === 0 ? '00' : miliseconds;
+        seconds = formatSeconds(seconds);
       
-        return `${minutes}:${seconds}:${miliseconds}`
+        return `${minutes}:${seconds}`
+
     }
 
     const handleComplete = () => {
@@ -44,28 +50,31 @@ export default function Timer() {
         navigation.navigate('Home')
     }
 
-    return <View style={styles.homeContainer}>
+    return <View style={styles.timerContainer}>
+        <Text style={styles.bigText}>{currentTask.title}</Text>
         <CountdownCircleTimer
                 isPlaying={isTimerRunning}
                 duration={currentTask ? currentTask.time * 60 : 0}
                 colors={['#004777', '#F7B801', '#A30000', '#A30000']}
                 colorsTime={[7, 5, 2, 0]}
                 onComplete={handleComplete}
-                size={200}
+                size={300}
             >
                 {({ remainingTime }) => 
-                <Text style={styles.timerText}>{currentTask ? currentTask.title : 'Enter a time to get a task!'} {remainingTime < 0 ? '' : formatTime(remainingTime)}</Text>
+                <Text style={styles.timerText}>{remainingTime < 0 ? '' : formatTime(remainingTime)}</Text>
                 }
         </CountdownCircleTimer>
-        <Pressable 
+        <View style={styles.timerButtonsContainer}>
+            <Pressable 
                 onPress={() => {setIsTimerRunning(!isTimerRunning)}}
                 style={styles.basicButton}>
-                <Text style={styles.text}>{isTimerRunning ? "PAUSE" : "RESUME"}</Text>
+                    <Text style={styles.bigText}>{isTimerRunning ? "PAUSE" : "RESUME"}</Text>
             </Pressable>
-        <Pressable 
-            onPress={handleCancel}
-            style={styles.basicButton}>
-            <Text style={styles.text}>CANCEL</Text>
-        </Pressable>
+            <Pressable 
+                onPress={handleCancel}
+                style={styles.basicButton}>
+                    <Text style={styles.bigText}>CANCEL</Text>
+            </Pressable>
+        </View>
     </View>
 }

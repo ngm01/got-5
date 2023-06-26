@@ -17,11 +17,10 @@ export default function Home() {
                 <Text style={{'color': '#fff'}}>Add banner goes here</Text>
             </View>
             <TaskSelector />
-            <Text style={styles.text}>{currentTask ? currentTask.title : 'TODO: Visualizer...'}</Text>
             <Pressable 
                 onPress={() => {navigation.navigate('Timer')}}
                 disabled={!currentTask}
-                style={styles.basicButton}>
+                style={currentTask ? styles.basicButton: styles.basicButtonDisabled}>
                 <Text style={styles.text}>START</Text>
             </Pressable>
             <NavBar current="home"/>
