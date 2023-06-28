@@ -4,10 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectAllTasks, getTasks } from '../state/reducers/tasks';
 import TaskContext from '../state/TaskContext';
 import styles from '../styles';
+import { useNavigation } from '@react-navigation/native';
 
 function TaskSelector() {
 
     const dispatch = useDispatch();
+    const navigation = useNavigation()
     const tasks = useSelector(selectAllTasks);
     const [currentTask, setCurrentTask] = useContext(TaskContext);
 
@@ -53,8 +55,8 @@ function TaskSelector() {
     }
 
     return ( 
-        <View>
-            <Text style={styles.text}>How much time do you have?</Text>
+        <View style={styles.taskSelectorContainer}>
+            <Text style={styles.bigText}>How much time do you have?</Text>
             <View style={styles.timeInputContainer}>
                 <TextInput 
                     style={styles.timeInput}
@@ -63,14 +65,20 @@ function TaskSelector() {
                     returnKeyType='done'
                     value={taskTime}
                 />
-                <Text style={styles.text}>minutes</Text>
+                <Text style={styles.bigText}>minutes</Text>
             </View>
             <Pressable 
                 onPress={handlePress}
                 style={styles.basicButton}>
-                <Text style={styles.text}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
+                <Text style={styles.bigText}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
             </Pressable>
             <Text style={styles.bigText}>{currentTask ? currentTask.title : 'TODO: Visualizer...'}</Text>
+            <Pressable 
+                onPress={() => {navigation.navigate('Timer')}}
+                disabled={!currentTask}
+                style={currentTask ? styles.basicButton: styles.basicButtonDisabled}>
+                <Text style={styles.bigText}>START</Text>
+            </Pressable>
         </View>
      );
 }

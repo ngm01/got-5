@@ -25,7 +25,7 @@ export default function App() {
               headerStyle: {
                 backgroundColor: colors.primary,
               },
-              headerTintColor: colors.secondary,
+              headerTintColor: colors.white,
               headerTitleStyle: {
                 fontWeight: 'bold',
               },

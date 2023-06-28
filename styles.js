@@ -9,11 +9,20 @@ import { StyleSheet} from 'react-native';
   green highlight: #538083
   */
 
+  /*
+    visual debug border
+        borderColor: 'red',
+        borderStyle: 'dashed',
+        borderWidth: '1px'
+  */
+
   //background: linear-gradient(to top, #2F80ED, #56CCF2);
+  
 
 export const colors = {
     primary: '#011627',
-    secondary: '#ece8ef',
+    secondary: '#314c61',
+    white: '#ece8ef',
     action: '#fb4d3d',
     selected: '#f77468',
     disabled: 'gray'
@@ -35,33 +44,36 @@ const styles = StyleSheet.create({
         height: '100%'
     },
     text: {
-        color: colors.secondary,
+        color: colors.white,
         fontSize: fontSizes.medium
     },
     bigText: {
-        color: colors.secondary,
+        color: colors.white,
         fontSize: fontSizes.large
     },
     basicButton: {
         display: 'flex',
         alignItems: 'center',
-        borderRadius: 15,
+        borderRadius: '5%',
         backgroundColor: colors.action,
-        color: colors.secondary,
+        color: colors.white,
         padding: 20,
         marginTop: 20,
-        marginBottom: 20
+        marginBottom: 20,
+        width: '100%'
     },
     basicButtonDisabled: {
         display: 'flex',
         alignItems: 'center',
-        borderRadius: 15,
+        borderRadius: '5%',
         backgroundColor: colors.disabled,
-        color: colors.secondary,
+        color: colors.white,
         padding: 20,
         marginTop: 20,
-        marginBottom: 20
+        marginBottom: 20,
+        width: '100%'
     },
+    // NavBar
     navbar: {
         display: 'flex',
         flexDirection: 'row',
@@ -93,38 +105,48 @@ const styles = StyleSheet.create({
         'alignSelf': 'flex-end'
     },
     navbarIconSelected: {
-        color: colors.secondary,
+        color: colors.white,
         display: 'flex',
         'alignSelf': 'flex-end'
     },
-    taskInputComponent: {
+    // CreateTask
+    createTaskContainer: {
         height: '100%',
         backgroundColor: colors.primary,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between'
     },
-    taskInputContainer: {
+    createTaskForm: {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        top: 25
+        alignItems: 'left',
+        top: 25,
+        marginLeft: 40,
+        width: '75%'
     },
     taskInput: {
         height: 40,
         width: 250,
-        borderColor: colors.secondary,
+        borderColor: colors.white,
         borderWidth: 1,
         marginBottom: 25,
         borderColor: 'transparent',
         borderBottomColor: colors.action,
-        color: colors.secondary
+        color: colors.white
     },
     createTaskDropdown: {
         width: 250,
         zIndex: '2000'
     },
     // Task selector
+    taskSelectorContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        height: '60%'
+    },
     timeInputContainer: {
         display: 'flex',
         flexDirection: 'row',
@@ -140,11 +162,11 @@ const styles = StyleSheet.create({
         borderColor: 'transparent',
         borderBottomColor: colors.action,
         backgroundColor: colors.primary,
-        color: colors.secondary,
-        textAlign: 'center'
+        color: colors.white,
+        textAlign: 'center',
+        fontSize: fontSizes.large
     },
     // TaskList
-
     taskListContainer: {
         backgroundColor: colors.primary,
         height: '100%'
@@ -157,17 +179,21 @@ const styles = StyleSheet.create({
     task: {
         borderWidth: '5px',
         borderColor: colors.secondary,
-        borderRadius: '25%',
+        borderRadius: '5%',
         padding: '2%',
         marginBottom: '2%',
         backgroundColor: colors.secondary,
-        width: '75%'
+        width: '75%',
+        shadowColor: '#111',
+        shadowOffset: {width: 5, height: -5},
+        shadowRadius: '1px',
+        shadowOpacity: '.75'
     },
     taskText: {
-        color: colors.primary,
+        color: colors.white,
     },
     taskTextBold: {
-        color: colors.primary,
+        color: colors.white,
         fontWeight: 'bold'
     },
     taskButtonContainer: {
@@ -197,7 +223,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         textAlign: 'center',
         width: '75%',
-        color: colors.secondary,
+        color: colors.white,
         fontSize: fontSizes.xlarge
     },
     // Misc
@@ -206,7 +232,7 @@ const styles = StyleSheet.create({
         height: 50,
         borderWidth: '1px',
         borderStyle: "dashed",
-        borderColor: colors.secondary
+        borderColor: colors.white
     }
 })
 

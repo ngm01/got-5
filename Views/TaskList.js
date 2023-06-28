@@ -26,7 +26,7 @@ export default function TaskList() {
             `Your task\n "${title}" \nwill be deleted. Are you sure?`, 
             [
                 {text: 'Yes, Delete', onPress: async () => await removeTask(id), style: 'destructive'},
-                {text: 'Cancel', onPress: () => {console.log("What")}, style: 'cancel'}
+                {text: 'Cancel', onPress: () => {}, style: 'cancel'}
             ]
         )
     }

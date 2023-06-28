@@ -56,8 +56,8 @@ export default function CreateTask() {
     }
 
     return (
-        <View style={styles.taskInputComponent}>
-            <View style={styles.taskInputContainer}>
+        <View style={styles.createTaskContainer}>
+            <View style={styles.createTaskForm}>
                 <Text style={styles.text}>What do you want to call this task?</Text>
                 <TextInput         
                 style={styles.taskInput}
