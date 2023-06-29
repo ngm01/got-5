@@ -20,7 +20,7 @@ function TaskSelector() {
     const [taskTime, setTaskTime] = useState(0);
 
     const handlePress = () => {
-        if(taskTime === 0 || taskTime === null || taskTime > 60) {
+        if(taskTime === 0 || taskTime === null || taskTime > 60 || taskTime === '') {
             Alert.alert("Please enter a time in minutes between 1 and 60.");
             return;
         }
@@ -54,6 +54,16 @@ function TaskSelector() {
         }
     }
 
+    const trimTaskTitle = (title) => {
+        if(title.length > 25) return title.slice(0, 25).trim() + '...'
+        return title;
+    }
+
+    const formatTime = (time) => {
+        if(time === 1) return time + ' minute'
+        return time  + ' minutes'
+    }
+
     return ( 
         <View style={styles.taskSelectorContainer}>
             <Text style={styles.bigText}>How much time do you have?</Text>
@@ -72,7 +82,10 @@ function TaskSelector() {
                 style={styles.basicButton}>
                 <Text style={styles.bigText}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
             </Pressable>
-            <Text style={styles.bigText}>{currentTask ? currentTask.title : 'TODO: Visualizer...'}</Text>
+            <View style={styles.task}>
+                <Text style={styles.taskDisplay}>{currentTask ? trimTaskTitle(currentTask.title) : 'TODO: Visualizer...'}</Text>
+                <Text style={styles.bigText}>{currentTask ? formatTime(currentTask.time) : ''}</Text>
+            </View>
             <Pressable 
                 onPress={() => {navigation.navigate('Timer')}}
                 disabled={!currentTask}

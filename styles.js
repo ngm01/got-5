@@ -10,7 +10,7 @@ import { StyleSheet} from 'react-native';
   */
 
   /*
-    visual debug border
+        //visual debug border
         borderColor: 'red',
         borderStyle: 'dashed',
         borderWidth: '1px'
@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         backgroundColor: colors.primary,
         alignItems: 'center',
-        justifyContent: 'space-between',
         height: '100%'
     },
     text: {
@@ -75,6 +74,8 @@ const styles = StyleSheet.create({
     },
     // NavBar
     navbar: {
+        position: 'absolute',
+        bottom: 0,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-around',
@@ -142,10 +143,14 @@ const styles = StyleSheet.create({
     // Task selector
     taskSelectorContainer: {
         display: 'flex',
+        position: 'relative',
+        top: 20,
         flexDirection: 'column',
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: '60%'
+        height: '70%',
+        paddingLeft: 5,
+        paddingRight: 5
     },
     timeInputContainer: {
         display: 'flex',
@@ -154,7 +159,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     timeInput: {
-        height: 40,
+        height: 50,
         margin: 12,
         borderWidth: 1,
         padding: 10,
@@ -166,15 +171,23 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: fontSizes.large
     },
+    taskDisplayContainer: {
+        //TODO: mod 'task' below -- need to figure out how to cascade, or combine different styles...
+    },
+    taskDisplay: {
+        fontSize: fontSizes.large,
+        color: colors.white,
+        padding: 20
+    },
     // TaskList
     taskListContainer: {
         backgroundColor: colors.primary,
-        height: '100%'
-    },
-    taskList: {
+        height: '100%',
         display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        bottom: 10,
+        top: 0
     },
     task: {
         borderWidth: '5px',
@@ -182,8 +195,9 @@ const styles = StyleSheet.create({
         borderRadius: '5%',
         padding: '2%',
         marginBottom: '2%',
+        alignSelf: 'center',
         backgroundColor: colors.secondary,
-        width: '75%',
+        width: '85%',
         shadowColor: '#111',
         shadowOffset: {width: 5, height: -5},
         shadowRadius: '1px',

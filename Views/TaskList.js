@@ -68,6 +68,7 @@ export default function TaskList() {
         content = ( 
             tasks.length ?
             <FlatList 
+            contentContainerStyle={{paddingBottom: 100}}
             data={tasks}
             renderItem={renderItem}
             keyExtractor={item => item.id}
@@ -82,10 +83,9 @@ export default function TaskList() {
     }
 
     return (
-            <View style={styles.taskListContainer}>
-                {content}
-                <NavBar current={'list'}/>
-            </View>
-
+        <SafeAreaView style={styles.taskListContainer}>
+            {content}
+            <NavBar current={'list'}/>
+        </SafeAreaView>
     )
 }
