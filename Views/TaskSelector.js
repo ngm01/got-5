@@ -5,6 +5,7 @@ import { selectAllTasks, getTasks } from '../state/reducers/tasks';
 import TaskContext from '../state/TaskContext';
 import styles from '../styles';
 import { useNavigation } from '@react-navigation/native';
+import { trimTaskTitle, formatTime } from '../util/util';
 
 function TaskSelector() {
 
@@ -54,16 +55,6 @@ function TaskSelector() {
         }
     }
 
-    const trimTaskTitle = (title) => {
-        if(title.length > 25) return title.slice(0, 25).trim() + '...'
-        return title;
-    }
-
-    const formatTime = (time) => {
-        if(time === 1) return time + ' minute'
-        return time  + ' minutes'
-    }
-
     return ( 
         <View style={styles.taskSelectorContainer}>
             <Text style={styles.bigText}>How much time do you have?</Text>
@@ -82,7 +73,7 @@ function TaskSelector() {
                 style={styles.basicButton}>
                 <Text style={styles.bigText}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
             </Pressable>
-            <View style={styles.task}>
+            <View style={styles.bigTask}>
                 <Text style={styles.taskDisplay}>{currentTask ? trimTaskTitle(currentTask.title) : 'TODO: Visualizer...'}</Text>
                 <Text style={styles.bigText}>{currentTask ? formatTime(currentTask.time) : ''}</Text>
             </View>

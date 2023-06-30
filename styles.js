@@ -171,13 +171,29 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: fontSizes.large
     },
-    taskDisplayContainer: {
-        //TODO: mod 'task' below -- need to figure out how to cascade, or combine different styles...
+    bigTask: {
+        borderWidth: '5px',
+        borderColor: colors.secondary,
+        borderRadius: '5%',
+        padding: '2%',
+        marginBottom: '2%',
+        alignSelf: 'center',
+        backgroundColor: colors.secondary,
+        width: 300,
+        height: '30%',
+        shadowColor: '#111',
+        shadowOffset: {width: 5, height: -5},
+        shadowRadius: '1px',
+        shadowOpacity: '.75',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-around'
     },
     taskDisplay: {
         fontSize: fontSizes.large,
         color: colors.white,
-        padding: 20
+        padding: 10,
+        textAlign: 'center'
     },
     // TaskList
     taskListContainer: {
