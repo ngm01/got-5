@@ -113,18 +113,16 @@ const styles = StyleSheet.create({
     // CreateTask
     createTaskContainer: {
         height: '100%',
-        backgroundColor: colors.primary,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
+        position: 'relative',
+        backgroundColor: colors.primary
     },
     createTaskForm: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'left',
-        top: 25,
-        marginLeft: 40,
-        width: '75%'
+        top: 75,
+        left: 10,
+        width: '95%',
+        backgroundColor: colors.secondary,
+        padding: 10,
+        borderRadius: 10
     },
     taskInput: {
         height: 40,

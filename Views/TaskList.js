@@ -1,4 +1,4 @@
-import { Alert, FlatList, SafeAreaView, Text, Button, View, Pressable } from 'react-native';
+import { Alert, Button, FlatList, Modal, Pressable, SafeAreaView, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react';
@@ -7,6 +7,8 @@ import styles from '../styles';
 import NavBar from './NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
+import CreateTask from './CreateTask';
 
 export default function TaskList() {
 
@@ -15,6 +17,8 @@ export default function TaskList() {
     const tasks = useSelector(selectAllTasks);
     const taskStatus = useSelector((state) => state.tasks.status);
     const error = useSelector((state) => state.tasks.error);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [selectedTask, setSelectedTask] = useState(null);
 
     useEffect(() => {
         dispatch(getTasks())
@@ -53,7 +57,7 @@ export default function TaskList() {
                         <Pressable onPress={() => {confirmDelete(item.id, item.title)}}>
                             <FontAwesomeIcon style={{color: '#fb4d3d'}} size={25} icon={faTrash} />
                         </Pressable>
-                        <Pressable onPress={() => {}}>
+                        <Pressable onPress={() => {setIsModalVisible(true)}}>
                             <FontAwesomeIcon style={{color: '#fb4d3d'}} size={25} icon={faPenToSquare} />
                         </Pressable>
                     </View>
@@ -84,6 +88,9 @@ export default function TaskList() {
 
     return (
         <SafeAreaView style={styles.taskListContainer}>
+            <Modal visible={isModalVisible} animationType='slide'>
+                <CreateTask />
+            </Modal>
             {content}
             <NavBar current={'list'}/>
         </SafeAreaView>

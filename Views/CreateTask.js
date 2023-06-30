@@ -27,8 +27,9 @@ export default function CreateTask() {
 
      async function createNewTask () {
         const parsedTime = parseInt(taskTime);
-        if(parsedTime > 60 || parsedTime === NaN || parsedTime === 0) {
-            Alert.alert("Please enter a time, in minutes, between 1 and 60.")
+        if( Number.isNaN(parsedTime) || parsedTime === 0 || parsedTime > 60) {
+            Alert.alert("Please enter a time, in minutes, between 1 and 60.");
+            return;
         } else {
             const today = new Date();
             const id = uuidv4();

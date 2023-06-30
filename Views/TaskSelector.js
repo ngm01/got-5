@@ -81,7 +81,7 @@ function TaskSelector() {
                 onPress={() => {navigation.navigate('Timer')}}
                 disabled={!currentTask}
                 style={currentTask ? styles.basicButton: styles.basicButtonDisabled}>
-                <Text style={styles.bigText}>START</Text>
+                <Text style={styles.bigText}>START TASK</Text>
             </Pressable>
         </View>
      );
