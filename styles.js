@@ -134,9 +134,11 @@ const styles = StyleSheet.create({
         borderBottomColor: colors.action,
         color: colors.white
     },
-    createTaskDropdown: {
-        width: 250,
+    createTaskDropdownContainer: {
         zIndex: '2000'
+    },
+    createTaskDropdown: {
+        width: 250
     },
     // Task selector
     taskSelectorContainer: {
@@ -201,7 +203,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         position: 'relative',
         bottom: 10,
-        top: 0
+        top: 0,
+    },
+    taskListContainerOverlayHidden: {
+        display: 'none'
+    },
+    taskListContainerOverlay: {
+        backgroundColor: '#111',
+        height: '110%',
+        width: '100%',
+        position: 'absolute',
+        opacity: '.65',
+        zIndex: '1000'
     },
     task: {
         borderWidth: '5px',

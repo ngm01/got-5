@@ -8,7 +8,7 @@ import NavBar from './NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import CreateTask from './CreateTask';
+import TaskForm from './TaskForm';
 
 export default function TaskList() {
 
@@ -23,6 +23,11 @@ export default function TaskList() {
     useEffect(() => {
         dispatch(getTasks())
     }, [dispatch])
+
+    const openUpdateModal = (task) => {
+        setSelectedTask(task);
+        setIsModalVisible(true);
+    }
 
     const confirmDelete = async (id, title) => {
         Alert.alert(
@@ -57,7 +62,7 @@ export default function TaskList() {
                         <Pressable onPress={() => {confirmDelete(item.id, item.title)}}>
                             <FontAwesomeIcon style={{color: '#fb4d3d'}} size={25} icon={faTrash} />
                         </Pressable>
-                        <Pressable onPress={() => {setIsModalVisible(true)}}>
+                        <Pressable onPress={() => {openUpdateModal(item)}}>
                             <FontAwesomeIcon style={{color: '#fb4d3d'}} size={25} icon={faPenToSquare} />
                         </Pressable>
                     </View>
@@ -88,8 +93,15 @@ export default function TaskList() {
 
     return (
         <SafeAreaView style={styles.taskListContainer}>
-            <Modal visible={isModalVisible} animationType='slide'>
-                <CreateTask />
+            <View style={isModalVisible ? styles.taskListContainerOverlay : styles.taskListContainerOverlayHidden}></View>
+            <Modal 
+                visible={isModalVisible} animationType='slide' transparent={true}         
+                onRequestClose={() => {setIsModalVisible(!modalVisible) }}
+            >
+                <TaskForm 
+                    action={'update'} 
+                    close={setIsModalVisible} 
+                    initialTask={selectedTask}  />
             </Modal>
             {content}
             <NavBar current={'list'}/>
