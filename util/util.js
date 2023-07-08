@@ -7,3 +7,7 @@ export const formatTime = (time) => {
     if(time === 1) return time + ' minute'
     return time  + ' minutes'
 }
+
+export const getPseudoRandom = (max) => {
+    return Math.floor(Math.random() * max)
+}
