@@ -16,7 +16,11 @@ import { StyleSheet} from 'react-native';
         borderWidth: '1px'
   */
 
-  //background: linear-gradient(to top, #2F80ED, #56CCF2);
+  // react native gradient library:
+  // https://github.com/react-native-linear-gradient/react-native-linear-gradientv
+  // potential gradient patterns:
+  // background: /linear-gradient(to top, #2F80ED, #56CCF2)',
+  // background: 'linear-gradient(to right, #2c3e50, #4ca1af)',
   
 
 export const colors = {
@@ -32,7 +36,8 @@ export const fontSizes = {
     small: '10',
     medium: '18',
     large: '30',
-    xlarge: '40'
+    xlarge: '40',
+    xxlarge: '60'
 }
 
 const styles = StyleSheet.create({
@@ -50,6 +55,10 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontSize: fontSizes.large
     },
+    giantText: {
+        color: colors.white,
+        fontSize: fontSizes.xlarge
+    },
     basicButton: {
         display: 'flex',
         alignItems: 'center',
@@ -58,8 +67,7 @@ const styles = StyleSheet.create({
         color: colors.white,
         padding: 20,
         marginTop: 20,
-        marginBottom: 20,
-        width: '100%'
+        marginBottom: 20
     },
     basicButtonDisabled: {
         display: 'flex',
@@ -69,8 +77,7 @@ const styles = StyleSheet.create({
         color: colors.white,
         padding: 20,
         marginTop: 20,
-        marginBottom: 20,
-        width: '100%'
+        marginBottom: 20
     },
     // NavBar
     navbar: {
@@ -253,11 +260,29 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         height: '100%'
     },
+    timerTaskText: {
+        textAlign: 'center',
+        padding: 20,
+        color: colors.white,
+        fontSize: fontSizes.large
+    },
     timerButtonsContainer: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-evenly',
         width: '100%'
+    },
+    timerButton: {
+        // just the basic button with a fixed width
+        display: 'flex',
+        alignItems: 'center',
+        borderRadius: '5%',
+        backgroundColor: colors.action,
+        color: colors.white,
+        padding: 20,
+        marginTop: 20,
+        marginBottom: 20,
+        width: 175
     },
     timerText: {
         display: 'flex',
@@ -265,7 +290,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         width: '75%',
         color: colors.white,
-        fontSize: fontSizes.xlarge
+        fontSize: fontSizes.xxlarge
     },
     // Misc
     adBanner: {

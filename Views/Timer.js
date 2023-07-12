@@ -20,7 +20,7 @@ export default function Timer() {
         setIsTimerRunning(true);
     }, [])
 
-    const formatTime = (remainingTime) => {
+    const formatCountdownTime = (remainingTime) => {
 
         const formatSeconds = (sec) => {
             if (sec === 0) return '00';
@@ -51,7 +51,7 @@ export default function Timer() {
     }
 
     return <View style={styles.timerContainer}>
-        <Text style={styles.bigText}>{currentTask.title}</Text>
+        <Text style={styles.timerTaskText}>{currentTask.title}</Text>
         <CountdownCircleTimer
                 isPlaying={isTimerRunning}
                 duration={currentTask ? currentTask.time * 60 : 0}
@@ -61,18 +61,18 @@ export default function Timer() {
                 size={300}
             >
                 {({ remainingTime }) => 
-                <Text style={styles.timerText}>{remainingTime < 0 ? '' : formatTime(remainingTime)}</Text>
+                <Text style={styles.timerText}>{remainingTime < 0 ? '' : formatCountdownTime(remainingTime)}</Text>
                 }
         </CountdownCircleTimer>
         <View style={styles.timerButtonsContainer}>
             <Pressable 
                 onPress={() => {setIsTimerRunning(!isTimerRunning)}}
-                style={styles.basicButton}>
+                style={styles.timerButton}>
                     <Text style={styles.bigText}>{isTimerRunning ? "PAUSE" : "RESUME"}</Text>
             </Pressable>
             <Pressable 
                 onPress={handleCancel}
-                style={styles.basicButton}>
+                style={styles.timerButton}>
                     <Text style={styles.bigText}>CANCEL</Text>
             </Pressable>
         </View>
