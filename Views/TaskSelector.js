@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Pressable, Alert, TextInput, Button } from 'react-native';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllTasks, getTasks } from '../state/reducers/tasks';
 import TaskContext from '../state/TaskContext';
 import styles from '../styles';
 import { useNavigation } from '@react-navigation/native';
-import { trimTaskTitle, formatTime, getPseudoRandom } from '../util/util';
+import { trimTaskTitle, formatTime } from '../util/util';
 
 function TaskSelector() {
 
@@ -19,15 +19,6 @@ function TaskSelector() {
     useEffect(() => {
         dispatch(getTasks());
     }, [])
-
-    useEffect(() => {
-        console.log("we're firing...")
-        let shuffle = setInterval(function(){getRandomTask()}, 500);
-
-        let timeout = setTimeout(function(){clearInterval(shuffle)}, 3000);
-
-        return clearTimeout(timeout)
-    }, [possibleTask])
 
     const handlePress = () => {
         if(taskTime === 0 || taskTime === null || taskTime > 60 || taskTime === '') {
@@ -64,14 +55,6 @@ function TaskSelector() {
         }
     }
 
-    const getRandomTask = () => {
-        if(tasks) {
-            const randomTask = tasks[getPseudoRandom(tasks.length)].title;
-            console.log("randomTask:", randomTask)
-            setPossibleTask(randomTask);
-        }
-    }
-
     return ( 
         <View style={styles.taskSelectorContainer}>
             <Text style={styles.bigText}>How much time do you have?</Text>
@@ -86,8 +69,7 @@ function TaskSelector() {
                 <Text style={styles.bigText}>minutes</Text>
             </View>
             <Pressable 
-                //onPress={handlePress}
-                onPress={getRandomTask}
+                onPress={handlePress}
                 style={styles.basicButton}>
                 <Text style={styles.bigText}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
             </Pressable>
