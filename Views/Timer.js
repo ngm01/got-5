@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { getTasks, updateTask } from '../state/reducers/tasks';
 import { Pressable, Text, View } from 'react-native';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
+import { Audio } from 'expo-av';
 import TaskContext from '../state/TaskContext';
 import { useNavigation } from '@react-navigation/native';
 import basicStyles from '../styles/basicStyles';
@@ -16,9 +17,24 @@ export default function Timer() {
     const [currentTask, setCurrentTask] = useContext(TaskContext)
 
     const [isTimerRunning, setIsTimerRunning] = useState(false);
+    const [sound, setSound] = useState();
+
+    const playSound = async () => {
+        const { sound } = await Audio.Sound.createAsync( require('../assets/352661__foolboymedia__complete-chime.mp3') )
+        setSound(sound);
+        await sound.playAsync();
+    }
+
+    useEffect(() => {
+        return sound ?
+        () => {
+            sound.unloadAsync();
+        } : undefined
+    }, [sound])
 
     useEffect(() => {
         setIsTimerRunning(true);
+        playSound();
     }, [])
 
     const formatCountdownTime = (remainingTime) => {
@@ -42,6 +58,7 @@ export default function Timer() {
         dispatch(updateTask(updatedTask));
         dispatch(getTasks());
         setCurrentTask(null);
+        playSound();
         navigation.navigate('Home')
     }
 
