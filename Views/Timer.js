@@ -5,7 +5,8 @@ import { Pressable, Text, View } from 'react-native';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import TaskContext from '../state/TaskContext';
 import { useNavigation } from '@react-navigation/native';
-import styles from '../styles';
+import basicStyles from '../styles/basicStyles';
+import timerStyles from '../styles/timerStyles';
 
 export default function Timer() {
 
@@ -50,8 +51,8 @@ export default function Timer() {
         navigation.navigate('Home')
     }
 
-    return <View style={styles.timerContainer}>
-        <Text style={styles.timerTaskText}>{currentTask.title}</Text>
+    return <View style={timerStyles.timerContainer}>
+        <Text style={timerStyles.timerTaskText}>{currentTask.title}</Text>
         <CountdownCircleTimer
                 isPlaying={isTimerRunning}
                 duration={currentTask ? currentTask.time * 60 : 0}
@@ -61,19 +62,19 @@ export default function Timer() {
                 size={300}
             >
                 {({ remainingTime }) => 
-                <Text style={styles.timerText}>{remainingTime < 0 ? '' : formatCountdownTime(remainingTime)}</Text>
+                <Text style={timerStyles.timerText}>{remainingTime < 0 ? '' : formatCountdownTime(remainingTime)}</Text>
                 }
         </CountdownCircleTimer>
-        <View style={styles.timerButtonsContainer}>
+        <View style={timerStyles.timerButtonsContainer}>
             <Pressable 
                 onPress={() => {setIsTimerRunning(!isTimerRunning)}}
-                style={styles.timerButton}>
-                    <Text style={styles.bigText}>{isTimerRunning ? "PAUSE" : "RESUME"}</Text>
+                style={timerStyles.timerButton}>
+                    <Text style={basicStyles.largeText}>{isTimerRunning ? "PAUSE" : "RESUME"}</Text>
             </Pressable>
             <Pressable 
                 onPress={handleCancel}
-                style={styles.timerButton}>
-                    <Text style={styles.bigText}>CANCEL</Text>
+                style={timerStyles.timerButton}>
+                    <Text style={basicStyles.largeText}>CANCEL</Text>
             </Pressable>
         </View>
     </View>

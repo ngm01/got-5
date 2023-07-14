@@ -3,12 +3,13 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react';
 import { selectAllTasks, getTasks, deleteTask } from '../state/reducers/tasks';
-import styles from '../styles';
 import NavBar from './NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import TaskForm from './TaskForm';
+import basicStyles from '../styles/basicStyles';
+import taskListStyles from '../styles/taskListStyles';
 
 export default function TaskList() {
 
@@ -54,11 +55,11 @@ export default function TaskList() {
 
 
     function renderItem({item}) {
-        return  <View style={styles.task}>
-                    <Text style={styles.taskTextBold}>{item.title}</Text>
-                    <Text style={styles.taskText}>{item.time} {item.time === 1 ? 'minute' : 'minutes'}</Text>
-                    <Text style={styles.taskText}>Last performed on {getDateString(item.lastPerformed)}</Text>
-                    <View style={styles.taskButtonContainer}>
+        return  <View style={taskListStyles.task}>
+                    <Text style={basicStyles.smallTextBold}>{item.title}</Text>
+                    <Text style={basicStyles.smallText}>{item.time} {item.time === 1 ? 'minute' : 'minutes'}</Text>
+                    <Text style={basicStyles.smallText}>Last performed on {getDateString(item.lastPerformed)}</Text>
+                    <View style={taskListStyles.taskButtonContainer}>
                         <Pressable onPress={() => {confirmDelete(item.id, item.title)}}>
                             <FontAwesomeIcon style={{color: '#fb4d3d'}} size={25} icon={faTrash} />
                         </Pressable>
@@ -83,7 +84,7 @@ export default function TaskList() {
             keyExtractor={item => item.id}
         /> :
             <View>
-                <Text style={styles.taskText}>You don't have any tasks yet.</Text> 
+                <Text style={taskListStyles.taskText}>You don't have any tasks yet.</Text> 
                 <Button onPress={() => navigation.navigate('CreateTask')} title="Click here to create one!" /> 
             </View>
         )
@@ -92,8 +93,8 @@ export default function TaskList() {
     }
 
     return (
-        <SafeAreaView style={styles.taskListContainer}>
-            <View style={isModalVisible ? styles.taskListContainerOverlay : styles.taskListContainerOverlayHidden}></View>
+        <SafeAreaView style={taskListStyles.taskListContainer}>
+            <View style={isModalVisible ? taskListStyles.taskListContainerOverlay : taskListStyles.taskListContainerOverlayHidden}></View>
             <Modal 
                 visible={isModalVisible} animationType='slide' transparent={true}         
                 onRequestClose={() => {setIsModalVisible(!modalVisible) }}

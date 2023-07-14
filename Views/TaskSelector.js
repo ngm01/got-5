@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, Pressable, Alert, TextInput, Button } from 'react-native';
+import { Text, View, Pressable, Alert, TextInput } from 'react-native';
 import { useContext, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllTasks, getTasks } from '../state/reducers/tasks';
 import TaskContext from '../state/TaskContext';
-import styles from '../styles';
+import basicStyles from '../styles/basicStyles';
+import taskSelectorStyles from '../styles/taskSelectorStyles';
 import { useNavigation } from '@react-navigation/native';
 import { trimTaskTitle, formatTime } from '../util/util';
 
@@ -56,32 +57,32 @@ function TaskSelector() {
     }
 
     return ( 
-        <View style={styles.taskSelectorContainer}>
-            <Text style={styles.bigText}>How much time do you have?</Text>
-            <View style={styles.timeInputContainer}>
+        <View style={taskSelectorStyles.taskSelectorContainer}>
+            <Text style={basicStyles.largeText}>How much time do you have?</Text>
+            <View style={taskSelectorStyles.timeInputContainer}>
                 <TextInput 
-                    style={styles.timeInput}
+                    style={taskSelectorStyles.timeInput}
                     onChangeText={setTaskTime} 
                     keyboardType="numeric"
                     returnKeyType='done'
                     value={taskTime}
                 />
-                <Text style={styles.bigText}>minutes</Text>
+                <Text style={basicStyles.largeText}>minutes</Text>
             </View>
             <Pressable 
                 onPress={handlePress}
-                style={styles.basicButton}>
-                <Text style={styles.bigText}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
+                style={basicStyles.basicButton}>
+                <Text style={basicStyles.largeText}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
             </Pressable>
-            <View style={styles.bigTask}>
-                <Text style={styles.taskDisplay}>{currentTask ? trimTaskTitle(currentTask.title) : possibleTask}</Text>
-                <Text style={styles.bigText}>{currentTask ? formatTime(currentTask.time) : ''}</Text>
+            <View style={taskSelectorStyles.bigTask}>
+                <Text style={taskSelectorStyles.taskDisplay}>{currentTask ? trimTaskTitle(currentTask.title) : possibleTask}</Text>
+                <Text style={basicStyles.largeText}>{currentTask ? formatTime(currentTask.time) : ''}</Text>
             </View>
             <Pressable 
                 onPress={() => {navigation.navigate('Timer')}}
                 disabled={!currentTask}
-                style={currentTask ? styles.basicButton: styles.basicButtonDisabled}>
-                <Text style={styles.bigText}>START TASK</Text>
+                style={currentTask ? basicStyles.basicButton: basicStyles.basicButtonDisabled}>
+                <Text style={basicStyles.largeText}>START TASK</Text>
             </Pressable>
         </View>
      );

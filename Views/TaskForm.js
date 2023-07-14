@@ -5,7 +5,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { useState } from 'react';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
-import styles from '../styles';
+import createTaskStyles from '../styles/createTaskStyles';
+import basicStyles from '../styles/basicStyles';
 
 export default function TaskForm({action, close, initialTask}) {
 
@@ -64,19 +65,19 @@ export default function TaskForm({action, close, initialTask}) {
     }
 
     return (
-        <View style={styles.createTaskForm}>
-            <Text style={styles.text}>What do you want to call this task?</Text>
+        <View style={createTaskStyles.createTaskForm}>
+            <Text style={basicStyles.text}>What do you want to call this task?</Text>
             <TextInput         
-            style={styles.taskInput}
+            style={createTaskStyles.taskInput}
             onChangeText={setTaskTitle}
             returnKeyType='done'
             value={taskTitle}
             placeholder="Example: pushups for 1 minute"
             placeholderTextColor="rgba(255, 255, 255, .25)"
             />
-            <Text style={styles.text}>How many minutes will this task take?</Text>
+            <Text style={basicStyles.text}>How many minutes will this task take?</Text>
             <TextInput             
-                style={styles.taskInput}
+                style={createTaskStyles.taskInput}
                 onChangeText={setTaskTime}
                 value={taskTime?.toString()} 
                 returnKeyType='done'
@@ -84,8 +85,8 @@ export default function TaskForm({action, close, initialTask}) {
                 placeholderTextColor="rgba(255, 255, 255, .25)"
                 keyboardType="numeric" />
             
-            <Text style={styles.text}>How frequently should this task be performed?</Text>
-            <View style={styles.createTaskDropdownContainer}>
+            <Text style={basicStyles.text}>How frequently should this task be performed?</Text>
+            <View style={createTaskStyles.createTaskDropdownContainer}>
                 <DropDownPicker
                     open={open}
                     value={taskCadence}
@@ -93,21 +94,21 @@ export default function TaskForm({action, close, initialTask}) {
                     setOpen={setOpen}
                     setValue={setTaskCadence}
                     setItems={setItems}
-                    style={styles.createTaskDropdown}
+                    style={createTaskStyles.createTaskDropdown}
                     containerStyle={{width: 250}}
                 />
             </View>
             <Pressable 
                 onPress={performTaskAction}
-                style={styles.basicButton}>
-                <Text style={styles.text}>{action[0].toUpperCase() + action.slice(1)} Task</Text>
+                style={basicStyles.basicButton}>
+                <Text style={basicStyles.text}>{action[0].toUpperCase() + action.slice(1)} Task</Text>
             </Pressable>
             {
                 action === 'update' ?
                 <Pressable 
                     onPress={() => {close(false)}}
-                    style={styles.basicButton}>
-                    <Text style={styles.text}>Cancel</Text>
+                    style={basicStyles.basicButton}>
+                    <Text style={basicStyles.text}>Cancel</Text>
                 </Pressable>
             : <></>
             }
