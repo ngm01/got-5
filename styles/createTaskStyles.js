@@ -4,6 +4,7 @@ import { colors } from "./baseStyleDefinitions";
 const createTaskStyles = StyleSheet.create({
     createTaskContainer: {
         height: '100%',
+        display: 'flex',
         position: 'relative',
         backgroundColor: colors.primary
     },

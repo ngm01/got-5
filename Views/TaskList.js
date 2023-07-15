@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import TaskForm from './TaskForm';
+import { colors } from '../styles/baseStyleDefinitions';
 import basicStyles from '../styles/basicStyles';
 import taskListStyles from '../styles/taskListStyles';
 
@@ -61,10 +62,10 @@ export default function TaskList() {
                     <Text style={basicStyles.smallText}>Last performed on {getDateString(item.lastPerformed)}</Text>
                     <View style={taskListStyles.taskButtonContainer}>
                         <Pressable onPress={() => {confirmDelete(item.id, item.title)}}>
-                            <FontAwesomeIcon style={{color: '#fb4d3d'}} size={25} icon={faTrash} />
+                            <FontAwesomeIcon style={{color: colors.action}} size={25} icon={faTrash} />
                         </Pressable>
                         <Pressable onPress={() => {openUpdateModal(item)}}>
-                            <FontAwesomeIcon style={{color: '#fb4d3d'}} size={25} icon={faPenToSquare} />
+                            <FontAwesomeIcon style={{color: colors.action}} size={25} icon={faPenToSquare} />
                         </Pressable>
                     </View>
                 </View>

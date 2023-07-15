@@ -3,8 +3,11 @@ import { useDispatch } from 'react-redux';
 import { getTasks, createTask, updateTask } from '../state/reducers/tasks';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faX } from '@fortawesome/free-solid-svg-icons';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
+import { colors } from '../styles/baseStyleDefinitions';
 import createTaskStyles from '../styles/createTaskStyles';
 import basicStyles from '../styles/basicStyles';
 
@@ -66,6 +69,12 @@ export default function TaskForm({action, close, initialTask}) {
 
     return (
         <View style={createTaskStyles.createTaskForm}>
+            { action === 'update' ? 
+            <Pressable style={createTaskStyles.closeXContainer} onPress={() => {close(false)}}>
+                <FontAwesomeIcon style={{color: colors.action, alignSelf: 'flex-end'}} size={20} icon={faX} />
+            </Pressable>
+            :
+             <></> }
             <Text style={basicStyles.text}>What do you want to call this task?</Text>
             <TextInput         
             style={createTaskStyles.taskInput}
