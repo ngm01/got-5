@@ -85,12 +85,14 @@ export default function Timer() {
         <View style={timerStyles.timerButtonsContainer}>
             <Pressable 
                 onPress={() => {setIsTimerRunning(!isTimerRunning)}}
-                style={timerStyles.timerButton}>
+                style={({ pressed }) => pressed ? timerStyles.timerButtonPressed : timerStyles.timerButton}
+                >
                     <Text style={basicStyles.largeText}>{isTimerRunning ? "PAUSE" : "RESUME"}</Text>
             </Pressable>
             <Pressable 
                 onPress={handleCancel}
-                style={timerStyles.timerButton}>
+                style={({ pressed }) => pressed ? timerStyles.timerButtonPressed : timerStyles.timerButton}
+                >
                     <Text style={basicStyles.largeText}>CANCEL</Text>
             </Pressable>
         </View>

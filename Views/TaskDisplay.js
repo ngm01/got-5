@@ -1,9 +1,10 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import useInterval from '../hooks/useInterval';
 import { trimTaskTitle, getPseudoRandom } from '../util/util';
 
 export default function taskDisplay() {
     
+    const [possibleTask, setPossibleTask] = useState('Enter a time and get a task to get started!');
     const timerRef = useRef(0)
     
     useInterval(() => {

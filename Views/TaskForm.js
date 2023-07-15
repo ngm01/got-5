@@ -13,8 +13,6 @@ import basicStyles from '../styles/basicStyles';
 
 export default function TaskForm({action, close, initialTask}) {
 
-    console.log("initialTask:", initialTask)
-
     const dispatch = useDispatch();
 
     const [taskTitle, setTaskTitle] = useState(initialTask.title);
@@ -37,7 +35,7 @@ export default function TaskForm({action, close, initialTask}) {
             return;
         } else {
             const today = new Date();
-            const id = initialTask ? initialTask.id : uuidv4();
+            const id = initialTask.id ? initialTask.id : uuidv4();
             const thisTask = {
                 id: id,
                 title: taskTitle,
@@ -62,8 +60,9 @@ export default function TaskForm({action, close, initialTask}) {
             setTaskTitle('');
             setTaskTime(null);
             setTaskCadence(1);
-            close(false)
-
+            if(close) {
+                close(false)
+            }
         }
     }
 
@@ -109,14 +108,16 @@ export default function TaskForm({action, close, initialTask}) {
             </View>
             <Pressable 
                 onPress={performTaskAction}
-                style={basicStyles.basicButton}>
+                style={({ pressed }) => pressed ? basicStyles.basicButtonPressed : basicStyles.basicButton}
+                >
                 <Text style={basicStyles.text}>{action[0].toUpperCase() + action.slice(1)} Task</Text>
             </Pressable>
             {
                 action === 'update' ?
                 <Pressable 
                     onPress={() => {close(false)}}
-                    style={basicStyles.basicButton}>
+                    style={({ pressed }) => pressed ? basicStyles.basicButtonPressed : basicStyles.basicButton}
+                    >
                     <Text style={basicStyles.text}>Cancel</Text>
                 </Pressable>
             : <></>

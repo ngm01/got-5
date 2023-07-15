@@ -14,7 +14,6 @@ function TaskSelector() {
     const navigation = useNavigation()
     const tasks = useSelector(selectAllTasks);
     const [currentTask, setCurrentTask] = useContext(TaskContext);
-    const [possibleTask, setPossibleTask] = useState('Enter a time and get a task to get started!');
     const [taskTime, setTaskTime] = useState(0);
 
     useEffect(() => {
@@ -55,7 +54,7 @@ function TaskSelector() {
             return today > cadenceCheck;
         }
     }
-
+    // style={currentTask ? basicStyles.basicButton: basicStyles.basicButtonDisabled}
     return ( 
         <View style={taskSelectorStyles.taskSelectorContainer}>
             <Text style={basicStyles.largeText}>How much time do you have?</Text>
@@ -71,17 +70,19 @@ function TaskSelector() {
             </View>
             <Pressable 
                 onPress={handlePress}
-                style={basicStyles.basicButton}>
+                style={({ pressed }) => pressed ? basicStyles.basicButtonPressed: basicStyles.basicButton}
+                >
                 <Text style={basicStyles.largeText}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
             </Pressable>
             <View style={taskSelectorStyles.bigTask}>
-                <Text style={taskSelectorStyles.taskDisplay}>{currentTask ? trimTaskTitle(currentTask.title) : possibleTask}</Text>
+                <Text style={taskSelectorStyles.taskDisplay}>{currentTask ? trimTaskTitle(currentTask.title) : 'Enter a time and get a task to get started!'}</Text>
                 <Text style={basicStyles.largeText}>{currentTask ? formatTime(currentTask.time) : ''}</Text>
             </View>
             <Pressable 
                 onPress={() => {navigation.navigate('Timer')}}
                 disabled={!currentTask}
-                style={currentTask ? basicStyles.basicButton: basicStyles.basicButtonDisabled}>
+                style={({pressed}) => currentTask ? (pressed ? basicStyles.basicButtonPressed: basicStyles.basicButton) : basicStyles.basicButtonDisabled}
+                >
                 <Text style={basicStyles.largeText}>START TASK</Text>
             </Pressable>
         </View>

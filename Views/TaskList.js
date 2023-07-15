@@ -43,7 +43,6 @@ export default function TaskList() {
     }
 
     const removeTask = async (id) => {
-        console.log("Removing task:", id)
         await dispatch(deleteTask(id));
         dispatch(getTasks())
     }

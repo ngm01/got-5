@@ -12,6 +12,10 @@ const basicStyles = StyleSheet.create({
         ...basicButton,
         backgroundColor: colors.action
     },
+    basicButtonPressed: {
+        ...basicButton,
+        backgroundColor: colors.selected
+    },
     basicButtonDisabled: {
         ...basicButton,
         backgroundColor: colors.disabled

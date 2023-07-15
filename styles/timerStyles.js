@@ -23,6 +23,11 @@ const timerStyles = StyleSheet.create({
         backgroundColor: colors.action,
         width: 175
     },
+    timerButtonPressed: {
+        ...basicButton,
+        backgroundColor: colors.selected,
+        width: 175
+    },
     timerText: {
         ...xxLargeText,
         display: 'flex',
