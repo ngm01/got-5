@@ -83,9 +83,11 @@ export default function TaskList() {
             renderItem={renderItem}
             keyExtractor={item => item.id}
         /> :
-            <View>
-                <Text style={taskListStyles.taskText}>You don't have any tasks yet.</Text> 
-                <Button onPress={() => navigation.navigate('CreateTask')} title="Click here to create one!" /> 
+            <View style={taskListStyles.emptyList}>
+                <Text style={[basicStyles.largeText, {'textAlign': 'center'}]}>Looks like you don't have any tasks yet.</Text>
+                <Pressable onPress={() => navigation.navigate('CreateTask')} style={basicStyles.basicButton}>
+                    <Text style={basicStyles.text}>Click here to create one!</Text>
+                </Pressable> 
             </View>
         )
     } else if(taskStatus === 'failed') {

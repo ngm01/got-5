@@ -7,6 +7,7 @@ const taskListStyles = StyleSheet.create({
         height: '100%',
         display: 'flex',
         justifyContent: 'center',
+        alignItems: 'center',
         position: 'relative',
         bottom: 10,
         top: 0,
@@ -50,6 +51,11 @@ const taskListStyles = StyleSheet.create({
         justifyContent: 'space-around',
         marginTop: '5%'
     },
+    emptyList: {
+        display: 'flex',
+        alignItems: 'center',
+        margin: 10
+    }
 })
 
 export default taskListStyles;
