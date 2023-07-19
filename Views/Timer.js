@@ -4,6 +4,7 @@ import { getTasks, updateTask } from '../state/reducers/tasks';
 import { Pressable, Text, View } from 'react-native';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { useSound } from '../hooks/useSound';
+import soundPaths from '../assets/soundPaths';
 import TaskContext from '../state/TaskContext';
 import { useNavigation } from '@react-navigation/native';
 import basicStyles from '../styles/basicStyles';
@@ -17,7 +18,7 @@ export default function Timer() {
     const [currentTask, setCurrentTask] = useContext(TaskContext)
 
     const [isTimerRunning, setIsTimerRunning] = useState(false);
-    const [playSound] = useSound(require('../assets/352661__foolboymedia__complete-chime.mp3'))
+    const [playSound] = useSound(soundPaths.chime)
 
     useEffect(() => {
         setIsTimerRunning(true);
@@ -41,7 +42,7 @@ export default function Timer() {
     }
 
     const handleComplete = () => {
-        const updatedTask = {...currentTask, lastPerformed: new Date()}
+        const updatedTask = {...currentTask, lastPerformed: new Date(), timesPerformed: currentTask.timesPerformed ? currentTask.timesPerformed++ : 1}
         dispatch(updateTask(updatedTask));
         dispatch(getTasks());
         setCurrentTask(null);

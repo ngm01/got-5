@@ -54,7 +54,6 @@ function TaskSelector() {
             return today > cadenceCheck;
         }
     }
-    // style={currentTask ? basicStyles.basicButton: basicStyles.basicButtonDisabled}
     return ( 
         <View style={taskSelectorStyles.taskSelectorContainer}>
             <Text style={basicStyles.largeText}>How much time do you have?</Text>
