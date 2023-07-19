@@ -22,6 +22,10 @@ const basicStyles = StyleSheet.create({
     },
     smallText: smallText,
     smallTextBold: smallTextBold,
+    smallTextDark: {
+        color: colors.black,
+        fontSizes: fontSizes.small
+    },
     text: text,
     largeText: largeText,
     xxLargeText: xxLargeText,
