@@ -41,8 +41,8 @@ export default function TaskForm({action, close, initialTask}) {
                 title: taskTitle,
                 time: parsedTime,
                 cadence: taskCadence,
-                created: initialTask ? initialTask.created : today,
-                lastPerformed: initialTask ? initialTask.lastPerformed : null,
+                created: initialTask.created ? initialTask.created : today,
+                lastPerformed: initialTask.lastPerformed ? initialTask.lastPerformed : null,
                 tags: []
             }
             try {
