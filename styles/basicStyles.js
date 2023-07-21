@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors, basicButton, text, largeText, xxLargeText, smallText, smallTextBold } from "./baseStyleDefinitions";
+import { colors, basicButton, fontSizes, text, largeText, xxLargeText, smallText, smallTextBold } from "./baseStyleDefinitions";
 
 const basicStyles = StyleSheet.create({
     homeContainer: {

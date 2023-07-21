@@ -42,7 +42,7 @@ export default function Timer() {
     }
 
     const handleComplete = () => {
-        const updatedTask = {...currentTask, lastPerformed: new Date(), timesPerformed: currentTask.timesPerformed ? currentTask.timesPerformed++ : 1}
+        const updatedTask = {...currentTask, lastPerformed: new Date(), timesPerformed: currentTask.timesPerformed ? ++currentTask.timesPerformed : 1}
         dispatch(updateTask(updatedTask));
         dispatch(getTasks());
         setCurrentTask(null);
