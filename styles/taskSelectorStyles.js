@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors, basicButton, flexRowFullWidth, largeText } from "./baseStyleDefinitions";
+import { colors, colors_dark, basicButton, flexRowFullWidth, largeText } from "./baseStyleDefinitions";
 
 const taskSelectorStyles = StyleSheet.create({
     taskSelectorContainer: {
@@ -24,19 +24,19 @@ const taskSelectorStyles = StyleSheet.create({
         padding: 10,
         width: 80,
         borderColor: 'transparent',
-        borderBottomColor: colors.action,
-        backgroundColor: colors.primary,
+        borderBottomColor: colors_dark.primary,
+        backgroundColor: colors_dark.background,
         textAlign: 'center',
         ...largeText
     },
     bigTask: {
         borderWidth: '5px',
-        borderColor: colors.secondary,
+        borderColor: colors_dark.background_variant,
         borderRadius: '5%',
         padding: '2%',
         marginBottom: '2%',
         alignSelf: 'center',
-        backgroundColor: colors.secondary,
+        backgroundColor: colors_dark.background_variant,
         width: 300,
         height: '30%',
         shadowColor: '#111',

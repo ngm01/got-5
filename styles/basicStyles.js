@@ -1,29 +1,29 @@
 import { StyleSheet } from "react-native";
-import { colors, basicButton, fontSizes, text, largeText, xxLargeText, smallText, smallTextBold } from "./baseStyleDefinitions";
+import { colors, colors_dark, basicButton, fontSizes, text, largeText, xxLargeText, smallText, smallTextBold } from "./baseStyleDefinitions";
 
 const basicStyles = StyleSheet.create({
     homeContainer: {
         display: 'flex',
         alignItems: 'center',
         height: '100%',
-        backgroundColor: colors.primary
+        backgroundColor: colors_dark.background
     },
     basicButton: {
         ...basicButton,
-        backgroundColor: colors.action
+        backgroundColor: colors_dark.primary
     },
     basicButtonPressed: {
         ...basicButton,
-        backgroundColor: colors.selected
+        backgroundColor: colors_dark.primary_variant
     },
     basicButtonDisabled: {
         ...basicButton,
-        backgroundColor: colors.disabled
+        backgroundColor: colors_dark.disabled
     },
     smallText: smallText,
     smallTextBold: smallTextBold,
     smallTextDark: {
-        color: colors.black,
+        color: colors_dark.black,
         fontSizes: fontSizes.small
     },
     text: text,
@@ -34,7 +34,7 @@ const basicStyles = StyleSheet.create({
         height: 50,
         borderWidth: '1px',
         borderStyle: "dashed",
-        borderColor: colors.white
+        borderColor: colors_dark.white
     }
 })
 

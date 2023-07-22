@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
-import { colors, largeText, basicButton, flexRowFullWidth, xxLargeText } from "./baseStyleDefinitions";
+import { colors, colors_dark, largeText, basicButton, flexRowFullWidth, xxLargeText } from "./baseStyleDefinitions";
 
 const timerStyles = StyleSheet.create({
     timerContainer: {
         display: 'flex',
-        backgroundColor: colors.primary,
+        backgroundColor: colors_dark.background,
         alignItems: 'center',
         justifyContent: 'space-around',
         height: '100%'
@@ -20,12 +20,12 @@ const timerStyles = StyleSheet.create({
     },
     timerButton: {
         ...basicButton,
-        backgroundColor: colors.action,
+        backgroundColor: colors_dark.primary,
         width: 175
     },
     timerButtonPressed: {
         ...basicButton,
-        backgroundColor: colors.selected,
+        backgroundColor: colors_dark.selected,
         width: 175
     },
     timerText: {

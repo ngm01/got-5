@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors, flexRowFullWidth } from "./baseStyleDefinitions";
+import { colors, colors_dark, flexRowFullWidth } from "./baseStyleDefinitions";
 
 const navbarStyles = StyleSheet.create({
     navbar: {
@@ -7,13 +7,13 @@ const navbarStyles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         justifyContent: 'space-around',
-        backgroundColor: colors.action
+        backgroundColor: colors_dark.background
     },
     navbarButton: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: colors.action,
+        backgroundColor: colors_dark.primary,
         paddingVertical: 35,
         paddingHorizontal: 45,
     },
@@ -21,17 +21,17 @@ const navbarStyles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         alignSelf: 'center',
-        backgroundColor: colors.selected,
+        backgroundColor: colors_dark.primary_variant,
         paddingVertical: 35,
         paddingHorizontal: 45,
     },
     navbarIcon: {
-        color: colors.primary,
+        color: colors_dark.background,
         display: 'flex',
         marginBottom: 8
     },
     navbarIconSelected: {
-        color: colors.white,
+        color: colors_dark.white,
         display: 'flex',
         marginBottom: 8,
     }

@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faTrash, faPenToSquare, faCirclePlay, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import TaskForm from './TaskForm';
-import { colors } from '../styles/baseStyleDefinitions';
+import { colors, colors_dark } from '../styles/baseStyleDefinitions';
 import basicStyles from '../styles/basicStyles';
 import taskListStyles from '../styles/taskListStyles';
 
@@ -69,13 +69,13 @@ export default function TaskList() {
                     <Text style={basicStyles.smallText}>Times performed: {item.timesPerformed}</Text>
                     <View style={taskListStyles.taskButtonContainer}>
                         <Pressable onPress={() => {openUpdateModal(item)}}>
-                            <FontAwesomeIcon style={{color: colors.action}} size={25} icon={faPenToSquare} />
+                            <FontAwesomeIcon style={{color: colors_dark.primary}} size={25} icon={faPenToSquare} />
                         </Pressable>
                         <Pressable onPress={() => {startTask(item)}}>
-                            <FontAwesomeIcon style={{color: colors.action}} size={25} icon={faPlay} />
+                            <FontAwesomeIcon style={{color: colors_dark.primary}} size={25} icon={faPlay} />
                         </Pressable>
                         <Pressable onPress={() => {confirmDelete(item.id, item.title)}}>
-                            <FontAwesomeIcon style={{color: colors.action}} size={25} icon={faTrash} />
+                            <FontAwesomeIcon style={{color: colors_dark.primary}} size={25} icon={faTrash} />
                         </Pressable>
                     </View>
                 </View>

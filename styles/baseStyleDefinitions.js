@@ -8,6 +8,23 @@ export const colors = {
     disabled: 'gray'
   }
 
+  export const colors_dark = {
+    background: '#121212',
+    background_variant: '#424242',
+    // 200
+    primary: '#f29e9e',
+    // 700
+    primary_variant: '#d93935',
+    // secondary: '#9ef2f2',
+    secondary: '#314c61',
+    primary_text: '#121212',
+    secondary_text: '#ece8ef',
+    white: '#ece8ef',
+    disabled: '#424242',
+    error: '#cf6679'
+
+  }
+
 export const fontSizes = {
     small: '10',
     medium: '18',
@@ -17,7 +34,7 @@ export const fontSizes = {
 }
 
 export const smallText = {
-    color: colors.white,
+    color: colors_dark.primary_text,
     fontSizes: fontSizes.small
 }
 
@@ -27,7 +44,7 @@ export const smallTextBold = {
 }
 
 export const text = {
-    color: colors.white,
+    color: colors_dark.primary_text,
     fontSize: fontSizes.medium
 }
 
