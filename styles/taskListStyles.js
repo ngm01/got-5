@@ -25,12 +25,12 @@ const taskListStyles = StyleSheet.create({
     },
     task: {
         borderWidth: '5px',
-        borderColor: colors_dark.background_variant,
+        borderColor: colors_dark.surface,
         borderRadius: '5%',
         padding: '2%',
         marginBottom: '2%',
         alignSelf: 'center',
-        backgroundColor: colors_dark.background_variant,
+        backgroundColor: colors_dark.surface,
         width: '85%',
         shadowColor: '#111',
         shadowOffset: {width: 5, height: -5},
@@ -38,10 +38,10 @@ const taskListStyles = StyleSheet.create({
         shadowOpacity: '.75'
     },
     taskText: {
-        color: colors_dark.white,
+        color: colors.white,
     },
     taskTextBold: {
-        color: colors_dark.white,
+        color: colors.white,
         fontWeight: 'bold'
     },
     taskButtonContainer: {

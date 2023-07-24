@@ -19,12 +19,12 @@ const createTaskStyles = StyleSheet.create({
     taskInput: {
         height: 40,
         width: 250,
-        borderColor: colors_dark.white,
+        borderColor: colors.white,
         borderWidth: 1,
         marginBottom: 25,
         borderColor: 'transparent',
         borderBottomColor: colors_dark.primary,
-        color: colors_dark.white
+        color: colors.white
     },
     createTaskDropdownContainer: {
         zIndex: '2000'

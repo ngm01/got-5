@@ -74,7 +74,7 @@ export default function TaskForm({action, close, initialTask}) {
             </Pressable>
             :
              <></> }
-            <Text style={basicStyles.text}>What do you want to call this task?</Text>
+            <Text style={basicStyles.mediumOnPrimary}>What do you want to call this task?</Text>
             <TextInput         
             style={createTaskStyles.taskInput}
             onChangeText={setTaskTitle}
@@ -83,7 +83,7 @@ export default function TaskForm({action, close, initialTask}) {
             placeholder="Example: pushups for 1 minute"
             placeholderTextColor="rgba(255, 255, 255, .25)"
             />
-            <Text style={basicStyles.text}>How many minutes will this task take?</Text>
+            <Text style={basicStyles.mediumOnPrimary}>How many minutes will this task take?</Text>
             <TextInput             
                 style={createTaskStyles.taskInput}
                 onChangeText={setTaskTime}
@@ -93,7 +93,7 @@ export default function TaskForm({action, close, initialTask}) {
                 placeholderTextColor="rgba(255, 255, 255, .25)"
                 keyboardType="numeric" />
             
-            <Text style={basicStyles.text}>How frequently should this task be performed?</Text>
+            <Text style={basicStyles.mediumOnPrimary}>How frequently should this task be performed?</Text>
             <View style={createTaskStyles.createTaskDropdownContainer}>
                 <DropDownPicker
                     open={open}
@@ -110,7 +110,7 @@ export default function TaskForm({action, close, initialTask}) {
                 onPress={performTaskAction}
                 style={({ pressed }) => pressed ? basicStyles.basicButtonPressed : basicStyles.basicButton}
                 >
-                <Text style={basicStyles.text}>{action[0].toUpperCase() + action.slice(1)} Task</Text>
+                <Text style={basicStyles.mediumOnPrimary}>{action[0].toUpperCase() + action.slice(1)} Task</Text>
             </Pressable>
             {
                 action === 'update' ?
@@ -118,7 +118,7 @@ export default function TaskForm({action, close, initialTask}) {
                     onPress={() => {close(false)}}
                     style={({ pressed }) => pressed ? basicStyles.basicButtonPressed : basicStyles.basicButton}
                     >
-                    <Text style={basicStyles.text}>Cancel</Text>
+                    <Text style={basicStyles.mediumOnPrimary}>Cancel</Text>
                 </Pressable>
             : <></>
             }

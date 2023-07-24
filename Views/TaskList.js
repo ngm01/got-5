@@ -63,10 +63,10 @@ export default function TaskList() {
 
     function renderItem({item}) {
         return  <View style={taskListStyles.task}>
-                    <Text style={basicStyles.smallTextBold}>{item.title}</Text>
-                    <Text style={basicStyles.smallText}>{item.time} {item.time === 1 ? 'minute' : 'minutes'}</Text>
-                    <Text style={basicStyles.smallText}>Last performed on {getDateString(item.lastPerformed)}</Text>
-                    <Text style={basicStyles.smallText}>Times performed: {item.timesPerformed}</Text>
+                    <Text style={basicStyles.smallBoldOnVariant}>{item.title}</Text>
+                    <Text style={basicStyles.smallOnVariant}>{item.time} {item.time === 1 ? 'minute' : 'minutes'}</Text>
+                    <Text style={basicStyles.smallOnVariant}>Last performed on {getDateString(item.lastPerformed)}</Text>
+                    <Text style={basicStyles.smallOnVariant}>Times performed: {item.timesPerformed}</Text>
                     <View style={taskListStyles.taskButtonContainer}>
                         <Pressable onPress={() => {openUpdateModal(item)}}>
                             <FontAwesomeIcon style={{color: colors_dark.primary}} size={25} icon={faPenToSquare} />
@@ -95,9 +95,9 @@ export default function TaskList() {
             keyExtractor={item => item.id}
         /> :
             <View style={taskListStyles.emptyList}>
-                <Text style={[basicStyles.largeText, {'textAlign': 'center'}]}>Looks like you don't have any tasks yet.</Text>
+                <Text style={[basicStyles.largeOnVariant, {'textAlign': 'center'}]}>Looks like you don't have any tasks yet.</Text>
                 <Pressable onPress={() => navigation.navigate('CreateTask')} style={basicStyles.basicButton}>
-                    <Text style={basicStyles.text}>Click here to create one!</Text>
+                    <Text style={basicStyles.mediumOnPrimary}>Click here to create one!</Text>
                 </Pressable> 
             </View>
         )

@@ -25,7 +25,7 @@ const timerStyles = StyleSheet.create({
     },
     timerButtonPressed: {
         ...basicButton,
-        backgroundColor: colors_dark.selected,
+        backgroundColor: colors_dark.primary_variant,
         width: 175
     },
     timerText: {

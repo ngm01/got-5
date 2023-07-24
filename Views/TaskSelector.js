@@ -56,7 +56,7 @@ function TaskSelector() {
     }
     return ( 
         <View style={taskSelectorStyles.taskSelectorContainer}>
-            <Text style={basicStyles.largeText}>How much time do you have?</Text>
+            <Text style={basicStyles.largeOnBackground}>How much time do you have?</Text>
             <View style={taskSelectorStyles.timeInputContainer}>
                 <TextInput 
                     style={taskSelectorStyles.timeInput}
@@ -65,13 +65,13 @@ function TaskSelector() {
                     returnKeyType='done'
                     value={taskTime}
                 />
-                <Text style={basicStyles.largeText}>minutes</Text>
+                <Text style={basicStyles.largeOnBackground}>minutes</Text>
             </View>
             <Pressable 
                 onPress={handlePress}
                 style={({ pressed }) => pressed ? basicStyles.basicButtonPressed: basicStyles.basicButton}
                 >
-                <Text style={basicStyles.largeText}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
+                <Text style={basicStyles.largeOnPrimary}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
             </Pressable>
             <View style={taskSelectorStyles.bigTask}>
                 <Text style={taskSelectorStyles.taskDisplay}>{currentTask ? trimTaskTitle(currentTask.title) : 'Enter a time and get a task to get started!'}</Text>
@@ -82,7 +82,7 @@ function TaskSelector() {
                 disabled={!currentTask}
                 style={({pressed}) => currentTask ? (pressed ? basicStyles.basicButtonPressed: basicStyles.basicButton) : basicStyles.basicButtonDisabled}
                 >
-                <Text style={basicStyles.largeText}>START TASK</Text>
+                <Text style={basicStyles.largeOnPrimary}>START TASK</Text>
             </Pressable>
         </View>
      );

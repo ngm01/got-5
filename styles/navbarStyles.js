@@ -31,7 +31,7 @@ const navbarStyles = StyleSheet.create({
         marginBottom: 8
     },
     navbarIconSelected: {
-        color: colors_dark.white,
+        color: colors.white,
         display: 'flex',
         marginBottom: 8,
     }
