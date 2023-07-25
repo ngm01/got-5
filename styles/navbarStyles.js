@@ -7,32 +7,32 @@ const navbarStyles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         justifyContent: 'space-around',
-        backgroundColor: colors_dark.background
+        alignItems: 'center',
+        backgroundColor: colors_dark.surface
     },
     navbarButton: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: colors_dark.primary,
-        paddingVertical: 35,
-        paddingHorizontal: 45,
-    },
-    selectedNavbar: {
-        display: 'flex',
-        alignItems: 'center',
-        alignSelf: 'center',
-        backgroundColor: colors_dark.primary_variant,
-        paddingVertical: 35,
-        paddingHorizontal: 45,
+        backgroundColor: colors_dark.surface,
+        paddingVertical: 20,
+        width: '33%',
+        // borderStyle: 'dashed',
+        // borderColor: 'blue',
+        // borderWidth: 1
     },
     navbarIcon: {
-        color: colors_dark.background,
+        color: colors_dark.white,
         display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         marginBottom: 8
     },
     navbarIconSelected: {
-        color: colors.white,
+        color: colors_dark.primary,
         display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         marginBottom: 8,
     }
 })

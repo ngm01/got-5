@@ -9,17 +9,17 @@ export default function NavBar({current}) {
     const navigation = useNavigation();
     return (
         <View style={navbarStyles.navbar}>
-            <Pressable style={(current === 'home' ? navbarStyles.selectedNavbar : navbarStyles.navbarButton)} onPress={() => navigation.navigate('Home')}>
+            <Pressable style={navbarStyles.navbarButton} onPress={() => navigation.navigate('Home')}>
                 <FontAwesomeIcon size={32} style={(current === 'home' ? navbarStyles.navbarIconSelected : navbarStyles.navbarIcon)} icon={faHome} />
-                <Text style={current === 'home' ? basicStyles.smallOnVariant : basicStyles.smallOnPrimary}>Home</Text>
+                <Text style={current === 'home' ? basicStyles.textSmallPrimary : basicStyles.textSmallWhite}>Home</Text>
             </Pressable>
-            <Pressable style={(current === 'create' ? navbarStyles.selectedNavbar : navbarStyles.navbarButton)} onPress={() => navigation.navigate('CreateTask')}>
+            <Pressable style={navbarStyles.navbarButton} onPress={() => navigation.navigate('CreateTask')}>
                 <FontAwesomeIcon size={32} style={(current === 'create' ? navbarStyles.navbarIconSelected : navbarStyles.navbarIcon)} icon={faCirclePlus} />
-                <Text style={current === 'create' ? basicStyles.smallOnVariant : basicStyles.smallOnPrimary}>Create</Text>
+                <Text style={current === 'create' ? basicStyles.textSmallPrimary : basicStyles.textSmallWhite}>Create</Text>
             </Pressable>
-            <Pressable style={(current === 'list' ? navbarStyles.selectedNavbar : navbarStyles.navbarButton)} onPress={() => navigation.navigate('TaskList')}>
+            <Pressable style={navbarStyles.navbarButton} onPress={() => navigation.navigate('TaskList')}>
                 <FontAwesomeIcon size={32} style={(current === 'list' ? navbarStyles.navbarIconSelected : navbarStyles.navbarIcon)} icon={faListCheck} />
-                <Text style={current === 'list' ? basicStyles.smallOnVariant : basicStyles.smallOnPrimary}>Task List</Text>
+                <Text style={current === 'list' ? basicStyles.textSmallPrimary : basicStyles.textSmallWhite}>Task List</Text>
             </Pressable>
         </View>
     )

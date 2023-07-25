@@ -74,7 +74,7 @@ export default function TaskForm({action, close, initialTask}) {
             </Pressable>
             :
              <></> }
-            <Text style={basicStyles.mediumOnPrimary}>What do you want to call this task?</Text>
+            <Text style={basicStyles.textMediumWhite}>What do you want to call this task?</Text>
             <TextInput         
             style={createTaskStyles.taskInput}
             onChangeText={setTaskTitle}
@@ -83,7 +83,7 @@ export default function TaskForm({action, close, initialTask}) {
             placeholder="Example: pushups for 1 minute"
             placeholderTextColor="rgba(255, 255, 255, .25)"
             />
-            <Text style={basicStyles.mediumOnPrimary}>How many minutes will this task take?</Text>
+            <Text style={basicStyles.textMediumWhite}>How many minutes will this task take?</Text>
             <TextInput             
                 style={createTaskStyles.taskInput}
                 onChangeText={setTaskTime}
@@ -93,7 +93,7 @@ export default function TaskForm({action, close, initialTask}) {
                 placeholderTextColor="rgba(255, 255, 255, .25)"
                 keyboardType="numeric" />
             
-            <Text style={basicStyles.mediumOnPrimary}>How frequently should this task be performed?</Text>
+            <Text style={basicStyles.textMediumWhite}>How frequently should this task be performed?</Text>
             <View style={createTaskStyles.createTaskDropdownContainer}>
                 <DropDownPicker
                     open={open}

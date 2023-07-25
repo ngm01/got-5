@@ -12,14 +12,14 @@ const createTaskStyles = StyleSheet.create({
         top: 75,
         left: 10,
         width: '95%',
-        backgroundColor: colors_dark.background_variant,
+        backgroundColor: colors_dark.surface,
         padding: 10,
         borderRadius: 10
     },
     taskInput: {
         height: 40,
         width: 250,
-        borderColor: colors.white,
+        borderColor: colors_dark.white,
         borderWidth: 1,
         marginBottom: 25,
         borderColor: 'transparent',

@@ -63,10 +63,10 @@ export default function TaskList() {
 
     function renderItem({item}) {
         return  <View style={taskListStyles.task}>
-                    <Text style={basicStyles.smallBoldOnVariant}>{item.title}</Text>
-                    <Text style={basicStyles.smallOnVariant}>{item.time} {item.time === 1 ? 'minute' : 'minutes'}</Text>
-                    <Text style={basicStyles.smallOnVariant}>Last performed on {getDateString(item.lastPerformed)}</Text>
-                    <Text style={basicStyles.smallOnVariant}>Times performed: {item.timesPerformed}</Text>
+                    <Text style={[{...basicStyles.textSmallWhite, fontWeight: 'bold'}]}>{item.title}</Text>
+                    <Text style={basicStyles.textSmallWhite}>{item.time} {item.time === 1 ? 'minute' : 'minutes'}</Text>
+                    <Text style={basicStyles.textSmallWhite}>Last performed on {getDateString(item.lastPerformed)}</Text>
+                    <Text style={basicStyles.textSmallWhite}>Times performed: {item.timesPerformed}</Text>
                     <View style={taskListStyles.taskButtonContainer}>
                         <Pressable onPress={() => {openUpdateModal(item)}}>
                             <FontAwesomeIcon style={{color: colors_dark.primary}} size={25} icon={faPenToSquare} />

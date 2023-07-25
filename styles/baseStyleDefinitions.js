@@ -9,122 +9,83 @@ export const colors = {
   }
 
   export const colors_dark = {
-    background: '#121212',
-    surface: '#424242',
-    primary: '#EF9A9A',
-    primary_variant: '#D32F2F',
-    secondary: '#03dac6',
-    on_primary: '#000',
-    on_secondary: '#000',
-    on_variant: '#fff',
-    on_background: '#fff',
-    on_surface: '#fff',
-    on_error: '#000',
-    disabled: '#424242',
-    error: '#cf6679'
-  }
-
-  export const colors_dark_b = {
-    background: '#121212',
-    background_variant: '#424242',
+    background: '#0e1117',
+    //background: '#121212',
+    //surface: '#424242',
+    surface: '#171a21',
     // 200
-    primary: '#f29e9e',
+    //primary: '#f29e9e',
+    primary: '#E57373',
     // 700
-    primary_variant: '#d93935',
+    //primary_variant: '#d93935',
+    primary_variant: '#F44336',
     // secondary: '#9ef2f2',
     secondary: '#314c61',
-    primary_text: '#121212',
-    secondary_text: '#ece8ef',
     white: '#ece8ef',
-    disabled: '#424242',
+    black: '#111',
     error: '#cf6679'
   }
 
 export const fontSizes = {
-    small: '12',
+    small: '14',
     medium: '18',
     large: '30',
     xlarge: '40',
     xxlarge: '60'
 }
 
-export const smallOnPrimary = {
-    color: colors_dark.on_primary,
+export const text_small_primary = {
+    color: colors_dark.primary,
     fontSize: fontSizes.small
 }
 
-export const smallOnSecondary = {
-    color: colors_dark.on_secondary,
+export const text_small_white = {
+    color: colors_dark.white,
     fontSize: fontSizes.small
 }
 
-export const smallOnVariant = {
-    color: colors_dark.on_variant,
-    fontSize: fontSizes.small
-}
-
-export const smallBoldOnPrimary = {
-    ...smallOnPrimary,
-    fontWeight: 'bold'
-}
-
-export const smallBoldOnSecondary = {
-    ...smallOnSecondary,
-    fontWeight: 'bold'
-}
-
-export const smallBoldOnVariant = {
-    ...smallOnVariant,
-    fontWeight: 'bold'
-}
-
-export const mediumOnPrimary = {
-    color: colors_dark.on_primary,
+export const text_medium_white = {
+    color: colors_dark.white,
     fontSize: fontSizes.medium
 }
 
-export const mediumOnSecondary = {
-    color: colors_dark.on_secondary,
-    fontSize: fontSizes.medium
-}
-
-export const largeOnPrimary = {
-    color: colors_dark.on_primary,
+export const text_large_white = {
+    color: colors_dark.white,
     fontSize: fontSizes.large
 }
 
-export const largeOnSecondary = {
-    color: colors_dark.on_secondary,
-    fontSize: fontSizes.large
-}
-
-export const largeOnVariant = {
-    color: colors_dark.on_variant,
-    fontSize: fontSizes.large
-}
-
-export const largeOnBackground = {
-    color: colors_dark.on_background,
-    fontSize: fontSizes.large
-}
-
-export const xLargeOnPrimary = {
-    color: colors_dark.on_primary,
+export const text_xlarge_white = {
+    color: colors_dark.white,
     fontSize: fontSizes.xlarge
 }
 
-export const xLargeOnSecondary = {
-    color: colors_dark.on_secondary,
-    fontSize: fontSizes.xlarge
-}
-
-export const xxLargeOnPrimary = {
-    color: colors_dark.on_primary,
+export const text_xxlarge_white = {
+    color: colors_dark.white,
     fontSize: fontSizes.xxlarge
 }
 
-export const xxLargeOnSecondary = {
-    color: colors_dark.on_secondary,
+export const text_small_black = {
+    color: colors_dark.black,
+    fontSize: fontSizes.small
+}
+
+export const text_medium_black = {
+    color: colors_dark.black,
+    fontSize: fontSizes.medium
+}
+
+export const text_large_black = {
+    color: colors_dark.black,
+    fontSize: fontSizes.large
+}
+
+export const text_xlarge_black = {
+    color: colors_dark.black,
+    fontSize: fontSizes.xlarge
+}
+
+export const text_xxlarge_black = {
+    color: colors_dark.black,
     fontSize: fontSizes.xxlarge
 }
 
@@ -132,7 +93,7 @@ export const basicButton = {
     display: 'flex',
     alignItems: 'center',
     borderRadius: '5%',
-    color: colors.white,
+    color: colors_dark.white,
     padding: 20,
     marginTop: 20,
     marginBottom: 20

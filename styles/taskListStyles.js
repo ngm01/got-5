@@ -24,8 +24,8 @@ const taskListStyles = StyleSheet.create({
         zIndex: '1000'
     },
     task: {
-        borderWidth: '5px',
-        borderColor: colors_dark.surface,
+        borderWidth: 1,
+        borderColor: colors_dark.white,
         borderRadius: '5%',
         padding: '2%',
         marginBottom: '2%',
@@ -49,7 +49,8 @@ const taskListStyles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-around',
-        marginTop: '5%'
+        marginTop: '5%',
+        marginBottom: '3%'
     },
     emptyList: {
         display: 'flex',

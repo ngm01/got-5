@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors, colors_dark, basicButton, flexRowFullWidth, largeText, largeOnBackground } from "./baseStyleDefinitions";
+import { colors, colors_dark, basicButton, flexRowFullWidth, largeText, largeOnBackground, text_large_white } from "./baseStyleDefinitions";
 
 const taskSelectorStyles = StyleSheet.create({
     taskSelectorContainer: {
@@ -25,13 +25,13 @@ const taskSelectorStyles = StyleSheet.create({
         width: 80,
         borderColor: 'transparent',
         borderBottomColor: colors_dark.primary,
-        backgroundColor: colors_dark.background,
+        backgroundColor: colors_dark.surface,
         textAlign: 'center',
-        ...largeText
+        ...text_large_white
     },
     bigTask: {
         // borderWidth: '5px',
-        // borderColor: colors_dark.background_variant,
+        // borderColor: colors_dark.surface,
         borderRadius: '5%',
         padding: '2%',
         marginBottom: '2%',
@@ -45,10 +45,13 @@ const taskSelectorStyles = StyleSheet.create({
         shadowOpacity: '.75',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        borderColor: colors_dark.white,
+        borderWidth: 1,
+        borderRadius: 15
     },
     taskDisplay: {
-        ...largeOnBackground,
+        ...text_large_white,
         padding: 10,
         textAlign: 'center'
     },

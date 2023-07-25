@@ -3,20 +3,18 @@ import {
     colors, 
     colors_dark, 
     basicButton, 
-    smallOnPrimary,
-    smallOnSecondary, 
-    smallOnVariant,
-    smallBoldOnPrimary, 
-    smallBoldOnSecondary,
-    smallBoldOnVariant,
-    mediumOnPrimary, 
-    largeOnPrimary, 
-    largeOnSecondary, 
-    largeOnVariant,
-    largeOnBackground,
-    mediumOnSecondary,
-    xxLargeOnPrimary,
-    xxLargeOnSecondary} from "./baseStyleDefinitions";
+    text_small_white,
+    text_medium_white,
+    text_large_white,
+    text_xlarge_white,
+    text_xxlarge_white,
+    text_xlarge_black,
+    text_small_black,
+    text_medium_black,
+    text_large_black,
+    text_xxlarge_black,
+    text_small_primary,
+} from "./baseStyleDefinitions";
 
 const basicStyles = StyleSheet.create({
     homeContainer: {
@@ -35,28 +33,25 @@ const basicStyles = StyleSheet.create({
     },
     basicButtonDisabled: {
         ...basicButton,
-        backgroundColor: colors_dark.disabled
+        backgroundColor: colors_dark.surface
     },
-    smallOnPrimary: smallOnPrimary,
-    smallonSecondary: smallOnSecondary,
-    smallOnVariant: smallOnVariant,
-    smallBoldOnPrimary: smallBoldOnPrimary,
-    smallBoldOnSecondary: smallBoldOnSecondary,
-    smallBoldOnVariant: smallBoldOnVariant,
-    mediumOnPrimary: mediumOnPrimary,
-    mediumOnSecondary: mediumOnSecondary,
-    largeOnPrimary: largeOnPrimary,
-    largeOnSecondary: largeOnSecondary,
-    largeOnVariant: largeOnVariant,
-    largeOnBackground, largeOnBackground,
-    xxLargeOnPrimary: xxLargeOnPrimary,
-    xxLargeOnSecondary: xxLargeOnSecondary,
+    textSmallPrimary: text_small_primary,
+    textSmallWhite: text_small_white,
+    textMediumWhite: text_medium_white,
+    textLargeWhite: text_large_white,
+    textXLargeWhite: text_xlarge_white,
+    textXXLWhite: text_xxlarge_white,
+    textSmallBlack: text_small_black,
+    textMediumBlack: text_medium_black,
+    textLargeBlack: text_large_black,
+    textXLargeBlack: text_xlarge_black,
+    textXXLargeBlack: text_xxlarge_black,
     adBanner: {
         width: 320,
         height: 50,
         borderWidth: '1px',
         borderStyle: "dashed",
-        borderColor: colors_dark.on_background
+        borderColor: colors_dark.white
     }
 })
 

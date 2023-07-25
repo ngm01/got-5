@@ -18,6 +18,7 @@ function TaskSelector() {
 
     useEffect(() => {
         dispatch(getTasks());
+        setTaskTime(null);
     }, [])
 
     const handlePress = () => {
@@ -56,7 +57,7 @@ function TaskSelector() {
     }
     return ( 
         <View style={taskSelectorStyles.taskSelectorContainer}>
-            <Text style={basicStyles.largeOnBackground}>How much time do you have?</Text>
+            <Text style={basicStyles.textLargeWhite}>How much time do you have?</Text>
             <View style={taskSelectorStyles.timeInputContainer}>
                 <TextInput 
                     style={taskSelectorStyles.timeInput}
@@ -65,24 +66,24 @@ function TaskSelector() {
                     returnKeyType='done'
                     value={taskTime}
                 />
-                <Text style={basicStyles.largeOnBackground}>minutes</Text>
+                <Text style={basicStyles.textLargeWhite}>minutes</Text>
             </View>
             <Pressable 
                 onPress={handlePress}
                 style={({ pressed }) => pressed ? basicStyles.basicButtonPressed: basicStyles.basicButton}
                 >
-                <Text style={basicStyles.largeOnPrimary}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
+                <Text style={basicStyles.textLargeBlack}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
             </Pressable>
             <View style={taskSelectorStyles.bigTask}>
                 <Text style={taskSelectorStyles.taskDisplay}>{currentTask ? trimTaskTitle(currentTask.title) : 'Enter a time and get a task to get started!'}</Text>
-                <Text style={basicStyles.largeText}>{currentTask ? formatTime(currentTask.time) : ''}</Text>
+                <Text style={basicStyles.textLargeWhite}>{currentTask ? formatTime(currentTask.time) : ''}</Text>
             </View>
             <Pressable 
                 onPress={() => {navigation.navigate('Timer')}}
                 disabled={!currentTask}
                 style={({pressed}) => currentTask ? (pressed ? basicStyles.basicButtonPressed: basicStyles.basicButton) : basicStyles.basicButtonDisabled}
                 >
-                <Text style={basicStyles.largeOnPrimary}>START TASK</Text>
+                <Text style={basicStyles.textLargeBlack}>START TASK</Text>
             </Pressable>
         </View>
      );

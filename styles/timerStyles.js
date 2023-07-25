@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors, colors_dark, largeText, basicButton, flexRowFullWidth, xxLargeText } from "./baseStyleDefinitions";
+import { colors_dark, basicButton, flexRowFullWidth, text_xxlarge_white, text_xlarge_white } from "./baseStyleDefinitions";
 
 const timerStyles = StyleSheet.create({
     timerContainer: {
@@ -10,7 +10,7 @@ const timerStyles = StyleSheet.create({
         height: '100%'
     },
     timerTaskText: {
-        ...largeText,
+        ...text_xxlarge_white,
         textAlign: 'center',
         padding: 20,
     },
@@ -29,7 +29,7 @@ const timerStyles = StyleSheet.create({
         width: 175
     },
     timerText: {
-        ...xxLargeText,
+        ...text_xxlarge_white,
         display: 'flex',
         textAlign: 'center',
         width: '75%'
