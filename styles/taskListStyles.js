@@ -23,6 +23,15 @@ const taskListStyles = StyleSheet.create({
         opacity: '.65',
         zIndex: '1000'
     },
+    sortBar: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        marginBottom: 10,
+        padding: 5
+    },
     task: {
         borderWidth: 1,
         borderColor: colors_dark.white,

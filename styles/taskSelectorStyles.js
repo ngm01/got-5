@@ -9,8 +9,12 @@ const taskSelectorStyles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         height: '70%',
-        paddingLeft: 5,
-        paddingRight: 5
+        // paddingLeft: 5,
+        // paddingRight: 5,
+        backgroundColor: colors_dark.surface,
+        borderColor: colors_dark.white,
+        borderWidth: 1,
+        borderRadius: 10
     },
     timeInputContainer: {
         ...flexRowFullWidth,
@@ -24,19 +28,17 @@ const taskSelectorStyles = StyleSheet.create({
         padding: 10,
         width: 80,
         borderColor: 'transparent',
-        borderBottomColor: colors_dark.primary,
-        backgroundColor: colors_dark.surface,
+        borderBottomColor: colors_dark.secondary,
+        backgroundColor: colors_dark.secondary,
         textAlign: 'center',
         ...text_large_white
     },
     bigTask: {
-        // borderWidth: '5px',
-        // borderColor: colors_dark.surface,
         borderRadius: '5%',
         padding: '2%',
         marginBottom: '2%',
         alignSelf: 'center',
-        backgroundColor: colors_dark.surface,
+        backgroundColor: colors_dark.secondary,
         width: 300,
         height: '30%',
         shadowColor: '#111',

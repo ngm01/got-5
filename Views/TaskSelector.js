@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllTasks, getTasks } from '../state/reducers/tasks';
 import TaskContext from '../state/TaskContext';
+import { colors_dark, fontSizes } from '../styles/baseStyleDefinitions';
 import basicStyles from '../styles/basicStyles';
 import taskSelectorStyles from '../styles/taskSelectorStyles';
 import { useNavigation } from '@react-navigation/native';
@@ -83,7 +84,7 @@ function TaskSelector() {
                 disabled={!currentTask}
                 style={({pressed}) => currentTask ? (pressed ? basicStyles.basicButtonPressed: basicStyles.basicButton) : basicStyles.basicButtonDisabled}
                 >
-                <Text style={basicStyles.textLargeBlack}>START TASK</Text>
+                <Text style={{color: colors_dark.white, fontSize: fontSizes.large}}>START TASK</Text>
             </Pressable>
         </View>
      );

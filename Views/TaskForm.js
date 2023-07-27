@@ -2,14 +2,15 @@ import { Alert, Pressable, Text, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { getTasks, createTask, updateTask } from '../state/reducers/tasks';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
-import { colors, colors_dark } from '../styles/baseStyleDefinitions';
+import { colors_dark } from '../styles/baseStyleDefinitions';
 import createTaskStyles from '../styles/createTaskStyles';
 import basicStyles from '../styles/basicStyles';
+import { useEffect } from 'react';
 
 export default function TaskForm({action, close, initialTask}) {
 
@@ -18,6 +19,13 @@ export default function TaskForm({action, close, initialTask}) {
     const [taskTitle, setTaskTitle] = useState(initialTask.title);
     const [taskTime, setTaskTime] = useState(initialTask.time);
     const [taskCadence, setTaskCadence] = useState(initialTask.cadence);
+    const [isFocused, setIsFocused] = useState({
+        title: false,
+        minutes: false
+    })
+
+    const titleInputRef = useRef();
+    const minutesInputRef = useRef();
 
     const [open, setOpen] = useState(false);
     const [items, setItems] = useState([
@@ -30,15 +38,21 @@ export default function TaskForm({action, close, initialTask}) {
 
     async function performTaskAction () {
         const parsedTime = parseInt(taskTime);
+        if(taskTitle.trim().length === 0 ) {
+            Alert.alert("Please give your task a title.");
+            titleInputRef.current.focus()
+            return;
+        }
         if( Number.isNaN(parsedTime) || parsedTime === 0 || parsedTime > 60) {
             Alert.alert("Please enter a time, in minutes, between 1 and 60.");
+            minutesInputRef.current.focus()
             return;
         } else {
             const today = new Date();
             const id = initialTask.id ? initialTask.id : uuidv4();
             const thisTask = {
                 id: id,
-                title: taskTitle,
+                title: taskTitle.trim(),
                 time: parsedTime,
                 cadence: taskCadence,
                 created: initialTask.created ? initialTask.created : today,
@@ -76,22 +90,30 @@ export default function TaskForm({action, close, initialTask}) {
              <></> }
             <Text style={basicStyles.textMediumWhite}>What do you want to call this task?</Text>
             <TextInput         
-            style={createTaskStyles.taskInput}
-            onChangeText={setTaskTitle}
-            returnKeyType='done'
-            value={taskTitle}
-            placeholder="Example: pushups for 1 minute"
-            placeholderTextColor="rgba(255, 255, 255, .25)"
+                style={isFocused.title ? createTaskStyles.taskInputFocused : createTaskStyles.taskInput}
+                onChangeText={setTaskTitle}
+                returnKeyType='done'
+                value={taskTitle}
+                placeholder="Example: pushups for 1 minute"
+                placeholderTextColor="rgba(255, 255, 255, .25)"
+                ref={titleInputRef}
+                onFocus={() => { setIsFocused({...isFocused, title: true}) }}
+                onBlur={() => { setIsFocused({...isFocused, title: false}) }}
+                onSubmitEditing={() => minutesInputRef.current.focus()}
             />
             <Text style={basicStyles.textMediumWhite}>How many minutes will this task take?</Text>
             <TextInput             
-                style={createTaskStyles.taskInput}
+                style={isFocused.minutes ? createTaskStyles.taskInputFocused : createTaskStyles.taskInput}
                 onChangeText={setTaskTime}
                 value={taskTime?.toString()} 
                 returnKeyType='done'
                 placeholder='1'
                 placeholderTextColor="rgba(255, 255, 255, .25)"
-                keyboardType="numeric" />
+                keyboardType="numeric"
+                ref={minutesInputRef}
+                onFocus={() => { setIsFocused({...isFocused, minutes: true}) }}
+                onBlur={() => { setIsFocused({...isFocused, minutes: false}) }}
+            />
             
             <Text style={basicStyles.textMediumWhite}>How frequently should this task be performed?</Text>
             <View style={createTaskStyles.createTaskDropdownContainer}>

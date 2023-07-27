@@ -33,7 +33,7 @@ const basicStyles = StyleSheet.create({
     },
     basicButtonDisabled: {
         ...basicButton,
-        backgroundColor: colors_dark.surface
+        backgroundColor: colors_dark.background
     },
     textSmallPrimary: text_small_primary,
     textSmallWhite: text_small_white,

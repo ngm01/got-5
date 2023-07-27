@@ -1,4 +1,4 @@
-import { Alert, Button, FlatList, Modal, Pressable, SafeAreaView, Text, View } from 'react-native';
+import { Alert, FlatList, Modal, Pressable, SafeAreaView, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux'
 import { useContext, useEffect } from 'react';
@@ -6,12 +6,14 @@ import { selectAllTasks, getTasks, deleteTask } from '../state/reducers/tasks';
 import TaskContext from '../state/TaskContext';
 import NavBar from './NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faTrash, faPenToSquare, faCirclePlay, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPenToSquare, faPlay, faSort, faSortAsc, faSortDesc, faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import TaskForm from './TaskForm';
-import { colors, colors_dark } from '../styles/baseStyleDefinitions';
+import { colors_dark } from '../styles/baseStyleDefinitions';
 import basicStyles from '../styles/basicStyles';
 import taskListStyles from '../styles/taskListStyles';
+import SortButton from './SortButton';
+import sortButtonStyles from '../styles/sortButtonStyles';
 
 export default function TaskList() {
 
@@ -26,6 +28,9 @@ export default function TaskList() {
 
     useEffect(() => {
         dispatch(getTasks())
+        tasks.forEach(task => {
+            console.log(`${task.title}: ${task.timesPerformed}`)
+        });
     }, [dispatch])
 
     const openUpdateModal = (task) => {
@@ -65,8 +70,8 @@ export default function TaskList() {
         return  <View style={taskListStyles.task}>
                     <Text style={[{...basicStyles.textSmallWhite, fontWeight: 'bold'}]}>{item.title}</Text>
                     <Text style={basicStyles.textSmallWhite}>{item.time} {item.time === 1 ? 'minute' : 'minutes'}</Text>
-                    <Text style={basicStyles.textSmallWhite}>Last performed on {getDateString(item.lastPerformed)}</Text>
-                    <Text style={basicStyles.textSmallWhite}>Times performed: {item.timesPerformed}</Text>
+                    <Text style={basicStyles.textSmallWhite}>Last performed on: {getDateString(item.lastPerformed)}</Text>
+                    <Text style={basicStyles.textSmallWhite}>Times performed: {item.timesPerformed ? item.timesPerformed : '--'}</Text>
                     <View style={taskListStyles.taskButtonContainer}>
                         <Pressable onPress={() => {openUpdateModal(item)}}>
                             <FontAwesomeIcon style={{color: colors_dark.primary}} size={25} icon={faPenToSquare} />
@@ -88,16 +93,26 @@ export default function TaskList() {
     } else if(taskStatus === 'succeeded') {
         content = ( 
             tasks.length ?
-            <FlatList 
-            contentContainerStyle={{paddingBottom: 100}}
-            data={tasks}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-        /> :
+            <View>
+                <View style={taskListStyles.sortBar}>
+                    <Text style={[basicStyles.textMediumWhite, {paddingRight: 5}]}>Sort by:</Text>
+                    <SortButton sortType={'A-Z'} />
+                    <SortButton sortType={'Created'} />
+                    <SortButton sortType={'Performed'} />
+                    <SortButton sortType={'Time'} />
+                </View>
+                <FlatList 
+                    contentContainerStyle={{paddingBottom: 100}}
+                    data={tasks}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}
+                />
+            </View>
+ :
             <View style={taskListStyles.emptyList}>
-                <Text style={[basicStyles.largeOnVariant, {'textAlign': 'center'}]}>Looks like you don't have any tasks yet.</Text>
+                <Text style={[basicStyles.textLargeWhite, {'textAlign': 'center'}]}>Looks like you don't have any tasks yet.</Text>
                 <Pressable onPress={() => navigation.navigate('CreateTask')} style={basicStyles.basicButton}>
-                    <Text style={basicStyles.mediumOnPrimary}>Click here to create one!</Text>
+                    <Text style={basicStyles.textMediumBlack}>Click here to create one!</Text>
                 </Pressable> 
             </View>
         )
