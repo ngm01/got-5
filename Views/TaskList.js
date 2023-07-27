@@ -12,38 +12,45 @@ import TaskForm from './TaskForm';
 import { colors_dark } from '../styles/baseStyleDefinitions';
 import basicStyles from '../styles/basicStyles';
 import taskListStyles from '../styles/taskListStyles';
-import SortButton from './SortButton';
 import sortButtonStyles from '../styles/sortButtonStyles';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { current } from 'immer';
+import { sorter } from '../util/util';
 
 export default function TaskList() {
 
     const navigation = useNavigation();
     const dispatch = useDispatch();
-    const tasks = useSelector(selectAllTasks);
+    const tasksFromState = useSelector(selectAllTasks);
     const [currentTask, setCurrentTask] = useContext(TaskContext);
     const taskStatus = useSelector((state) => state.tasks.status);
     const error = useSelector((state) => state.tasks.error);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null);
 
+
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const [sortTypes, setSortTypes] = useState([
-        {label: 'A-Z', value: 'a-z'},
+        {label: 'A-Z', value: 'title'},
         {label: 'Created on', value: 'created'},
-        {label: 'Performed on', value: 'performed'},
+        {label: 'Performed on', value: 'lastPerformed'},
         {label: 'Time', value: 'time'},
     ])
-    const [sortType, setSortType] = useState('a-z');
+    const [tasks, setTasks] = useState([])
+    const [sortType, setSortType] = useState('title');
     const [sortAscending, setSortAscending] = useState(true);
 
     useEffect(() => {
         dispatch(getTasks())
-        tasks.forEach(task => {
-            console.log(`${task.title}: ${task.timesPerformed}`)
-        });
     }, [dispatch])
+
+    useEffect(() => {
+        setTasks([...tasksFromState]);
+    }, [tasksFromState])
+
+    useEffect(() => {
+        let sorted = tasks.sort(sorter(sortType, sortAscending))
+        setTasks([...sorted])
+    }, [sortType, sortAscending])
 
     const openUpdateModal = (task) => {
         setSelectedTask(task);
