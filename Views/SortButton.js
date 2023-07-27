@@ -4,20 +4,13 @@ import { faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
 import basicStyles from '../styles/basicStyles';
 import sortButtonStyles from "../styles/sortButtonStyles";
 
-function SortButton({ sortType }) {
-
-    const testPress = () => {
-        Alert.alert("This works")
-    }
+function SortButton({ sortAscending }) {
 
     return ( 
-        <Pressable onPress={testPress} style={sortButtonStyles.buttonContainer}>
-            <Text style={basicStyles.textSmallWhite}>{sortType}</Text>
+        <Pressable style={sortButtonStyles.buttonContainer}>
             <View style={sortButtonStyles.icons}>
-                <View>
-                    <FontAwesomeIcon style={sortButtonStyles.icon_selected} size={25} icon={faSortUp} />
-                    <FontAwesomeIcon style={sortButtonStyles.icon} size={25} icon={faSortDown} />
-                </View>
+                    <FontAwesomeIcon style={sortAscending ? sortButtonStyles.icon_selected : sortButtonStyles.icon} size={25} icon={faSortUp} />
+                    <FontAwesomeIcon style={sortAscending ? sortButtonStyles.icon : sortButtonStyles.icon_selected} size={25} icon={faSortDown} />
             </View>
         </Pressable>
      );

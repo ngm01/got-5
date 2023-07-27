@@ -1,6 +1,18 @@
 import { StyleSheet } from "react-native";
 import { colors, colors_dark, basicButton, flexRowFullWidth, largeText, largeOnBackground, text_large_white } from "./baseStyleDefinitions";
 
+const timeInput = {
+    height: 50,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    width: 80,
+    borderColor: 'transparent',
+    backgroundColor: colors_dark.secondary,
+    textAlign: 'center',
+    ...text_large_white
+}
+
 const taskSelectorStyles = StyleSheet.create({
     taskSelectorContainer: {
         display: 'flex',
@@ -21,17 +33,20 @@ const taskSelectorStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    timeInput: {
-        height: 50,
-        margin: 12,
-        borderWidth: 1,
-        padding: 10,
-        width: 80,
-        borderColor: 'transparent',
-        borderBottomColor: colors_dark.secondary,
-        backgroundColor: colors_dark.secondary,
-        textAlign: 'center',
-        ...text_large_white
+    timeInput: timeInput,
+    timeInputFocused: {
+        ...timeInput,
+        borderBottomColor: colors_dark.primary
+    },
+    getTaskButton: {
+        ...basicButton,
+        width: 275,
+        backgroundColor: colors_dark.primary
+    },
+    getTaskButtonPressed: {
+        ...basicButton,
+        width: 275,
+        backgroundColor: colors_dark.primary_variant
     },
     bigTask: {
         borderRadius: '5%',

@@ -1,5 +1,5 @@
 import { Text, View, Pressable, Alert, TextInput } from 'react-native';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllTasks, getTasks } from '../state/reducers/tasks';
 import TaskContext from '../state/TaskContext';
@@ -16,15 +16,20 @@ function TaskSelector() {
     const tasks = useSelector(selectAllTasks);
     const [currentTask, setCurrentTask] = useContext(TaskContext);
     const [taskTime, setTaskTime] = useState(0);
+    const [isInputFocused, setIsInputFocused] = useState(false);
+    
+    const timeInputRef = useRef()
 
     useEffect(() => {
         dispatch(getTasks());
         setTaskTime(null);
+        setCurrentTask(null)
     }, [])
 
     const handlePress = () => {
         if(taskTime === 0 || taskTime === null || taskTime > 60 || taskTime === '') {
             Alert.alert("Please enter a time in minutes between 1 and 60.");
+            timeInputRef.current.focus()
             return;
         }
         const tasksInTime = tasks.filter(task => task.time <= taskTime);
@@ -61,17 +66,20 @@ function TaskSelector() {
             <Text style={basicStyles.textLargeWhite}>How much time do you have?</Text>
             <View style={taskSelectorStyles.timeInputContainer}>
                 <TextInput 
-                    style={taskSelectorStyles.timeInput}
+                    style={isInputFocused ? taskSelectorStyles.timeInputFocused : taskSelectorStyles.timeInput}
+                    onFocus={() => {setIsInputFocused(true)}}
+                    onBlur={() => {setIsInputFocused(false)}}
                     onChangeText={setTaskTime} 
                     keyboardType="numeric"
                     returnKeyType='done'
                     value={taskTime}
+                    ref={timeInputRef}
                 />
                 <Text style={basicStyles.textLargeWhite}>minutes</Text>
             </View>
             <Pressable 
                 onPress={handlePress}
-                style={({ pressed }) => pressed ? basicStyles.basicButtonPressed: basicStyles.basicButton}
+                style={({ pressed }) => pressed ? taskSelectorStyles.getTaskButtonPressed: taskSelectorStyles.getTaskButton}
                 >
                 <Text style={basicStyles.textLargeBlack}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
             </Pressable>
@@ -84,7 +92,7 @@ function TaskSelector() {
                 disabled={!currentTask}
                 style={({pressed}) => currentTask ? (pressed ? basicStyles.basicButtonPressed: basicStyles.basicButton) : basicStyles.basicButtonDisabled}
                 >
-                <Text style={{color: colors_dark.white, fontSize: fontSizes.large}}>START TASK</Text>
+                <Text style={{color: colors_dark.surface, fontSize: fontSizes.large}}>START!</Text>
             </Pressable>
         </View>
      );

@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { colors_dark } from "./baseStyleDefinitions";
 
 const icon = {
-    marginVertical: -10
+    marginVertical: -12
 }
 
 const sortButtonStyles = StyleSheet.create({
@@ -12,7 +12,7 @@ const sortButtonStyles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        width: 105,
+        width: 50,
         height: 50,
         marginHorizontal: 5,
         marginVertical: 5,

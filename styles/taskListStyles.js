@@ -30,7 +30,8 @@ const taskListStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
         marginBottom: 10,
-        padding: 5
+        padding: 5,
+        zIndex: 2000
     },
     task: {
         borderWidth: 1,

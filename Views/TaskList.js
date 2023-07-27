@@ -6,7 +6,7 @@ import { selectAllTasks, getTasks, deleteTask } from '../state/reducers/tasks';
 import TaskContext from '../state/TaskContext';
 import NavBar from './NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faTrash, faPenToSquare, faPlay, faSort, faSortAsc, faSortDesc, faSortUp } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPenToSquare, faPlay, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import TaskForm from './TaskForm';
 import { colors_dark } from '../styles/baseStyleDefinitions';
@@ -14,6 +14,8 @@ import basicStyles from '../styles/basicStyles';
 import taskListStyles from '../styles/taskListStyles';
 import SortButton from './SortButton';
 import sortButtonStyles from '../styles/sortButtonStyles';
+import DropDownPicker from 'react-native-dropdown-picker';
+import { current } from 'immer';
 
 export default function TaskList() {
 
@@ -25,6 +27,16 @@ export default function TaskList() {
     const error = useSelector((state) => state.tasks.error);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null);
+
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+    const [sortTypes, setSortTypes] = useState([
+        {label: 'A-Z', value: 'a-z'},
+        {label: 'Created on', value: 'created'},
+        {label: 'Performed on', value: 'performed'},
+        {label: 'Time', value: 'time'},
+    ])
+    const [sortType, setSortType] = useState('a-z');
+    const [sortAscending, setSortAscending] = useState(true);
 
     useEffect(() => {
         dispatch(getTasks())
@@ -96,10 +108,21 @@ export default function TaskList() {
             <View>
                 <View style={taskListStyles.sortBar}>
                     <Text style={[basicStyles.textMediumWhite, {paddingRight: 5}]}>Sort by:</Text>
-                    <SortButton sortType={'A-Z'} />
-                    <SortButton sortType={'Created'} />
-                    <SortButton sortType={'Performed'} />
-                    <SortButton sortType={'Time'} />
+                    <DropDownPicker
+                        open={isDropdownOpen}
+                        setOpen={setIsDropdownOpen}
+                        items={sortTypes}
+                        setItems={setSortTypes}
+                        value={sortType}
+                        setValue={setSortType}
+                        containerStyle={{width: 150}}
+                    />
+                    <Pressable onPress={() => {setSortAscending(current => !current)}} style={sortButtonStyles.buttonContainer}>
+                        <View style={sortButtonStyles.icons}>
+                            <FontAwesomeIcon style={sortAscending ? sortButtonStyles.icon_selected : sortButtonStyles.icon} size={25} icon={faSortUp} />
+                            <FontAwesomeIcon style={sortAscending ? sortButtonStyles.icon : sortButtonStyles.icon_selected} size={25} icon={faSortDown} />
+                        </View>
+                    </Pressable>
                 </View>
                 <FlatList 
                     contentContainerStyle={{paddingBottom: 100}}

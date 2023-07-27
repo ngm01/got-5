@@ -27,15 +27,16 @@ export default function Timer() {
 
     const formatCountdownTime = (remainingTime) => {
 
-        const formatSeconds = (sec) => {
-            if (sec === 0) return '00';
-            if (sec <= 9) return '0' + sec;
-            return sec;
+        const formatUnits = (unit) => {
+            if (unit === 0) return '00';
+            if (unit <= 9) return '0' + unit;
+            return unit;
         }
 
-        const minutes = Math.floor(remainingTime / 60)
+        let minutes = Math.floor(remainingTime / 60)
         let seconds = remainingTime % 60
-        seconds = formatSeconds(seconds);
+        minutes = formatUnits(minutes);
+        seconds = formatUnits(seconds);
       
         return `${minutes}:${seconds}`
 
