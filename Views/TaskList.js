@@ -6,7 +6,7 @@ import { selectAllTasks, getTasks, deleteTask } from '../state/reducers/tasks';
 import TaskContext from '../state/TaskContext';
 import NavBar from './NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faTrash, faPenToSquare, faPlay, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPenToSquare, faPlay, faSortDown, faSortUp, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import TaskForm from './TaskForm';
 import { colors_dark } from '../styles/baseStyleDefinitions';
@@ -14,7 +14,7 @@ import basicStyles from '../styles/basicStyles';
 import taskListStyles from '../styles/taskListStyles';
 import sortButtonStyles from '../styles/sortButtonStyles';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { sorter } from '../util/util';
+import { sorter, dummyTask } from '../util/util';
 
 export default function TaskList() {
 
@@ -26,6 +26,7 @@ export default function TaskList() {
     const error = useSelector((state) => state.tasks.error);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null);
+    const [formType, setFormType] = useState(null)
 
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
@@ -52,8 +53,11 @@ export default function TaskList() {
         setTasks([...sorted])
     }, [sortType, sortAscending])
 
-    const openUpdateModal = (task) => {
-        setSelectedTask(task);
+    const openModal = (type, task) => {
+        if(task) {
+            setSelectedTask(task);
+        }
+        setFormType(type)
         setIsModalVisible(true);
     }
 
@@ -92,7 +96,7 @@ export default function TaskList() {
                     <Text style={basicStyles.textSmallWhite}>Last performed on: {getDateString(item.lastPerformed)}</Text>
                     <Text style={basicStyles.textSmallWhite}>Times performed: {item.timesPerformed ? item.timesPerformed : '--'}</Text>
                     <View style={taskListStyles.taskButtonContainer}>
-                        <Pressable onPress={() => {openUpdateModal(item)}}>
+                        <Pressable onPress={() => {openModal('update', item)}}>
                             <FontAwesomeIcon style={{color: colors_dark.primary}} size={25} icon={faPenToSquare} />
                         </Pressable>
                         <Pressable onPress={() => {startTask(item)}}>
@@ -114,6 +118,10 @@ export default function TaskList() {
             tasks.length ?
             <View>
                 <View style={taskListStyles.sortBar}>
+                    <Pressable onPress={() => {openModal('create-list')}}>
+                        <FontAwesomeIcon style={{color: colors_dark.primary}} size={30} icon={faCirclePlus} />
+                        <Text style={basicStyles.textSmallWhite} >Create New</Text>
+                    </Pressable>
                     <Text style={[basicStyles.textMediumWhite, {paddingRight: 5}]}>Sort by:</Text>
                     <DropDownPicker
                         open={isDropdownOpen}
@@ -158,9 +166,9 @@ export default function TaskList() {
                 onRequestClose={() => {setIsModalVisible(!modalVisible) }}
             >
                 <TaskForm 
-                    action={'update'} 
+                    action={formType} 
                     close={setIsModalVisible} 
-                    initialTask={selectedTask}  />
+                    initialTask={formType === 'update' ? selectedTask : dummyTask}  />
             </Modal>
             {content}
             <NavBar current={'list'}/>

@@ -9,6 +9,7 @@ import CreateTask from './Views/CreateTask';
 import TaskList from './Views/TaskList';
 import Timer from './Views/Timer';
 import { colors, colors_dark } from './styles/baseStyleDefinitions';
+import Settings from './Views/Settings';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +46,11 @@ export default function App() {
               name="CreateTask"
               component={CreateTask}
               options={{ title: 'Create a Task' }}
+            />
+            <Stack.Screen 
+              name="Settings"
+              component={Settings}
+              options={{ title: 'Settings' }}
             />
             <Stack.Screen 
               name="Timer"

@@ -82,7 +82,7 @@ export default function TaskForm({action, close, initialTask}) {
 
     return (
         <View style={createTaskStyles.createTaskForm}>
-            { action === 'update' ? 
+            { action === 'update' || action === 'create-list' ? 
             <Pressable style={createTaskStyles.closeXContainer} onPress={() => {close(false)}}>
                 <FontAwesomeIcon style={{color: colors_dark.primary, alignSelf: 'flex-end'}} size={20} icon={faX} />
             </Pressable>
@@ -132,7 +132,7 @@ export default function TaskForm({action, close, initialTask}) {
                 onPress={performTaskAction}
                 style={({ pressed }) => pressed ? basicStyles.basicButtonPressed : basicStyles.basicButton}
                 >
-                <Text style={basicStyles.mediumOnPrimary}>{action[0].toUpperCase() + action.slice(1)} Task</Text>
+                <Text style={basicStyles.mediumOnPrimary}>{action[0].toUpperCase() + action.replace('-list', '').slice(1)} Task</Text>
             </Pressable>
             {
                 action === 'update' ?

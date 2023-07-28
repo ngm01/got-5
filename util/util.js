@@ -18,3 +18,5 @@ export const sorter = (prop, ascending) => {
     if(!ascending) return (a, b) => a[prop] === b[prop] ? 0 : a[prop] > b[prop] ? -1 : 1
     return (a, b) => a[prop] === b[prop] ? 0 : a[prop] < b[prop] ? -1 : 1
 }
+
+export const dummyTask = {title: '', time: null, cadence: 1}
