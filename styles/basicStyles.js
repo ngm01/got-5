@@ -40,7 +40,7 @@ const basicStyles = StyleSheet.create({
     textMediumWhite: text_medium_white,
     textLargeWhite: text_large_white,
     textXLargeWhite: text_xlarge_white,
-    textXXLWhite: text_xxlarge_white,
+    textXXLargeWhite: text_xxlarge_white,
     textSmallBlack: text_small_black,
     textMediumBlack: text_medium_black,
     textLargeBlack: text_large_black,
@@ -52,6 +52,12 @@ const basicStyles = StyleSheet.create({
         borderWidth: '1px',
         borderStyle: "dashed",
         borderColor: colors_dark.white
+    },
+    dividerPipe: {
+        backgroundColor: colors_dark.white,
+        width: 1,
+        height: 50,
+        marginHorizontal: 5
     }
 })
 

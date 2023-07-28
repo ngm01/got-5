@@ -118,11 +118,12 @@ export default function TaskList() {
             tasks.length ?
             <View>
                 <View style={taskListStyles.sortBar}>
-                    <Pressable onPress={() => {openModal('create-list')}}>
-                        <FontAwesomeIcon style={{color: colors_dark.primary}} size={30} icon={faCirclePlus} />
-                        <Text style={basicStyles.textSmallWhite} >Create New</Text>
+                    <Pressable style={{textAlign: 'center'}} onPress={() => {openModal('create-list')}}>
+                        <FontAwesomeIcon style={{color: colors_dark.primary, alignSelf: 'center'}} size={30} icon={faCirclePlus} />
+                        <Text style={[basicStyles.textSmallWhite, {marginTop: 5}]} >Create New</Text>
                     </Pressable>
-                    <Text style={[basicStyles.textMediumWhite, {paddingRight: 5}]}>Sort by:</Text>
+                    <View style={basicStyles.dividerPipe}></View>
+                    <Text style={[basicStyles.textSmallWhite, {marginRight: 5}]}>Sort by:</Text>
                     <DropDownPicker
                         open={isDropdownOpen}
                         setOpen={setIsDropdownOpen}

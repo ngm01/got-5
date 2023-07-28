@@ -31,7 +31,9 @@ const taskListStyles = StyleSheet.create({
         justifyContent: 'space-around',
         marginBottom: 10,
         padding: 5,
-        zIndex: 2000
+        zIndex: 2000,
+        borderBottomColor: colors_dark.secondary,
+        borderBottomWidth: 1
     },
     task: {
         borderWidth: 1,
