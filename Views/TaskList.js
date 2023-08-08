@@ -150,7 +150,7 @@ export default function TaskList() {
  :
             <View style={taskListStyles.emptyList}>
                 <Text style={[basicStyles.textLargeWhite, {'textAlign': 'center'}]}>Looks like you don't have any tasks yet.</Text>
-                <Pressable onPress={() => navigation.navigate('CreateTask')} style={basicStyles.basicButton}>
+                <Pressable onPress={() => openModal('create-list')} style={basicStyles.basicButton}>
                     <Text style={basicStyles.textMediumBlack}>Click here to create one!</Text>
                 </Pressable> 
             </View>

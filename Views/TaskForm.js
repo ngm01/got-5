@@ -60,7 +60,7 @@ export default function TaskForm({action, close, initialTask}) {
                 tags: []
             }
             try {
-                if(action === 'create') {
+                if(action === 'create' || action === 'create-list') {
                     await dispatch(createTask(thisTask));
                 } else if (action === 'update') {
                     await dispatch(updateTask(thisTask))

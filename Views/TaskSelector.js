@@ -27,6 +27,17 @@ function TaskSelector() {
     }, [])
 
     const handlePress = () => {
+        if(tasks.length === 0) {
+            Alert.alert(
+                'Task List Empty', 
+                "Looks like you haven't created any tasks. Would you like to create one now?", 
+                [
+                    {text: 'No Thanks', onPress: () => {}, style: 'cancel'},
+                    {text: 'Yes, Create', onPress: () => navigation.navigate('TaskList'), style: 'default'}
+                ]
+            )
+            return;
+        }
         if(taskTime === 0 || taskTime === null || taskTime > 60 || taskTime === '') {
             Alert.alert("Please enter a time in minutes between 1 and 60.");
             timeInputRef.current.focus()
@@ -42,7 +53,7 @@ function TaskSelector() {
                 const selectedTask = availableTasks[Math.floor(Math.random() * availableTasks.length)]
                 setCurrentTask(selectedTask);
             } else {
-                Alert.alert("Looks like you have no tasks to perform! Enjoy some well earned rest!")
+                Alert.alert("Looks like you've performed all your tasks! Enjoy some well-earned rest!")
             }
         }
     }
