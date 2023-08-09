@@ -8,7 +8,7 @@ import Home from './Views/Home';
 import CreateTask from './Views/CreateTask';
 import TaskList from './Views/TaskList';
 import Timer from './Views/Timer';
-import { colors, colors_dark } from './styles/baseStyleDefinitions';
+import { colors, colors_dark, colors_light } from './styles/baseStyleDefinitions';
 import Settings from './Views/Settings';
 
 const Stack = createNativeStackNavigator();

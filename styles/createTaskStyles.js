@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
-import { colors, colors_dark } from "./baseStyleDefinitions";
+import { colors, colors_dark, colors_light } from "./baseStyleDefinitions";
 
 const taskInput = {
     height: 40,
     width: 250,
-    borderColor: colors_dark.white,
+    borderColor: colors_dark.accent_a,
     borderWidth: 1,
     marginBottom: 25,
     borderColor: 'transparent',
@@ -24,7 +24,7 @@ const createTaskStyles = StyleSheet.create({
         width: '95%',
         padding: 10,
         backgroundColor: colors_dark.surface,
-        borderColor: colors_dark.white,
+        borderColor: colors_dark.accent_a,
         borderWidth: 1,
         borderRadius: 10
     },

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors_dark, basicButton, flexRowFullWidth, text_xxlarge_white, text_xlarge_white } from "./baseStyleDefinitions";
+import { colors_dark, colors_light, basicButton, flexRowFullWidth, text_xxlarge_white, text_xlarge_white } from "./baseStyleDefinitions";
 
 const timerStyles = StyleSheet.create({
     timerContainer: {

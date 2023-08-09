@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors, colors_dark, flexRowFullWidth } from "./baseStyleDefinitions";
+import { colors, colors_dark, colors_light, flexRowFullWidth } from "./baseStyleDefinitions";
 
 const navbarStyles = StyleSheet.create({
     navbar: {
@@ -22,7 +22,7 @@ const navbarStyles = StyleSheet.create({
         // borderWidth: 1
     },
     navbarIcon: {
-        color: colors_dark.white,
+        color: colors_dark.accent_a,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

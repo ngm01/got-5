@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllTasks, getTasks } from '../state/reducers/tasks';
 import TaskContext from '../state/TaskContext';
-import { colors_dark, fontSizes } from '../styles/baseStyleDefinitions';
+import { colors_dark, colors_light, fontSizes } from '../styles/baseStyleDefinitions';
 import basicStyles from '../styles/basicStyles';
 import taskSelectorStyles from '../styles/taskSelectorStyles';
 import { useNavigation } from '@react-navigation/native';
@@ -24,18 +24,25 @@ function TaskSelector() {
         dispatch(getTasks());
         setTaskTime(null);
         setCurrentTask(null)
+        if(tasks.length === 0) {
+            noTasksAlert()
+        }
     }, [])
+
+    function noTasksAlert() {
+        Alert.alert(
+            'Task List Empty', 
+            "Looks like you haven't created any tasks. Would you like to create one now?", 
+            [
+                {text: 'No Thanks', onPress: () => {}, style: 'cancel'},
+                {text: 'Yes, Create', onPress: () => navigation.navigate('TaskList'), style: 'default'}
+            ]
+        )
+    }
 
     const handlePress = () => {
         if(tasks.length === 0) {
-            Alert.alert(
-                'Task List Empty', 
-                "Looks like you haven't created any tasks. Would you like to create one now?", 
-                [
-                    {text: 'No Thanks', onPress: () => {}, style: 'cancel'},
-                    {text: 'Yes, Create', onPress: () => navigation.navigate('TaskList'), style: 'default'}
-                ]
-            )
+            noTasksAlert()
             return;
         }
         if(taskTime === 0 || taskTime === null || taskTime > 60 || taskTime === '') {

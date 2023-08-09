@@ -13,10 +13,10 @@ export default function NavBar({current}) {
                 <FontAwesomeIcon size={32} style={(current === 'home' ? navbarStyles.navbarIconSelected : navbarStyles.navbarIcon)} icon={faHome} />
                 <Text style={current === 'home' ? basicStyles.textSmallPrimary : basicStyles.textSmallWhite}>Home</Text>
             </Pressable>
-            <Pressable style={navbarStyles.navbarButton} onPress={() => navigation.navigate('CreateTask')}>
+            {/* <Pressable style={navbarStyles.navbarButton} onPress={() => navigation.navigate('CreateTask')}>
                 <FontAwesomeIcon size={32} style={(current === 'create' ? navbarStyles.navbarIconSelected : navbarStyles.navbarIcon)} icon={faCirclePlus} />
                 <Text style={current === 'create' ? basicStyles.textSmallPrimary : basicStyles.textSmallWhite}>Create</Text>
-            </Pressable>
+            </Pressable> */}
             <Pressable style={navbarStyles.navbarButton} onPress={() => navigation.navigate('TaskList')}>
                 <FontAwesomeIcon size={32} style={(current === 'list' ? navbarStyles.navbarIconSelected : navbarStyles.navbarIcon)} icon={faListCheck} />
                 <Text style={current === 'list' ? basicStyles.textSmallPrimary : basicStyles.textSmallWhite}>Task List</Text>

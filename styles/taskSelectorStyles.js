@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors, colors_dark, basicButton, flexRowFullWidth, largeText, largeOnBackground, text_large_white } from "./baseStyleDefinitions";
+import { colors, colors_dark, colors_light, basicButton, flexRowFullWidth, largeText, largeOnBackground, text_large_white } from "./baseStyleDefinitions";
 
 const timeInput = {
     height: 50,
@@ -24,7 +24,7 @@ const taskSelectorStyles = StyleSheet.create({
         // paddingLeft: 5,
         // paddingRight: 5,
         backgroundColor: colors_dark.surface,
-        borderColor: colors_dark.white,
+        borderColor: colors_dark.accent_a,
         borderWidth: 1,
         borderRadius: 10
     },
@@ -63,7 +63,7 @@ const taskSelectorStyles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around',
-        borderColor: colors_dark.white,
+        borderColor: colors_dark.accent_a,
         borderWidth: 1,
         borderRadius: 15
     },

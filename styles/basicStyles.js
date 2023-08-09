@@ -1,7 +1,8 @@
 import { StyleSheet } from "react-native";
 import { 
     colors, 
-    colors_dark, 
+    colors_dark,
+    colors_light, 
     basicButton, 
     text_small_white,
     text_medium_white,
@@ -51,10 +52,10 @@ const basicStyles = StyleSheet.create({
         height: 50,
         borderWidth: '1px',
         borderStyle: "dashed",
-        borderColor: colors_dark.white
+        borderColor: colors_dark.accent_a
     },
     dividerPipe: {
-        backgroundColor: colors_dark.white,
+        backgroundColor: colors_dark.accent_a,
         width: 1,
         height: 50,
         marginHorizontal: 5

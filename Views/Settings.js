@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import { colors_dark } from "../styles/baseStyleDefinitions";
+import { colors_dark, colors_light } from "../styles/baseStyleDefinitions";
 import basicStyles from "../styles/basicStyles";
 import NavBar from "./NavBar";
 

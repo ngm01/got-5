@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors_dark } from "./baseStyleDefinitions";
+import { colors_dark, colors_light } from "./baseStyleDefinitions";
 
 const icon = {
     marginVertical: -12
@@ -17,7 +17,7 @@ const sortButtonStyles = StyleSheet.create({
         marginHorizontal: 5,
         marginVertical: 5,
         backgroundColor: colors_dark.surface,
-        borderColor: colors_dark.white,
+        borderColor: colors_dark.accent_a,
         borderWidth: 1,
         borderRadius: 5
 

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors, colors_dark } from "./baseStyleDefinitions";
+import { colors, colors_dark, colors_light } from "./baseStyleDefinitions";
 
 const taskListStyles = StyleSheet.create({
     taskListContainer: {
@@ -37,7 +37,7 @@ const taskListStyles = StyleSheet.create({
     },
     task: {
         borderWidth: 1,
-        borderColor: colors_dark.white,
+        borderColor: colors_dark.accent_a,
         borderRadius: '5%',
         padding: '2%',
         marginBottom: '2%',

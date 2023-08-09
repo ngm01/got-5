@@ -1,10 +1,6 @@
 export const colors = {
-    primary: '#011627',
-    secondary: '#314c61',
     white: '#ece8ef',
     black: '#111',
-    action: '#fb4d3d',
-    selected: '#f77468',
     disabled: 'gray'
   }
 
@@ -13,16 +9,36 @@ export const colors = {
     //background: '#121212',
     //surface: '#424242',
     surface: '#171a21',
-    // 200
-    //primary: '#f29e9e',
-    primary: '#E57373',
-    // 700
+    //primary: '#f29e9e', //
+    //primary: '#EF9A9A', // red
+    primary: '#90CAF9', // Blue 200
     //primary_variant: '#d93935',
-    primary_variant: '#F44336',
+    //primary_variant: '#F44336', // red
+    primary_variant: '#2196F3', // Blue 500
     // secondary: '#9ef2f2',
     secondary: '#314c61',
-    white: '#ece8ef',
-    black: '#111',
+    accent_a: '#ece8ef', // white
+    accent_b: '#111', // black
+    error: '#cf6679'
+  }
+
+  export const colors_light = {
+    background: '#c7daff',
+    //background: '#121212',
+    //surface: '#424242',
+    surface: '#a7bbeb',
+    // 200
+    //primary: '#f29e9e', //
+    //primary: '#EF9A9A', // red
+    primary: '#3F51B5', // Blue 500
+    // 700
+    //primary_variant: '#d93935',
+    //primary_variant: '#F44336', // red
+    primary_variant: '#1976D2', // Blue 700
+    // secondary: '#9ef2f2',
+    secondary: '#314c61',
+    accent_a: '#111', // black
+    accent_b: '#ece8ef', // white
     error: '#cf6679'
   }
 
@@ -40,52 +56,52 @@ export const text_small_primary = {
 }
 
 export const text_small_white = {
-    color: colors_dark.white,
+    color: colors_dark.accent_a,
     fontSize: fontSizes.small
 }
 
 export const text_medium_white = {
-    color: colors_dark.white,
+    color: colors_dark.accent_a,
     fontSize: fontSizes.medium
 }
 
 export const text_large_white = {
-    color: colors_dark.white,
+    color: colors_dark.accent_a,
     fontSize: fontSizes.large
 }
 
 export const text_xlarge_white = {
-    color: colors_dark.white,
+    color: colors_dark.accent_a,
     fontSize: fontSizes.xlarge
 }
 
 export const text_xxlarge_white = {
-    color: colors_dark.white,
+    color: colors_dark.accent_a,
     fontSize: fontSizes.xxlarge
 }
 
 export const text_small_black = {
-    color: colors_dark.black,
+    color: colors_dark.accent_b,
     fontSize: fontSizes.small
 }
 
 export const text_medium_black = {
-    color: colors_dark.black,
+    color: colors_dark.accent_b,
     fontSize: fontSizes.medium
 }
 
 export const text_large_black = {
-    color: colors_dark.black,
+    color: colors_dark.accent_b,
     fontSize: fontSizes.large
 }
 
 export const text_xlarge_black = {
-    color: colors_dark.black,
+    color: colors_dark.accent_b,
     fontSize: fontSizes.xlarge
 }
 
 export const text_xxlarge_black = {
-    color: colors_dark.black,
+    color: colors_dark.accent_b,
     fontSize: fontSizes.xxlarge
 }
 
@@ -93,7 +109,7 @@ export const basicButton = {
     display: 'flex',
     alignItems: 'center',
     borderRadius: '5%',
-    color: colors_dark.white,
+    color: colors_dark.accent_a,
     padding: 20,
     marginTop: 20,
     marginBottom: 20

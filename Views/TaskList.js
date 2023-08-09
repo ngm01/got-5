@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faTrash, faPenToSquare, faPlay, faSortDown, faSortUp, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import TaskForm from './TaskForm';
-import { colors_dark } from '../styles/baseStyleDefinitions';
+import { colors_dark, colors_light } from '../styles/baseStyleDefinitions';
 import basicStyles from '../styles/basicStyles';
 import taskListStyles from '../styles/taskListStyles';
 import sortButtonStyles from '../styles/sortButtonStyles';

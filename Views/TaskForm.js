@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
-import { colors_dark } from '../styles/baseStyleDefinitions';
+import { colors_dark, colors_light } from '../styles/baseStyleDefinitions';
 import createTaskStyles from '../styles/createTaskStyles';
 import basicStyles from '../styles/basicStyles';
 import { useEffect } from 'react';
