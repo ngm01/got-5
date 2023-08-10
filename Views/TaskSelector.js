@@ -24,25 +24,18 @@ function TaskSelector() {
         dispatch(getTasks());
         setTaskTime(null);
         setCurrentTask(null)
-        if(tasks.length === 0) {
-            noTasksAlert()
-        }
     }, [])
-
-    function noTasksAlert() {
-        Alert.alert(
-            'Task List Empty', 
-            "Looks like you haven't created any tasks. Would you like to create one now?", 
-            [
-                {text: 'No Thanks', onPress: () => {}, style: 'cancel'},
-                {text: 'Yes, Create', onPress: () => navigation.navigate('TaskList'), style: 'default'}
-            ]
-        )
-    }
 
     const handlePress = () => {
         if(tasks.length === 0) {
-            noTasksAlert()
+            Alert.alert(
+                'Task List Empty', 
+                "Looks like you haven't created any tasks. Would you like to create one now?", 
+                [
+                    {text: 'No Thanks', onPress: () => {}, style: 'cancel'},
+                    {text: 'Yes, Create', onPress: () => navigation.navigate('TaskList'), style: 'default'}
+                ]
+            )
             return;
         }
         if(taskTime === 0 || taskTime === null || taskTime > 60 || taskTime === '') {
@@ -81,7 +74,7 @@ function TaskSelector() {
     }
     return ( 
         <View style={taskSelectorStyles.taskSelectorContainer}>
-            <Text style={basicStyles.textLargeWhite}>How much time do you have?</Text>
+            <Text style={[basicStyles.textLargeWhite, {textAlign: 'center'}]}>How much time do you have?</Text>
             <View style={taskSelectorStyles.timeInputContainer}>
                 <TextInput 
                     style={isInputFocused ? taskSelectorStyles.timeInputFocused : taskSelectorStyles.timeInput}

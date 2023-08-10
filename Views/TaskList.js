@@ -118,7 +118,7 @@ export default function TaskList() {
             tasks.length ?
             <View>
                 <View style={taskListStyles.sortBar}>
-                    <Pressable style={{textAlign: 'center'}} onPress={() => {openModal('create-list')}}>
+                    <Pressable style={{textAlign: 'center'}} onPress={() => {openModal('create')}}>
                         <FontAwesomeIcon style={{color: colors_dark.primary, alignSelf: 'center'}} size={30} icon={faCirclePlus} />
                         <Text style={[basicStyles.textSmallWhite, {marginTop: 5}]} >Create New</Text>
                     </Pressable>
@@ -150,7 +150,7 @@ export default function TaskList() {
  :
             <View style={taskListStyles.emptyList}>
                 <Text style={[basicStyles.textLargeWhite, {'textAlign': 'center'}]}>Looks like you don't have any tasks yet.</Text>
-                <Pressable onPress={() => openModal('create-list')} style={basicStyles.basicButton}>
+                <Pressable onPress={() => openModal('create')} style={basicStyles.basicButton}>
                     <Text style={basicStyles.textMediumBlack}>Click here to create one!</Text>
                 </Pressable> 
             </View>

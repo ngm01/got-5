@@ -48,7 +48,7 @@ export default function Timer() {
         dispatch(getTasks());
         setCurrentTask(null);
         playSound();
-        navigation.navigate('Home')
+        navigation.navigate('FinishedModal');
     }
 
     const handleCancel = () => {

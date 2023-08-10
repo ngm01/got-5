@@ -8,6 +8,7 @@ import Home from './Views/Home';
 import CreateTask from './Views/CreateTask';
 import TaskList from './Views/TaskList';
 import Timer from './Views/Timer';
+import FinishedModal from './Views/FinishedModal';
 import { colors, colors_dark, colors_light } from './styles/baseStyleDefinitions';
 import Settings from './Views/Settings';
 
@@ -55,6 +56,11 @@ export default function App() {
             <Stack.Screen 
               name="Timer"
               component={Timer}
+              options={{title: ''}}
+            />
+            <Stack.Screen 
+              name="FinishedModal"
+              component={FinishedModal}
               options={{title: ''}}
             />
           </Stack.Navigator>

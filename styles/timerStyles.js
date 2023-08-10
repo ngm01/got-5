@@ -34,6 +34,14 @@ const timerStyles = StyleSheet.create({
         textAlign: 'center',
         width: '75%'
     },
+    finishedModal: {
+        display: 'flex',
+        justifyContent: 'center',
+    },
+    finishedModalText: {
+        display: 'flex',
+
+    }
 })
 
 export default timerStyles;

@@ -82,12 +82,9 @@ export default function TaskForm({action, close, initialTask}) {
 
     return (
         <View style={createTaskStyles.createTaskForm}>
-            { action === 'update' || action === 'create-list' ? 
             <Pressable style={createTaskStyles.closeXContainer} onPress={() => {close(false)}}>
                 <FontAwesomeIcon style={{color: colors_dark.primary, alignSelf: 'flex-end'}} size={20} icon={faX} />
-            </Pressable>
-            :
-             <></> }
+            </Pressable> 
             <Text style={basicStyles.textMediumWhite}>What do you want to call this task?</Text>
             <TextInput         
                 style={isFocused.title ? createTaskStyles.taskInputFocused : createTaskStyles.taskInput}

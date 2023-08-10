@@ -1,16 +1,18 @@
 import { StyleSheet } from "react-native";
-import { colors, colors_dark, colors_light, basicButton, flexRowFullWidth, largeText, largeOnBackground, text_large_white } from "./baseStyleDefinitions";
+import { colors, colors_dark, colors_light, basicButton, flexRowFullWidth, largeText, largeOnBackground, text_large_white, text_large_black } from "./baseStyleDefinitions";
 
 const timeInput = {
     height: 50,
     margin: 12,
-    borderWidth: 1,
+    borderWidth: 2,
     padding: 10,
     width: 80,
-    borderColor: 'transparent',
-    backgroundColor: colors_dark.secondary,
+    borderColor: 'gray',
+    backgroundColor: colors_dark.accent_a,
+    color: colors_dark.accent_b,
+    borderRadius: 5,
     textAlign: 'center',
-    ...text_large_white
+    ...text_large_black
 }
 
 const taskSelectorStyles = StyleSheet.create({
@@ -20,9 +22,9 @@ const taskSelectorStyles = StyleSheet.create({
         top: 20,
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: '70%',
-        // paddingLeft: 5,
-        // paddingRight: 5,
+        height: '75%',
+        width: '95%',
+        padding: 15,
         backgroundColor: colors_dark.surface,
         borderColor: colors_dark.accent_a,
         borderWidth: 1,
@@ -31,12 +33,12 @@ const taskSelectorStyles = StyleSheet.create({
     timeInputContainer: {
         ...flexRowFullWidth,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     timeInput: timeInput,
     timeInputFocused: {
         ...timeInput,
-        borderBottomColor: colors_dark.primary
+        borderBottomColor: colors_dark.primary_variant
     },
     getTaskButton: {
         ...basicButton,
