@@ -21,6 +21,7 @@ const timerStyles = StyleSheet.create({
     timerButton: {
         ...basicButton,
         backgroundColor: colors_dark.primary,
+        textAlign: 'justify',
         width: 175
     },
     timerButtonPressed: {
@@ -36,11 +37,15 @@ const timerStyles = StyleSheet.create({
     },
     finishedModal: {
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
+        height: '100%',
+        backgroundColor: colors_dark.background
     },
     finishedModalText: {
         display: 'flex',
-
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        height: '35%'
     }
 })
 

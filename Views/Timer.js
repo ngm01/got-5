@@ -43,12 +43,16 @@ export default function Timer() {
     }
 
     const handleComplete = () => {
-        const updatedTask = {...currentTask, lastPerformed: new Date(), timesPerformed: currentTask.timesPerformed ? ++currentTask.timesPerformed : 1}
-        dispatch(updateTask(updatedTask));
-        dispatch(getTasks());
-        setCurrentTask(null);
-        playSound();
-        navigation.navigate('FinishedModal');
+        try {
+            const updatedTask = {...currentTask, lastPerformed: new Date(), timesPerformed: currentTask.timesPerformed ? ++currentTask.timesPerformed : 1}
+            dispatch(updateTask(updatedTask));
+            dispatch(getTasks());
+            playSound();
+            //setCurrentTask(null);
+            navigation.navigate('FinishedModal');
+        } catch (e) {
+            console.log("Error in Timer handleComplete:\n", e)
+        }
     }
 
     const handleCancel = () => {
