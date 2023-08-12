@@ -5,6 +5,7 @@ import { colors_dark } from '../styles/baseStyleDefinitions';
 import basicStyles from '../styles/basicStyles';
 import timerStyles from '../styles/timerStyles';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import Notification from './Notification';
 
 export default function FinishedModal () {
 
@@ -15,6 +16,7 @@ export default function FinishedModal () {
             <FontAwesomeIcon icon={faCircleCheck} size={100} color={colors_dark.primary_variant} />
             <Text style={[basicStyles.textXXLargeWhite, {textAlign: 'center', marginTop: 50}]}>TASK COMPLETE!</Text>
         </View>
+        <Notification />
         <View style={timerStyles.timerButtonsContainer}>
             <Pressable 
                 onPress={() => {navigation.navigate('Home')}}
