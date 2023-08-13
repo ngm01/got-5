@@ -1,36 +1,101 @@
-import { View } from "react-native";
-import notifee from '@notifee/react-native';
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+import { useEffect, useRef, useState } from "react";
+import { Button, Platform, Text, View } from "react-native";
 
-function Notification() {
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: false,
+        shouldSetBadge: false
+    })
+})
 
-     async function onDisplayNotification() {
-       
-    //     // request permissions (required for iOS)
-    //     await notifee.requestPermission()
+export default function Notification() {
 
+    const [expoPushToken, setExpoPushToken] = useState('');
+    const [notification, setNotification] = useState(false);
+    const notificationListener = useRef();
+    const responseListener = useRef();
 
-    //     // create a channel (required for Android)
-    //     const channelId = await notifee.createChannel({
-    //         id: 'default',
-    //         name: 'Default Channel'
-    //     })
+    useEffect(() => {
+        registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
 
-    //     // display a notification
-    //     await notifee.displayNotification({
-    //         title: 'My First Notification',
-    //         body: 'Your task is done',
-    //         android: {
-    //             channelId,
-    //             pressAction: { id: 'default' }
-    //         }
-    //     })
-    }
+        notificationListener.current = Notifications.addNotificationReceivedListener(noti => {
+            setNotification(noti);
+        });
+
+        responseListener.current = Notifications.addNotificationResponseReceivedListener(res => {
+            console.log(res)
+        });
+
+        return () => {
+            Notifications.removeNotificationSubscription(notificationListener.current);
+            Notifications.removeNotificationSubscription(responseListener.current);
+        }
+    }, [])
 
     return ( 
-        <View>
-            <Button title='Notification Test -- Click me' color="green" onPress={() => onDisplayNotification()} />
+        <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'space-around',
+        }}>
+        <Text>Your expo push token: {expoPushToken}</Text>
+        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+          <Text>Title: {notification && notification.request.content.title} </Text>
+          <Text>Body: {notification && notification.request.content.body}</Text>
+          <Text>Data: {notification && JSON.stringify(notification.request.content.data)}</Text>
         </View>
+        <Button
+          title="Press to schedule a notification"
+          onPress={async () => {
+            await schedulePushNotification();
+          }}
+        />
+      </View>
      );
 }
 
-export default Notification;
+async function schedulePushNotification() {
+    await Notifications.scheduleNotificationAsync({
+        content: {
+            title: "You've got mail!",
+            body: "This is the message",
+            data: {data: "it's some data"}
+        },
+        trigger: {seconds: 2}
+    })
+}
+
+async function registerForPushNotificationsAsync() {
+    let token;
+
+    if(Platform.OS === 'android') {
+        await Notifications.setNotificationChannelAsync('default', {
+            name: 'default',
+            importance: Notifications.AndroidImportance.MAX,
+            vibrationPattern: [0, 250, 250, 250],
+            lightColor: '#FF231F7C',
+        })
+    }
+
+    if(Device.isDevice) {
+        const { status: existingStatus } = await Notifications.getPermissionsAsync();
+        let finalStatus = existingStatus;
+        if(existingStatus !== 'granted') {
+            const { status } = await Notifications.requestPermissionsAsync();
+            finalStatus = status;
+        }
+        if (finalStatus !== 'granted') {
+            console.log("Failed to get push token for push notification!");
+        }
+        token = (await Notifications.getExpoPushTokenAsync()).data;
+        console.log("token:", token);
+    } else {
+        console.log("Must use physical device for push notifications")
+    }
+
+    return token;
+}
