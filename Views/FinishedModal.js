@@ -16,7 +16,7 @@ export default function FinishedModal () {
             <FontAwesomeIcon icon={faCircleCheck} size={100} color={colors_dark.primary_variant} />
             <Text style={[basicStyles.textXXLargeWhite, {textAlign: 'center', marginTop: 50}]}>TASK COMPLETE!</Text>
         </View>
-        <Notification />
+        {/* <Notification /> */}
         <View style={timerStyles.timerButtonsContainer}>
             <Pressable 
                 onPress={() => {navigation.navigate('Home')}}

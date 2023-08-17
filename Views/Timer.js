@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getTasks, updateTask } from '../state/reducers/tasks';
-import { Pressable, Text, View } from 'react-native';
+import { AppState, Pressable, Text, View } from 'react-native';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { useSound } from '../hooks/useSound';
 import soundPaths from '../assets/soundPaths';
@@ -15,17 +15,56 @@ export default function Timer() {
     const dispatch = useDispatch();
     const navigation = useNavigation()
 
+    const appState = useRef(null);
+    const timeAtAppBackground = useRef(null);
+    const [appStateVisible, setAppStateVisible] = useState(appState.current);
+
     const [currentTask, setCurrentTask] = useContext(TaskContext)
 
     const [isTimerRunning, setIsTimerRunning] = useState(false);
     const [playSound] = useSound(soundPaths.chime)
 
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      if (
+        appState.current.match(/active/) &&
+        (nextAppState === 'inactive' || nextAppState === 'background')
+      ) {
+        console.log('App is in background');
+        timeAtAppBackground.current = new Date();
+      }
+
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === 'active'
+      ) {
+        console.log('App has come to the foreground!');
+      }
+
+      appState.current = nextAppState;
+      setAppStateVisible(appState.current);
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
     useEffect(() => {
+        appState.current = AppState.currentState;
         setIsTimerRunning(true);
         playSound();
     }, [])
 
     const formatCountdownTime = (remainingTime) => {
+
+        if(timeAtAppBackground.current !== null) {
+            const backgroundTime = timeAtAppBackground.current.getTime();
+            const rightNow = new Date().getTime();
+            const timeDiff = Math.floor((rightNow - backgroundTime) / 1000);
+            remainingTime = remainingTime - timeDiff;
+        }
 
         const formatUnits = (unit) => {
             if (unit === 0) return '00';
