@@ -6,9 +6,13 @@ export const useSound = (path) => {
     const [soundToPlay, setSound] = useState();
 
     const playSound = async () => {
-        const { sound } = await Audio.Sound.createAsync(path)
-        setSound(sound);
-        await sound.playAsync();
+        try {
+            const { sound } = await Audio.Sound.createAsync(path)
+            setSound(sound);
+            await sound.playAsync();
+        } catch (e) {
+            console.log("Error playing sound:", e);
+        }
     }
     
     useEffect(() => {

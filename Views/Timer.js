@@ -17,7 +17,6 @@ export default function Timer() {
 
     const appState = useRef(null);
     const timeAtAppBackground = useRef(null);
-    const [appStateVisible, setAppStateVisible] = useState(appState.current);
 
     const [currentTask, setCurrentTask] = useContext(TaskContext)
 
@@ -43,7 +42,6 @@ export default function Timer() {
       }
 
       appState.current = nextAppState;
-      setAppStateVisible(appState.current);
     });
 
     return () => {
@@ -64,6 +62,7 @@ export default function Timer() {
             const rightNow = new Date().getTime();
             const timeDiff = Math.floor((rightNow - backgroundTime) / 1000);
             remainingTime = remainingTime - timeDiff;
+            timeAtAppBackground.current = null;
         }
 
         const formatUnits = (unit) => {
@@ -90,7 +89,7 @@ export default function Timer() {
             //setCurrentTask(null);
             navigation.navigate('FinishedModal');
         } catch (e) {
-            console.log("Error in Timer handleComplete:\n", e)
+            console.log("Error in Timer handleComplete:", e)
         }
     }
 
