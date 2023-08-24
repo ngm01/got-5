@@ -6,9 +6,12 @@ import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { useSound } from '../hooks/useSound';
 import soundPaths from '../assets/soundPaths';
 import TaskContext from '../state/TaskContext';
+import BackgroundTimeoutContext from '../state/BackgroundTimeoutContext';
+import * as BackgroundFetch from 'expo-background-fetch';
 import { useNavigation } from '@react-navigation/native';
 import basicStyles from '../styles/basicStyles';
 import timerStyles from '../styles/timerStyles';
+import { BACKGROUND_TIMEOUT } from '../backgroundTasks/backgroundTimeout';
 
 export default function Timer() {
 
@@ -19,35 +22,53 @@ export default function Timer() {
     const timeAtAppBackground = useRef(null);
 
     const [currentTask, setCurrentTask] = useContext(TaskContext)
+    const [backgroundTimeout, setBackgroundTimeout] = useContext(BackgroundTimeoutContext);
 
     const [isTimerRunning, setIsTimerRunning] = useState(false);
     const [playSound] = useSound(soundPaths.chime)
 
+    async function registerBackgroundFetchAsync() {
+      console.log("registering background task")
+      return BackgroundFetch.registerTaskAsync(BACKGROUND_TIMEOUT, {
+          minimumInterval: 10,
+          stopOnTerminate: false, //android only
+          startOnBoot: false //android only
+      })
+    }
 
-  useEffect(() => {
-    const subscription = AppState.addEventListener('change', nextAppState => {
-      if (
-        appState.current.match(/active/) &&
-        (nextAppState === 'inactive' || nextAppState === 'background')
-      ) {
-        console.log('App is in background');
-        timeAtAppBackground.current = new Date();
-      }
+    async function unregisterBackgroundFetchTask() {
+      console.log("unregistering background task")
+      return BackgroundFetch.unregisterTaskAsync(BACKGROUND_TIMEOUT);
+  }
 
-      if (
-        appState.current.match(/inactive|background/) &&
-        nextAppState === 'active'
-      ) {
-        console.log('App has come to the foreground!');
-      }
 
-      appState.current = nextAppState;
-    });
+    useEffect(() => {
+      const subscription = AppState.addEventListener('change', nextAppState => {
+        if (
+          appState.current.match(/active/) &&
+          (nextAppState === 'inactive' || nextAppState === 'background')
+        ) {
+          console.log('App is in background');
+          registerBackgroundFetchAsync();
+          timeAtAppBackground.current = new Date();
 
-    return () => {
-      subscription.remove();
-    };
-  }, []);
+        }
+
+        if (
+          appState.current.match(/inactive|background/) &&
+          nextAppState === 'active'
+        ) {
+          console.log('App has come to the foreground!');
+          unregisterBackgroundFetchTask()
+        }
+
+        appState.current = nextAppState;
+      });
+
+      return () => {
+        subscription.remove();
+      };
+    }, []);
 
     useEffect(() => {
         appState.current = AppState.currentState;
