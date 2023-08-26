@@ -12,8 +12,24 @@ import { useNavigation } from '@react-navigation/native';
 import basicStyles from '../styles/basicStyles';
 import timerStyles from '../styles/timerStyles';
 import { BACKGROUND_TIMEOUT } from '../backgroundTasks/backgroundTimeout';
+import { useLocalNotification } from "../hooks/useLocalNotifcation"
+import * as Notifications from "expo-notifications";
+import { schedulePushNotification } from "../util/handle-local-notification";
 
 export default function Timer() {
+
+    Notifications.setNotificationHandler({
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: false,
+        shouldSetBadge: false
+      })
+    });
+
+    useLocalNotification();
+    const handleLocalPushNotification = async () => {
+      await schedulePushNotification()
+    }
 
     const dispatch = useDispatch();
     const navigation = useNavigation()
@@ -49,7 +65,7 @@ export default function Timer() {
           (nextAppState === 'inactive' || nextAppState === 'background')
         ) {
           console.log('App is in background');
-          registerBackgroundFetchAsync();
+          handleLocalPushNotification()
           timeAtAppBackground.current = new Date();
 
         }
@@ -59,7 +75,6 @@ export default function Timer() {
           nextAppState === 'active'
         ) {
           console.log('App has come to the foreground!');
-          unregisterBackgroundFetchTask()
         }
 
         appState.current = nextAppState;
