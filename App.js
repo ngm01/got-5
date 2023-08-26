@@ -1,12 +1,9 @@
-import * as BackgroundFetch from 'expo-background-fetch';
-import * as TaskManager from 'expo-task-manager';
 import store from './store';
 import { useState } from 'react';
 import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TaskContext from './state/TaskContext';
-import BackgroundTimeoutContext from './state/BackgroundTimeoutContext';
 import Home from './Views/Home';
 import CreateTask from './Views/CreateTask';
 import TaskList from './Views/TaskList';
@@ -14,25 +11,15 @@ import Timer from './Views/Timer';
 import FinishedModal from './Views/FinishedModal';
 import { colors, colors_dark, colors_light } from './styles/baseStyleDefinitions';
 import Settings from './Views/Settings';
-import { BACKGROUND_TIMEOUT } from './backgroundTasks/backgroundTimeout';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
  
   const [currentTask, setCurrentTask] = useState(null)
-  const [backgroundTimeout, setBackgroundTimeout] = useState(null);
-
-  TaskManager.defineTask(BACKGROUND_TIMEOUT,  async () => {
-    
-    console.log("backgroundTimeout check goes here...");
-  
-    return BackgroundFetch.BackgroundFetchResult.NewData;
-  })
 
   return (
     <TaskContext.Provider value={[currentTask, setCurrentTask]}>
-    <BackgroundTimeoutContext.Provider value={[backgroundTimeout, setBackgroundTimeout]} >
     <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator
@@ -79,7 +66,6 @@ export default function App() {
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
-      </BackgroundTimeoutContext.Provider>
       </TaskContext.Provider>
   );
 }

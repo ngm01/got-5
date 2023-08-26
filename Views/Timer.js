@@ -6,29 +6,19 @@ import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { useSound } from '../hooks/useSound';
 import soundPaths from '../assets/soundPaths';
 import TaskContext from '../state/TaskContext';
-import BackgroundTimeoutContext from '../state/BackgroundTimeoutContext';
-import * as BackgroundFetch from 'expo-background-fetch';
 import { useNavigation } from '@react-navigation/native';
 import basicStyles from '../styles/basicStyles';
 import timerStyles from '../styles/timerStyles';
-import { BACKGROUND_TIMEOUT } from '../backgroundTasks/backgroundTimeout';
-import { useLocalNotification } from "../hooks/useLocalNotifcation"
-import * as Notifications from "expo-notifications";
-import { schedulePushNotification } from "../util/handle-local-notification";
+import { schedulePushNotification, cancelPushNotification } from "../util/handle-local-notification";
 
 export default function Timer() {
 
-    Notifications.setNotificationHandler({
-      handleNotification: async () => ({
-        shouldShowAlert: true,
-        shouldPlaySound: false,
-        shouldSetBadge: false
-      })
-    });
+    const handleLocalPushNotification = async (time) => {
+      await schedulePushNotification(time)
+    }
 
-    useLocalNotification();
-    const handleLocalPushNotification = async () => {
-      await schedulePushNotification()
+    const cancelLocalPushNotification = async (identifer) => {
+      await cancelPushNotification(identifer);
     }
 
     const dispatch = useDispatch();
@@ -36,26 +26,13 @@ export default function Timer() {
 
     const appState = useRef(null);
     const timeAtAppBackground = useRef(null);
+    const timeRemaining = useRef(null)
 
     const [currentTask, setCurrentTask] = useContext(TaskContext)
-    const [backgroundTimeout, setBackgroundTimeout] = useContext(BackgroundTimeoutContext);
 
     const [isTimerRunning, setIsTimerRunning] = useState(false);
     const [playSound] = useSound(soundPaths.chime)
 
-    async function registerBackgroundFetchAsync() {
-      console.log("registering background task")
-      return BackgroundFetch.registerTaskAsync(BACKGROUND_TIMEOUT, {
-          minimumInterval: 10,
-          stopOnTerminate: false, //android only
-          startOnBoot: false //android only
-      })
-    }
-
-    async function unregisterBackgroundFetchTask() {
-      console.log("unregistering background task")
-      return BackgroundFetch.unregisterTaskAsync(BACKGROUND_TIMEOUT);
-  }
 
 
     useEffect(() => {
@@ -65,7 +42,7 @@ export default function Timer() {
           (nextAppState === 'inactive' || nextAppState === 'background')
         ) {
           console.log('App is in background');
-          handleLocalPushNotification()
+          handleLocalPushNotification(timeRemaining.current)
           timeAtAppBackground.current = new Date();
 
         }
@@ -75,6 +52,7 @@ export default function Timer() {
           nextAppState === 'active'
         ) {
           console.log('App has come to the foreground!');
+          cancelLocalPushNotification('task_complete')
         }
 
         appState.current = nextAppState;
@@ -100,6 +78,8 @@ export default function Timer() {
             remainingTime = remainingTime - timeDiff;
             timeAtAppBackground.current = null;
         }
+
+        timeRemaining.current = remainingTime;
 
         const formatUnits = (unit) => {
             if (unit === 0) return '00';

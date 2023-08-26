@@ -1,1 +1,0 @@
-export const BACKGROUND_TIMEOUT = 'background_timeout'

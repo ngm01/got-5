@@ -13,27 +13,27 @@ Notifications.setNotificationHandler({
 
 export default function Notification() {
 
-    const [expoPushToken, setExpoPushToken] = useState('');
+    //const [expoPushToken, setExpoPushToken] = useState('');
     const [notification, setNotification] = useState(false);
     const notificationListener = useRef();
     const responseListener = useRef();
 
-    useEffect(() => {
-        registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+    // useEffect(() => {
+    //     //registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
 
-        notificationListener.current = Notifications.addNotificationReceivedListener(noti => {
-            setNotification(noti);
-        });
+    //     notificationListener.current = Notifications.addNotificationReceivedListener(noti => {
+    //         setNotification(noti);
+    //     });
 
-        responseListener.current = Notifications.addNotificationResponseReceivedListener(res => {
-            console.log(res)
-        });
+    //     responseListener.current = Notifications.addNotificationResponseReceivedListener(res => {
+    //         console.log(res)
+    //     });
 
-        return () => {
-            Notifications.removeNotificationSubscription(notificationListener.current);
-            Notifications.removeNotificationSubscription(responseListener.current);
-        }
-    }, [])
+    //     return () => {
+    //         Notifications.removeNotificationSubscription(notificationListener.current);
+    //         Notifications.removeNotificationSubscription(responseListener.current);
+    //     }
+    // }, [])
 
     return ( 
         <View
@@ -42,12 +42,6 @@ export default function Notification() {
           alignItems: 'center',
           justifyContent: 'space-around',
         }}>
-        {/* <Text>Your expo push token: {expoPushToken}</Text>
-        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-          <Text>Title: {notification && notification.request.content.title} </Text>
-          <Text>Body: {notification && notification.request.content.body}</Text>
-          <Text>Data: {notification && JSON.stringify(notification.request.content.data)}</Text>
-        </View> */}
         <Button
           title="Press to schedule a notification"
           onPress={async () => {
@@ -59,6 +53,7 @@ export default function Notification() {
 }
 
 async function schedulePushNotification() {
+    console.log("scheduling notification...")
     await Notifications.scheduleNotificationAsync({
         content: {
             title: "You've got mail!",
