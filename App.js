@@ -30,7 +30,7 @@ export default function App() {
               headerTintColor: colors.white,
               headerTitleStyle: {
                 fontWeight: 'bold',
-              },
+              }
             }}
           >
             <Stack.Screen
@@ -56,12 +56,12 @@ export default function App() {
             <Stack.Screen 
               name="Timer"
               component={Timer}
-              options={{title: ''}}
+              options={{title: '',  headerShown: false}}
             />
             <Stack.Screen 
               name="FinishedModal"
               component={FinishedModal}
-              options={{title: ''}}
+              options={{title: '', headerShown: false}}
             />
           </Stack.Navigator>
         </NavigationContainer>

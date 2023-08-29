@@ -6,7 +6,7 @@ import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { useSound } from '../hooks/useSound';
 import soundPaths from '../assets/soundPaths';
 import TaskContext from '../state/TaskContext';
-import { useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import basicStyles from '../styles/basicStyles';
 import timerStyles from '../styles/timerStyles';
 import { schedulePushNotification, cancelPushNotification } from "../util/handle-local-notification";
@@ -23,6 +23,7 @@ export default function Timer() {
 
     const dispatch = useDispatch();
     const navigation = useNavigation()
+    const isFocused = useIsFocused();
 
     const appState = useRef(null);
     const timeAtAppBackground = useRef(null);
@@ -31,9 +32,19 @@ export default function Timer() {
     const [currentTask, setCurrentTask] = useContext(TaskContext)
 
     const [isTimerRunning, setIsTimerRunning] = useState(false);
+    const [restartKey, setRestartKey] = useState(0);
+    
     const [playSound] = useSound(soundPaths.chime)
 
-
+    useEffect(() => {
+      if(isFocused) {
+        appState.current = AppState.currentState;
+        console.log("starting task:", new Date().toString())
+        setIsTimerRunning(true);
+        playSound();
+        setRestartKey(current => current + 1)
+      }
+    }, [isFocused])
 
     useEffect(() => {
       const subscription = AppState.addEventListener('change', nextAppState => {
@@ -63,15 +74,10 @@ export default function Timer() {
       };
     }, []);
 
-    useEffect(() => {
-        appState.current = AppState.currentState;
-        setIsTimerRunning(true);
-        playSound();
-    }, [])
-
     const formatCountdownTime = (remainingTime) => {
 
         if(timeAtAppBackground.current !== null) {
+            console.log("Are we in here?")
             const backgroundTime = timeAtAppBackground.current.getTime();
             const rightNow = new Date().getTime();
             const timeDiff = Math.floor((rightNow - backgroundTime) / 1000);
@@ -91,7 +97,7 @@ export default function Timer() {
         let seconds = remainingTime % 60
         minutes = formatUnits(minutes);
         seconds = formatUnits(seconds);
-      
+
         return `${minutes}:${seconds}`
 
     }
@@ -106,6 +112,7 @@ export default function Timer() {
             navigation.navigate('FinishedModal');
         } catch (e) {
             console.log("Error in Timer handleComplete:", e)
+            navigation.navigate('FinishedModal');
         }
     }
 
@@ -116,8 +123,9 @@ export default function Timer() {
     }
 
     return <View style={timerStyles.timerContainer}>
-        <Text style={timerStyles.timerTaskText}>{currentTask.title}</Text>
+        <Text style={timerStyles.timerTaskText}>{currentTask?.title}</Text>
         <CountdownCircleTimer
+                key={restartKey}
                 isPlaying={isTimerRunning}
                 duration={currentTask ? currentTask.time * 60 : 0}
                 colors={['#004777', '#F7B801', '#A30000', '#A30000']}

@@ -5,11 +5,14 @@ import { colors_dark } from '../styles/baseStyleDefinitions';
 import basicStyles from '../styles/basicStyles';
 import timerStyles from '../styles/timerStyles';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
-import Notification from './Notification';
 
 export default function FinishedModal () {
 
     const navigation = useNavigation();
+
+    const restart = () => {
+        navigation.navigate('Timer');
+    } 
 
     return <View style={timerStyles.finishedModal}>
         <View style={timerStyles.finishedModalText}>
@@ -25,7 +28,7 @@ export default function FinishedModal () {
                 <Text style={basicStyles.textLargeBlack}>HOME</Text>
             </Pressable>
             <Pressable 
-                onPress={() => {}}
+                onPress={restart}
                 style={({ pressed }) => pressed ? timerStyles.timerButtonPressed : timerStyles.timerButton}
                 >
                 <Text style={basicStyles.textLargeBlack}>RESTART</Text>
