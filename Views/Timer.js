@@ -39,7 +39,6 @@ export default function Timer() {
     useEffect(() => {
       if(isFocused) {
         appState.current = AppState.currentState;
-        console.log("starting task:", new Date().toString())
         setIsTimerRunning(true);
         playSound();
         setRestartKey(current => current + 1)
@@ -55,7 +54,6 @@ export default function Timer() {
           console.log('App is in background');
           handleLocalPushNotification(timeRemaining.current)
           timeAtAppBackground.current = new Date();
-
         }
 
         if (
@@ -77,7 +75,6 @@ export default function Timer() {
     const formatCountdownTime = (remainingTime) => {
 
         if(timeAtAppBackground.current !== null) {
-            console.log("Are we in here?")
             const backgroundTime = timeAtAppBackground.current.getTime();
             const rightNow = new Date().getTime();
             const timeDiff = Math.floor((rightNow - backgroundTime) / 1000);

@@ -4,7 +4,7 @@ Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
       shouldPlaySound: true,
-      shouldSetBadge: false
+      shouldSetBadge: true
     })
   });
 
@@ -12,7 +12,9 @@ export const schedulePushNotification = async (time) => {
     await Notifications.scheduleNotificationAsync({
         identifier: 'task_complete',
         content: {
-            title: 'Task complete!'
+            title: 'Got 5',
+            body: "Finished!",
+            sound: '352661__foolboymedia__complete-chime.mp3'
         },
         trigger: {
             seconds: time || 1
