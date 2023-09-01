@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
-import { colors_dark, colors_light } from '../styles/baseStyleDefinitions';
+import { colors, colors_light } from '../styles/baseStyleDefinitions';
 import createTaskStyles from '../styles/createTaskStyles';
 import basicStyles from '../styles/basicStyles';
 import { useEffect } from 'react';
@@ -83,9 +83,9 @@ export default function TaskForm({action, close, initialTask}) {
     return (
         <View style={createTaskStyles.createTaskForm}>
             <Pressable style={createTaskStyles.closeXContainer} onPress={() => {close(false)}}>
-                <FontAwesomeIcon style={{color: colors_dark.primary, alignSelf: 'flex-end'}} size={20} icon={faX} />
+                <FontAwesomeIcon style={{color: colors.primary, alignSelf: 'flex-end'}} size={20} icon={faX} />
             </Pressable> 
-            <Text style={basicStyles.textMediumWhite}>What do you want to call this task?</Text>
+            <Text style={basicStyles.textMediumPrimary}>What do you want to call this task?</Text>
             <TextInput         
                 style={isFocused.title ? createTaskStyles.taskInputFocused : createTaskStyles.taskInput}
                 onChangeText={setTaskTitle}
@@ -98,7 +98,7 @@ export default function TaskForm({action, close, initialTask}) {
                 onBlur={() => { setIsFocused({...isFocused, title: false}) }}
                 onSubmitEditing={() => minutesInputRef.current.focus()}
             />
-            <Text style={basicStyles.textMediumWhite}>How many minutes will this task take?</Text>
+            <Text style={basicStyles.textMediumPrimary}>How many minutes will this task take?</Text>
             <TextInput             
                 style={isFocused.minutes ? createTaskStyles.taskInputFocused : createTaskStyles.taskInput}
                 onChangeText={setTaskTime}
@@ -112,7 +112,7 @@ export default function TaskForm({action, close, initialTask}) {
                 onBlur={() => { setIsFocused({...isFocused, minutes: false}) }}
             />
             
-            <Text style={basicStyles.textMediumWhite}>How frequently should this task be performed?</Text>
+            <Text style={basicStyles.textMediumPrimary}>How frequently should this task be performed?</Text>
             <View style={createTaskStyles.createTaskDropdownContainer}>
                 <DropDownPicker
                     open={open}

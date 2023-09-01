@@ -1,14 +1,14 @@
 import { StyleSheet } from "react-native";
-import { colors, colors_dark, colors_light } from "./baseStyleDefinitions";
+import { colors } from "./baseStyleDefinitions";
 
 const taskInput = {
     height: 40,
     width: 250,
-    borderColor: colors_dark.accent_a,
+    borderColor: colors.accent_a,
     borderWidth: 1,
     marginBottom: 25,
     borderColor: 'transparent',
-    color: colors.white
+    color: colors.accent_a
 }
 
 const createTaskStyles = StyleSheet.create({
@@ -16,25 +16,25 @@ const createTaskStyles = StyleSheet.create({
         height: '100%',
         display: 'flex',
         position: 'relative',
-        backgroundColor: colors_dark.background
+        backgroundColor: colors.background
     },
     createTaskForm: {
         top: 75,
         left: 10,
         width: '95%',
         padding: 10,
-        backgroundColor: colors_dark.surface,
-        borderColor: colors_dark.accent_a,
+        backgroundColor: colors.surface,
+        borderColor: colors.accent_a,
         borderWidth: 1,
         borderRadius: 10
     },
     taskInput: {
         ...taskInput,
-        borderBottomColor: colors_dark.secondary,
+        borderBottomColor: colors.secondary,
     },
     taskInputFocused: {
         ...taskInput,
-        borderBottomColor: colors_dark.primary
+        borderBottomColor: colors.primary
     },
     createTaskDropdownContainer: {
         zIndex: '2000'

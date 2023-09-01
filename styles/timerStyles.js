@@ -1,16 +1,16 @@
 import { StyleSheet } from "react-native";
-import { colors_dark, colors_light, basicButton, flexRowFullWidth, text_xxlarge_white, text_xlarge_white } from "./baseStyleDefinitions";
+import { colors, basicButton, flexRowFullWidth, text_xxlarge_primary, text_xlarge_primary } from "./baseStyleDefinitions";
 
 const timerStyles = StyleSheet.create({
     timerContainer: {
         display: 'flex',
-        backgroundColor: colors_dark.background,
+        backgroundColor: colors.background,
         alignItems: 'center',
         justifyContent: 'space-around',
         height: '100%'
     },
     timerTaskText: {
-        ...text_xxlarge_white,
+        ...text_xxlarge_primary,
         textAlign: 'center',
         padding: 20,
     },
@@ -20,17 +20,17 @@ const timerStyles = StyleSheet.create({
     },
     timerButton: {
         ...basicButton,
-        backgroundColor: colors_dark.primary,
+        backgroundColor: colors.primary,
         textAlign: 'justify',
         width: 175
     },
     timerButtonPressed: {
         ...basicButton,
-        backgroundColor: colors_dark.primary_variant,
+        backgroundColor: colors.primary_variant,
         width: 175
     },
     timerText: {
-        ...text_xxlarge_white,
+        ...text_xxlarge_primary,
         display: 'flex',
         textAlign: 'center',
         width: '75%'
@@ -39,7 +39,7 @@ const timerStyles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'space-around',
         height: '100%',
-        backgroundColor: colors_dark.background
+        backgroundColor: colors.background
     },
     finishedModalText: {
         display: 'flex',

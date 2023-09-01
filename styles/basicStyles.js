@@ -1,20 +1,17 @@
 import { StyleSheet } from "react-native";
 import { 
-    colors, 
-    colors_dark,
-    colors_light, 
+    colors,
     basicButton, 
-    text_small_white,
-    text_medium_white,
-    text_large_white,
-    text_xlarge_white,
-    text_xxlarge_white,
-    text_xlarge_black,
-    text_small_black,
-    text_medium_black,
-    text_large_black,
-    text_xxlarge_black,
     text_small_primary,
+    text_medium_primary,
+    text_large_primary,
+    text_xlarge_primary,
+    text_xxlarge_primary,
+    text_small_secondary,
+    text_medium_secondary,
+    text_large_secondary,
+    text_xlarge_secondary,
+    text_xxlarge_secondary
 } from "./baseStyleDefinitions";
 
 const basicStyles = StyleSheet.create({
@@ -22,40 +19,39 @@ const basicStyles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         height: '100%',
-        backgroundColor: colors_dark.background
+        backgroundColor: colors.background
     },
     basicButton: {
         ...basicButton,
-        backgroundColor: colors_dark.primary
+        backgroundColor: colors.primary
     },
     basicButtonPressed: {
         ...basicButton,
-        backgroundColor: colors_dark.primary_variant
+        backgroundColor: colors.primary_variant
     },
     basicButtonDisabled: {
         ...basicButton,
-        backgroundColor: colors_dark.background
+        backgroundColor: colors.background
     },
     textSmallPrimary: text_small_primary,
-    textSmallWhite: text_small_white,
-    textMediumWhite: text_medium_white,
-    textLargeWhite: text_large_white,
-    textXLargeWhite: text_xlarge_white,
-    textXXLargeWhite: text_xxlarge_white,
-    textSmallBlack: text_small_black,
-    textMediumBlack: text_medium_black,
-    textLargeBlack: text_large_black,
-    textXLargeBlack: text_xlarge_black,
-    textXXLargeBlack: text_xxlarge_black,
+    textMediumPrimary: text_medium_primary,
+    textLargePrimary: text_large_primary,
+    textXLargePrimary: text_xlarge_primary,
+    textXXLargePrimary: text_xxlarge_primary,
+    textSmallSecondary: text_small_secondary,
+    textMediumSecondary: text_medium_secondary,
+    textLargeSecondary: text_large_secondary,
+    textXLargeSecondary: text_xlarge_secondary,
+    textXXLargeSecondary: text_xxlarge_secondary,
     adBanner: {
         width: 320,
         height: 50,
         borderWidth: '1px',
         borderStyle: "dashed",
-        borderColor: colors_dark.accent_a
+        borderColor: colors.accent_a
     },
     dividerPipe: {
-        backgroundColor: colors_dark.accent_a,
+        backgroundColor: colors.accent_a,
         width: 1,
         height: 50,
         marginHorizontal: 5

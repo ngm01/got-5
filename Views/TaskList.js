@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faTrash, faPenToSquare, faPlay, faSortDown, faSortUp, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import TaskForm from './TaskForm';
-import { colors_dark, colors_light } from '../styles/baseStyleDefinitions';
+import { colors, colors_light } from '../styles/baseStyleDefinitions';
 import basicStyles from '../styles/basicStyles';
 import taskListStyles from '../styles/taskListStyles';
 import sortButtonStyles from '../styles/sortButtonStyles';
@@ -91,19 +91,19 @@ export default function TaskList() {
 
     function renderItem({item}) {
         return  <View style={taskListStyles.task}>
-                    <Text style={[{...basicStyles.textSmallWhite, fontWeight: 'bold'}]}>{item.title}</Text>
-                    <Text style={basicStyles.textSmallWhite}>{item.time} {item.time === 1 ? 'minute' : 'minutes'}</Text>
-                    <Text style={basicStyles.textSmallWhite}>Last performed on: {getDateString(item.lastPerformed)}</Text>
-                    <Text style={basicStyles.textSmallWhite}>Times performed: {item.timesPerformed ? item.timesPerformed : '--'}</Text>
+                    <Text style={[{...basicStyles.textSmallPrimary, fontWeight: 'bold'}]}>{item.title}</Text>
+                    <Text style={basicStyles.textSmallPrimary}>{item.time} {item.time === 1 ? 'minute' : 'minutes'}</Text>
+                    <Text style={basicStyles.textSmallPrimary}>Last performed on: {getDateString(item.lastPerformed)}</Text>
+                    <Text style={basicStyles.textSmallPrimary}>Times performed: {item.timesPerformed ? item.timesPerformed : '--'}</Text>
                     <View style={taskListStyles.taskButtonContainer}>
                         <Pressable onPress={() => {openModal('update', item)}}>
-                            <FontAwesomeIcon style={{color: colors_dark.primary}} size={25} icon={faPenToSquare} />
+                            <FontAwesomeIcon style={{color: colors.primary}} size={25} icon={faPenToSquare} />
                         </Pressable>
                         <Pressable onPress={() => {startTask(item)}}>
-                            <FontAwesomeIcon style={{color: colors_dark.primary}} size={25} icon={faPlay} />
+                            <FontAwesomeIcon style={{color: colors.primary}} size={25} icon={faPlay} />
                         </Pressable>
                         <Pressable onPress={() => {confirmDelete(item.id, item.title)}}>
-                            <FontAwesomeIcon style={{color: colors_dark.primary}} size={25} icon={faTrash} />
+                            <FontAwesomeIcon style={{color: colors.primary}} size={25} icon={faTrash} />
                         </Pressable>
                     </View>
                 </View>
@@ -119,11 +119,11 @@ export default function TaskList() {
             <View>
                 <View style={taskListStyles.sortBar}>
                     <Pressable style={{textAlign: 'center'}} onPress={() => {openModal('create')}}>
-                        <FontAwesomeIcon style={{color: colors_dark.primary, alignSelf: 'center'}} size={30} icon={faCirclePlus} />
-                        <Text style={[basicStyles.textSmallWhite, {marginTop: 5}]} >Create New</Text>
+                        <FontAwesomeIcon style={{color: colors.primary, alignSelf: 'center'}} size={30} icon={faCirclePlus} />
+                        <Text style={[basicStyles.textSmallPrimary, {marginTop: 5}]} >Create New</Text>
                     </Pressable>
                     <View style={basicStyles.dividerPipe}></View>
-                    <Text style={[basicStyles.textSmallWhite, {marginRight: 5}]}>Sort by:</Text>
+                    <Text style={[basicStyles.textSmallPrimary, {marginRight: 5}]}>Sort by:</Text>
                     <DropDownPicker
                         open={isDropdownOpen}
                         setOpen={setIsDropdownOpen}
@@ -149,9 +149,9 @@ export default function TaskList() {
             </View>
  :
             <View style={taskListStyles.emptyList}>
-                <Text style={[basicStyles.textLargeWhite, {'textAlign': 'center'}]}>Looks like you don't have any tasks yet.</Text>
+                <Text style={[basicStyles.textLargePrimary, {'textAlign': 'center'}]}>Looks like you don't have any tasks yet.</Text>
                 <Pressable onPress={() => openModal('create')} style={basicStyles.basicButton}>
-                    <Text style={basicStyles.textMediumBlack}>Click here to create one!</Text>
+                    <Text style={basicStyles.textMediumSecondary}>Click here to create one!</Text>
                 </Pressable> 
             </View>
         )

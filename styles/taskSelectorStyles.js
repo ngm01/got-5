@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors, colors_dark, colors_light, basicButton, flexRowFullWidth, largeText, largeOnBackground, text_large_white, text_large_black } from "./baseStyleDefinitions";
+import { colors, basicButton, flexRowFullWidth, text_large_primary, text_large_secondary } from "./baseStyleDefinitions";
 
 const timeInput = {
     height: 50,
@@ -8,11 +8,11 @@ const timeInput = {
     padding: 10,
     width: 80,
     borderColor: 'gray',
-    backgroundColor: colors_dark.accent_a,
-    color: colors_dark.accent_b,
+    backgroundColor: colors.accent_a,
+    color: colors.accent_b,
     borderRadius: 5,
     textAlign: 'center',
-    ...text_large_black
+    ...text_large_secondary
 }
 
 const taskSelectorStyles = StyleSheet.create({
@@ -25,8 +25,8 @@ const taskSelectorStyles = StyleSheet.create({
         height: '75%',
         width: '95%',
         padding: 15,
-        backgroundColor: colors_dark.surface,
-        borderColor: colors_dark.accent_a,
+        backgroundColor: colors.surface,
+        borderColor: colors.accent_a,
         borderWidth: 1,
         borderRadius: 10
     },
@@ -38,24 +38,24 @@ const taskSelectorStyles = StyleSheet.create({
     timeInput: timeInput,
     timeInputFocused: {
         ...timeInput,
-        borderBottomColor: colors_dark.primary_variant
+        borderBottomColor: colors.primary_variant
     },
     getTaskButton: {
         ...basicButton,
         width: 275,
-        backgroundColor: colors_dark.primary
+        backgroundColor: colors.primary
     },
     getTaskButtonPressed: {
         ...basicButton,
         width: 275,
-        backgroundColor: colors_dark.primary_variant
+        backgroundColor: colors.primary_variant
     },
     bigTask: {
         borderRadius: '5%',
         padding: '2%',
         marginBottom: '2%',
         alignSelf: 'center',
-        backgroundColor: colors_dark.secondary,
+        backgroundColor: colors.secondary,
         width: 300,
         height: '30%',
         shadowColor: '#111',
@@ -65,12 +65,12 @@ const taskSelectorStyles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around',
-        borderColor: colors_dark.accent_a,
+        borderColor: colors.accent_a,
         borderWidth: 1,
         borderRadius: 15
     },
     taskDisplay: {
-        ...text_large_white,
+        ...text_large_primary,
         padding: 10,
         textAlign: 'center'
     },

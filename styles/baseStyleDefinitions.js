@@ -1,10 +1,4 @@
-export const colors = {
-    white: '#ece8ef',
-    black: '#111',
-    disabled: 'gray'
-  }
-
-  export const colors_dark = {
+export const colors_dark = {
     background: '#0e1117',
     //background: '#121212',
     //surface: '#424242',
@@ -20,9 +14,9 @@ export const colors = {
     accent_a: '#ece8ef', // white
     accent_b: '#111', // black
     error: '#cf6679'
-  }
+ }
 
-  export const colors_light = {
+export const colors_light = {
     background: '#c7daff',
     //background: '#121212',
     //surface: '#424242',
@@ -40,7 +34,19 @@ export const colors = {
     accent_a: '#111', // black
     accent_b: '#ece8ef', // white
     error: '#cf6679'
-  }
+}
+
+export let colors = colors_light;
+
+export const setColors = (hue) => {
+    console.log("setting color theme to:", hue)
+    if(hue === 'light') {
+        colors = colors_light;
+    } else {
+        colors = colors_dark;
+    }
+    console.log(colors.accent_a)
+}
 
 export const fontSizes = {
     small: '14',
@@ -50,58 +56,55 @@ export const fontSizes = {
     xxlarge: '60'
 }
 
-export const text_small_primary = {
-    color: colors_dark.primary,
+export const text_small_primary = () => { return {
+    color: colors.accent_a,
     fontSize: fontSizes.small
-}
+} }
 
-export const text_small_white = {
-    color: colors_dark.accent_a,
-    fontSize: fontSizes.small
-}
-
-export const text_medium_white = {
-    color: colors_dark.accent_a,
+export const text_medium_primary = {
+    color: colors.accent_a,
     fontSize: fontSizes.medium
 }
 
-export const text_large_white = {
-    color: colors_dark.accent_a,
+export const text_large_primary = {
+    color: colors.accent_a,
     fontSize: fontSizes.large
 }
 
-export const text_xlarge_white = {
-    color: colors_dark.accent_a,
+export const text_xlarge_primary = {
+    color: colors.accent_a,
     fontSize: fontSizes.xlarge
 }
 
-export const text_xxlarge_white = {
-    color: colors_dark.accent_a,
+export const text_xxlarge_primary = {
+    color: colors.accent_a,
     fontSize: fontSizes.xxlarge
 }
 
-export const text_small_black = {
-    color: colors_dark.accent_b,
+//
+
+export const text_small_secondary = {
+    color: colors.accent_b,
     fontSize: fontSizes.small
 }
 
-export const text_medium_black = {
-    color: colors_dark.accent_b,
+export const text_medium_secondary = {
+    color: colors.accent_b,
     fontSize: fontSizes.medium
 }
 
-export const text_large_black = {
-    color: colors_dark.accent_b,
+export const text_large_secondary = {
+    color: colors.accent_b,
     fontSize: fontSizes.large
 }
 
-export const text_xlarge_black = {
-    color: colors_dark.accent_b,
+export const text_xlarge_secondary = {
+    color: colors.accent_b,
     fontSize: fontSizes.xlarge
 }
 
-export const text_xxlarge_black = {
-    color: colors_dark.accent_b,
+export const text_xxlarge_secondary = {
+    color: colors.accent_b,
     fontSize: fontSizes.xxlarge
 }
 
@@ -109,7 +112,7 @@ export const basicButton = {
     display: 'flex',
     alignItems: 'center',
     borderRadius: '5%',
-    color: colors_dark.accent_a,
+    color: colors.accent_a,
     padding: 20,
     marginTop: 20,
     marginBottom: 20

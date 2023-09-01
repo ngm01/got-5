@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
-import { colors, colors_dark, colors_light } from "./baseStyleDefinitions";
+import { colors } from "./baseStyleDefinitions";
 
 const taskListStyles = StyleSheet.create({
     taskListContainer: {
-        backgroundColor: colors_dark.background,
+        backgroundColor: colors.background,
         height: '100%',
         display: 'flex',
         justifyContent: 'center',
@@ -32,17 +32,17 @@ const taskListStyles = StyleSheet.create({
         marginBottom: 10,
         padding: 5,
         zIndex: 2000,
-        borderBottomColor: colors_dark.secondary,
+        borderBottomColor: colors.secondary,
         borderBottomWidth: 1
     },
     task: {
         borderWidth: 1,
-        borderColor: colors_dark.accent_a,
+        borderColor: colors.accent_a,
         borderRadius: '5%',
         padding: '2%',
         marginBottom: '2%',
         alignSelf: 'center',
-        backgroundColor: colors_dark.surface,
+        backgroundColor: colors.surface,
         width: '85%',
         shadowColor: '#111',
         shadowOffset: {width: 5, height: -5},
@@ -50,10 +50,10 @@ const taskListStyles = StyleSheet.create({
         shadowOpacity: '.75'
     },
     taskText: {
-        color: colors.white,
+        color: colors.accent_a,
     },
     taskTextBold: {
-        color: colors.white,
+        color: colors.accent_a,
         fontWeight: 'bold'
     },
     taskButtonContainer: {

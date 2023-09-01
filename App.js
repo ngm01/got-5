@@ -9,7 +9,7 @@ import CreateTask from './Views/CreateTask';
 import TaskList from './Views/TaskList';
 import Timer from './Views/Timer';
 import FinishedModal from './Views/FinishedModal';
-import { colors, colors_dark, colors_light } from './styles/baseStyleDefinitions';
+import { colors } from './styles/baseStyleDefinitions';
 import Settings from './Views/Settings';
 
 const Stack = createNativeStackNavigator();
@@ -25,9 +25,9 @@ export default function App() {
           <Stack.Navigator
             screenOptions={{
               headerStyle: {
-                backgroundColor: colors_dark.background,
+                backgroundColor: colors.background,
               },
-              headerTintColor: colors.white,
+              headerTintColor: colors.accent_a,
               headerTitleStyle: {
                 fontWeight: 'bold',
               }

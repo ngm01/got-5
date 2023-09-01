@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllTasks, getTasks } from '../state/reducers/tasks';
 import TaskContext from '../state/TaskContext';
-import { colors_dark, colors_light, fontSizes } from '../styles/baseStyleDefinitions';
+import { colors, colors_light, fontSizes } from '../styles/baseStyleDefinitions';
 import basicStyles from '../styles/basicStyles';
 import taskSelectorStyles from '../styles/taskSelectorStyles';
 import { useNavigation } from '@react-navigation/native';
@@ -74,7 +74,7 @@ function TaskSelector() {
     }
     return ( 
         <View style={taskSelectorStyles.taskSelectorContainer}>
-            <Text style={[basicStyles.textLargeWhite, {textAlign: 'center'}]}>How much time do you have?</Text>
+            <Text style={[basicStyles.textLargePrimary, {textAlign: 'center'}]}>How much time do you have?</Text>
             <View style={taskSelectorStyles.timeInputContainer}>
                 <TextInput 
                     style={isInputFocused ? taskSelectorStyles.timeInputFocused : taskSelectorStyles.timeInput}
@@ -86,24 +86,24 @@ function TaskSelector() {
                     value={taskTime}
                     ref={timeInputRef}
                 />
-                <Text style={basicStyles.textLargeWhite}>minutes</Text>
+                <Text style={basicStyles.textLargePrimary}>minutes</Text>
             </View>
             <Pressable 
                 onPress={handlePress}
                 style={({ pressed }) => pressed ? taskSelectorStyles.getTaskButtonPressed: taskSelectorStyles.getTaskButton}
                 >
-                <Text style={basicStyles.textLargeBlack}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
+                <Text style={basicStyles.textLargeSecondary}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
             </Pressable>
             <View style={taskSelectorStyles.bigTask}>
                 <Text style={taskSelectorStyles.taskDisplay}>{currentTask ? trimTaskTitle(currentTask.title) : 'Enter a time and get a task to get started!'}</Text>
-                <Text style={basicStyles.textLargeWhite}>{currentTask ? formatTime(currentTask.time) : ''}</Text>
+                <Text style={basicStyles.textLargePrimary}>{currentTask ? formatTime(currentTask.time) : ''}</Text>
             </View>
             <Pressable 
                 onPress={() => {navigation.navigate('Timer')}}
                 disabled={!currentTask}
                 style={({pressed}) => currentTask ? (pressed ? basicStyles.basicButtonPressed: basicStyles.basicButton) : basicStyles.basicButtonDisabled}
                 >
-                <Text style={{color: colors_dark.surface, fontSize: fontSizes.large}}>START!</Text>
+                <Text style={{color: colors.surface, fontSize: fontSizes.large}}>START!</Text>
             </Pressable>
         </View>
      );
