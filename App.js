@@ -1,7 +1,7 @@
 import store from './store';
 import { useState } from 'react';
 import {Provider} from 'react-redux';
-import {NavigationContainer} from '@react-navigation/native';
+import {DefaultTheme, DarkTheme, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TaskContext from './state/TaskContext';
 import Home from './Views/Home';
@@ -11,6 +11,7 @@ import Timer from './Views/Timer';
 import FinishedModal from './Views/FinishedModal';
 import { colors } from './styles/baseStyleDefinitions';
 import Settings from './Views/Settings';
+//import DarkTheme from './styles/themes/darkTheme';
 
 const Stack = createNativeStackNavigator();
 

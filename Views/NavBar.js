@@ -11,19 +11,19 @@ export default function NavBar({current}) {
         <View style={navbarStyles.navbar}>
             <Pressable style={navbarStyles.navbarButton} onPress={() => navigation.navigate('Home')}>
                 <FontAwesomeIcon size={32} style={(current === 'home' ? navbarStyles.navbarIconSelected : navbarStyles.navbarIcon)} icon={faHome} />
-                <Text style={current === 'home' ? basicStyles.textSmallPrimary : basicStyles.textSmallPrimary}>Home</Text>
+                <Text style={current === 'home' ? basicStyles.textSmallPrimary : basicStyles.textSmallA}>Home</Text>
             </Pressable>
             {/* <Pressable style={navbarStyles.navbarButton} onPress={() => navigation.navigate('CreateTask')}>
                 <FontAwesomeIcon size={32} style={(current === 'create' ? navbarStyles.navbarIconSelected : navbarStyles.navbarIcon)} icon={faCirclePlus} />
-                <Text style={current === 'create' ? basicStyles.textSmallPrimary : basicStyles.textSmallPrimary}>Create</Text>
+                <Text style={current === 'create' ? basicStyles.textSmallA : basicStyles.textSmallA}>Create</Text>
             </Pressable> */}
             <Pressable style={navbarStyles.navbarButton} onPress={() => navigation.navigate('TaskList')}>
                 <FontAwesomeIcon size={32} style={(current === 'list' ? navbarStyles.navbarIconSelected : navbarStyles.navbarIcon)} icon={faListCheck} />
-                <Text style={current === 'list' ? basicStyles.textSmallPrimary : basicStyles.textSmallPrimary}>Task List</Text>
+                <Text style={current === 'list' ? basicStyles.textSmallPrimary : basicStyles.textSmallA}>Task List</Text>
             </Pressable>
             <Pressable style={navbarStyles.navbarButton} onPress={() => navigation.navigate('Settings')}>
                 <FontAwesomeIcon size={32} style={(current === 'settings' ? navbarStyles.navbarIconSelected : navbarStyles.navbarIcon)} icon={faGear} />
-                <Text style={current === 'settings' ? basicStyles.textSmallPrimary : basicStyles.textSmallPrimary}>Settings</Text>
+                <Text style={current === 'settings' ? basicStyles.textSmallPrimary : basicStyles.textSmallA}>Settings</Text>
             </Pressable>
         </View>
     )

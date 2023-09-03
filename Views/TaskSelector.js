@@ -74,7 +74,7 @@ function TaskSelector() {
     }
     return ( 
         <View style={taskSelectorStyles.taskSelectorContainer}>
-            <Text style={[basicStyles.textLargePrimary, {textAlign: 'center'}]}>How much time do you have?</Text>
+            <Text style={[basicStyles.textLargeA, {textAlign: 'center'}]}>How much time do you have?</Text>
             <View style={taskSelectorStyles.timeInputContainer}>
                 <TextInput 
                     style={isInputFocused ? taskSelectorStyles.timeInputFocused : taskSelectorStyles.timeInput}
@@ -86,17 +86,17 @@ function TaskSelector() {
                     value={taskTime}
                     ref={timeInputRef}
                 />
-                <Text style={basicStyles.textLargePrimary}>minutes</Text>
+                <Text style={basicStyles.textLargeA}>minutes</Text>
             </View>
             <Pressable 
                 onPress={handlePress}
                 style={({ pressed }) => pressed ? taskSelectorStyles.getTaskButtonPressed: taskSelectorStyles.getTaskButton}
                 >
-                <Text style={basicStyles.textLargeSecondary}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
+                <Text style={basicStyles.textLargeB}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
             </Pressable>
             <View style={taskSelectorStyles.bigTask}>
                 <Text style={taskSelectorStyles.taskDisplay}>{currentTask ? trimTaskTitle(currentTask.title) : 'Enter a time and get a task to get started!'}</Text>
-                <Text style={basicStyles.textLargePrimary}>{currentTask ? formatTime(currentTask.time) : ''}</Text>
+                <Text style={basicStyles.textLargeA}>{currentTask ? formatTime(currentTask.time) : ''}</Text>
             </View>
             <Pressable 
                 onPress={() => {navigation.navigate('Timer')}}

@@ -91,10 +91,10 @@ export default function TaskList() {
 
     function renderItem({item}) {
         return  <View style={taskListStyles.task}>
-                    <Text style={[{...basicStyles.textSmallPrimary, fontWeight: 'bold'}]}>{item.title}</Text>
-                    <Text style={basicStyles.textSmallPrimary}>{item.time} {item.time === 1 ? 'minute' : 'minutes'}</Text>
-                    <Text style={basicStyles.textSmallPrimary}>Last performed on: {getDateString(item.lastPerformed)}</Text>
-                    <Text style={basicStyles.textSmallPrimary}>Times performed: {item.timesPerformed ? item.timesPerformed : '--'}</Text>
+                    <Text style={[{...basicStyles.textSmallA, fontWeight: 'bold'}]}>{item.title}</Text>
+                    <Text style={basicStyles.textSmallA}>{item.time} {item.time === 1 ? 'minute' : 'minutes'}</Text>
+                    <Text style={basicStyles.textSmallA}>Last performed on: {getDateString(item.lastPerformed)}</Text>
+                    <Text style={basicStyles.textSmallA}>Times performed: {item.timesPerformed ? item.timesPerformed : '--'}</Text>
                     <View style={taskListStyles.taskButtonContainer}>
                         <Pressable onPress={() => {openModal('update', item)}}>
                             <FontAwesomeIcon style={{color: colors.primary}} size={25} icon={faPenToSquare} />
@@ -120,10 +120,10 @@ export default function TaskList() {
                 <View style={taskListStyles.sortBar}>
                     <Pressable style={{textAlign: 'center'}} onPress={() => {openModal('create')}}>
                         <FontAwesomeIcon style={{color: colors.primary, alignSelf: 'center'}} size={30} icon={faCirclePlus} />
-                        <Text style={[basicStyles.textSmallPrimary, {marginTop: 5}]} >Create New</Text>
+                        <Text style={[basicStyles.textSmallA, {marginTop: 5}]} >Create New</Text>
                     </Pressable>
                     <View style={basicStyles.dividerPipe}></View>
-                    <Text style={[basicStyles.textSmallPrimary, {marginRight: 5}]}>Sort by:</Text>
+                    <Text style={[basicStyles.textSmallA, {marginRight: 5}]}>Sort by:</Text>
                     <DropDownPicker
                         open={isDropdownOpen}
                         setOpen={setIsDropdownOpen}
@@ -149,9 +149,9 @@ export default function TaskList() {
             </View>
  :
             <View style={taskListStyles.emptyList}>
-                <Text style={[basicStyles.textLargePrimary, {'textAlign': 'center'}]}>Looks like you don't have any tasks yet.</Text>
+                <Text style={[basicStyles.textLargeA, {'textAlign': 'center'}]}>Looks like you don't have any tasks yet.</Text>
                 <Pressable onPress={() => openModal('create')} style={basicStyles.basicButton}>
-                    <Text style={basicStyles.textMediumSecondary}>Click here to create one!</Text>
+                    <Text style={basicStyles.textMediumB}>Click here to create one!</Text>
                 </Pressable> 
             </View>
         )

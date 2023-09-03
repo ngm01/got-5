@@ -85,7 +85,7 @@ export default function TaskForm({action, close, initialTask}) {
             <Pressable style={createTaskStyles.closeXContainer} onPress={() => {close(false)}}>
                 <FontAwesomeIcon style={{color: colors.primary, alignSelf: 'flex-end'}} size={20} icon={faX} />
             </Pressable> 
-            <Text style={basicStyles.textMediumPrimary}>What do you want to call this task?</Text>
+            <Text style={basicStyles.textMediumA}>What do you want to call this task?</Text>
             <TextInput         
                 style={isFocused.title ? createTaskStyles.taskInputFocused : createTaskStyles.taskInput}
                 onChangeText={setTaskTitle}
@@ -98,7 +98,7 @@ export default function TaskForm({action, close, initialTask}) {
                 onBlur={() => { setIsFocused({...isFocused, title: false}) }}
                 onSubmitEditing={() => minutesInputRef.current.focus()}
             />
-            <Text style={basicStyles.textMediumPrimary}>How many minutes will this task take?</Text>
+            <Text style={basicStyles.textMediumA}>How many minutes will this task take?</Text>
             <TextInput             
                 style={isFocused.minutes ? createTaskStyles.taskInputFocused : createTaskStyles.taskInput}
                 onChangeText={setTaskTime}
@@ -112,7 +112,7 @@ export default function TaskForm({action, close, initialTask}) {
                 onBlur={() => { setIsFocused({...isFocused, minutes: false}) }}
             />
             
-            <Text style={basicStyles.textMediumPrimary}>How frequently should this task be performed?</Text>
+            <Text style={basicStyles.textMediumA}>How frequently should this task be performed?</Text>
             <View style={createTaskStyles.createTaskDropdownContainer}>
                 <DropDownPicker
                     open={open}
