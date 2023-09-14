@@ -9,7 +9,8 @@ Notifications.setNotificationHandler({
   });
 
 export const schedulePushNotification = async (time) => {
-    await Notifications.scheduleNotificationAsync({
+    console.log("Scheduling notification...")
+    return await Notifications.scheduleNotificationAsync({
         identifier: 'task_complete',
         content: {
             title: 'Got 5',

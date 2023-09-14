@@ -54,7 +54,7 @@ const basicStyles = StyleSheet.create({
     adBanner: {
         width: 320,
         height: 50,
-        borderWidth: '1px',
+        borderWidth: 1,
         borderStyle: "dashed",
         borderColor: colors.accent_a
     },

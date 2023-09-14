@@ -37,7 +37,8 @@ const timerStyles = StyleSheet.create({
     },
     finishedModal: {
         display: 'flex',
-        justifyContent: 'space-around',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
         height: '100%',
         backgroundColor: colors.background
     },

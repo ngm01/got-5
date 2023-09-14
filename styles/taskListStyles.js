@@ -20,8 +20,8 @@ const taskListStyles = StyleSheet.create({
         height: '110%',
         width: '100%',
         position: 'absolute',
-        opacity: '.65',
-        zIndex: '1000'
+        opacity: .65,
+        zIndex: 1000
     },
     sortBar: {
         display: 'flex',
@@ -38,16 +38,18 @@ const taskListStyles = StyleSheet.create({
     task: {
         borderWidth: 1,
         borderColor: colors.accent_a,
-        borderRadius: '5%',
+        //borderRadius: '5%',
+        borderRadius: .05,
         padding: '2%',
-        marginBottom: '2%',
+        marginBottom: .02,
+        //marginBottom: '2%',
         alignSelf: 'center',
         backgroundColor: colors.surface,
         width: '85%',
         shadowColor: '#111',
         shadowOffset: {width: 5, height: -5},
-        shadowRadius: '1px',
-        shadowOpacity: '.75'
+        shadowRadius: 1,
+        shadowOpacity: .75
     },
     taskText: {
         color: colors.accent_a,
@@ -61,8 +63,10 @@ const taskListStyles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-around',
-        marginTop: '5%',
-        marginBottom: '3%'
+        //marginTop: '5%',
+        marginTop: .05,
+        marginBottom: .03
+        //marginBottom: '3%'
     },
     emptyList: {
         display: 'flex',

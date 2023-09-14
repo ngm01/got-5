@@ -33,11 +33,11 @@ export const colors = {
   }
 
 export const fontSizes = {
-    small: '10',
-    medium: '18',
-    large: '30',
-    xlarge: '40',
-    xxlarge: '60'
+    small: 10,
+    medium: 18,
+    large: 30,
+    xlarge: 40,
+    xxlarge: 60
 }
 
 const styles = StyleSheet.create({

@@ -41,11 +41,11 @@ export const colors_light = {
 export let colors = colors_dark;
 
 export const fontSizes = {
-    small: '14',
-    medium: '18',
-    large: '30',
-    xlarge: '40',
-    xxlarge: '60'
+    small: 14,
+    medium: 18,
+    large: 30,
+    xlarge: 40,
+    xxlarge: 60
 }
 
 export const text_small_primary = {
@@ -108,7 +108,8 @@ export const text_xxlarge_b = {
 export const basicButton = {
     display: 'flex',
     alignItems: 'center',
-    borderRadius: '5%',
+    borderRadius: 5,
+    // borderRadius: '5%',
     color: colors.accent_a,
     padding: 20,
     marginTop: 20,

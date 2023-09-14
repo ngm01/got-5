@@ -4,7 +4,11 @@
     "slug": "got-5",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/temp_icon.png",
+    "icon": "./assets/logo_hourglass.png",
+    "notification": {
+      "icon": "./assets/logo_hourglass.png",
+      "color": "#C3F458"
+    },
     "plugins": [
       [
         "expo-notifications",
@@ -40,7 +44,12 @@
       "package": "com.anonymous.got5"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logo_hourglass.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d8f872e2-2682-406b-8624-4f15fb883124"
+      }
     }
   }
 }

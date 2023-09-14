@@ -37,7 +37,7 @@ const createTaskStyles = StyleSheet.create({
         borderBottomColor: colors.primary
     },
     createTaskDropdownContainer: {
-        zIndex: '2000'
+        zIndex: 2000
     },
     createTaskDropdown: {
         width: 250

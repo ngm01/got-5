@@ -17,9 +17,8 @@ export default function FinishedModal () {
     return <View style={timerStyles.finishedModal}>
         <View style={timerStyles.finishedModalText}>
             <FontAwesomeIcon icon={faCircleCheck} size={100} color={colors.primary_variant} />
-            <Text style={[basicStyles.textXXLargeA, {textAlign: 'center', marginTop: 50}]}>TASK COMPLETE!</Text>
+            <Text style={[basicStyles.textXXLargeA, {textAlign: 'center', marginTop: 50}]}>FINISHED!</Text>
         </View>
-        {/* <Notification /> */}
         <View style={timerStyles.timerButtonsContainer}>
             <Pressable 
                 onPress={() => {navigation.navigate('Home')}}
@@ -33,6 +32,9 @@ export default function FinishedModal () {
                 >
                 <Text style={basicStyles.textLargeB}>RESTART</Text>
             </Pressable>
+        </View>
+        <View style={basicStyles.adBanner}>
+                <Text style={{'color': colors.accent_a}}>Add banner goes here</Text>
         </View>
     </View>
 }

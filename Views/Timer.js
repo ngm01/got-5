@@ -13,28 +13,29 @@ import { schedulePushNotification, cancelPushNotification } from "../util/handle
 
 export default function Timer() {
 
-    const handleLocalPushNotification = async (time) => {
-      await schedulePushNotification(time)
-    }
-
-    const cancelLocalPushNotification = async (identifer) => {
-      await cancelPushNotification(identifer);
-    }
-
     const dispatch = useDispatch();
     const navigation = useNavigation()
     const isFocused = useIsFocused();
 
     const appState = useRef(null);
     const timeAtAppBackground = useRef(null);
-    const timeRemaining = useRef(null)
+    const timeRemaining = useRef(null);
 
     const [currentTask, setCurrentTask] = useContext(TaskContext)
 
     const [isTimerRunning, setIsTimerRunning] = useState(false);
     const [restartKey, setRestartKey] = useState(0);
     
-    const [playSound] = useSound(soundPaths.chime)
+    const [playSound] = useSound(soundPaths.chime);
+
+    const handleLocalPushNotification = async (time) => {
+      console.log("handling notification...")
+      await schedulePushNotification(time)
+    }
+
+    const cancelLocalPushNotification = async (identifer) => {
+      await cancelPushNotification(identifer);
+    }
 
     useEffect(() => {
       if(isFocused) {
@@ -49,7 +50,8 @@ export default function Timer() {
       const subscription = AppState.addEventListener('change', nextAppState => {
         if (
           appState.current.match(/active/) &&
-          (nextAppState === 'inactive' || nextAppState === 'background')
+          (nextAppState === 'inactive' || nextAppState === 'background') && 
+          timeRemaining.current  > 0
         ) {
           console.log('App is in background');
           handleLocalPushNotification(timeRemaining.current)
@@ -74,13 +76,13 @@ export default function Timer() {
 
     const formatCountdownTime = (remainingTime) => {
 
-        if(timeAtAppBackground.current !== null) {
-            const backgroundTime = timeAtAppBackground.current.getTime();
-            const rightNow = new Date().getTime();
-            const timeDiff = Math.floor((rightNow - backgroundTime) / 1000);
-            remainingTime = remainingTime - timeDiff;
-            timeAtAppBackground.current = null;
-        }
+        // if(timeAtAppBackground.current !== null) {
+        //     const backgroundTime = timeAtAppBackground.current.getTime();
+        //     const rightNow = new Date().getTime();
+        //     const timeDiff = Math.floor((rightNow - backgroundTime) / 1000);
+        //     remainingTime = remainingTime - timeDiff;
+        //     timeAtAppBackground.current = null;
+        // }
 
         timeRemaining.current = remainingTime;
 
@@ -106,6 +108,7 @@ export default function Timer() {
             dispatch(getTasks());
             playSound();
             //setCurrentTask(null);
+            cancelLocalPushNotification('task_complete')
             navigation.navigate('FinishedModal');
         } catch (e) {
             console.log("Error in Timer handleComplete:", e)
@@ -116,6 +119,7 @@ export default function Timer() {
     const handleCancel = () => {
         setIsTimerRunning(false);
         setCurrentTask(null);
+        cancelLocalPushNotification('task_complete')
         navigation.navigate('Home')
     }
 
