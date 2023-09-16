@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "got-5",
+    "name": "Got 5?",
     "slug": "got-5",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -38,7 +38,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo_hourglass.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.anonymous.got5"

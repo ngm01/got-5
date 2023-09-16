@@ -9,7 +9,7 @@ import TaskContext from '../state/TaskContext';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import basicStyles from '../styles/basicStyles';
 import timerStyles from '../styles/timerStyles';
-import { schedulePushNotification, cancelPushNotification } from "../util/handle-local-notification";
+import { schedulePushNotification, cancelPushNotification, getScheduled } from "../util/handle-local-notification";
 
 export default function Timer() {
 
@@ -30,7 +30,9 @@ export default function Timer() {
 
     const handleLocalPushNotification = async (time) => {
       console.log("handling notification...")
-      await schedulePushNotification(time)
+      await schedulePushNotification(time).then(async () => {
+        await getScheduled();
+      })
     }
 
     const cancelLocalPushNotification = async (identifer) => {

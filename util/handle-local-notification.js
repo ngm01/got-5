@@ -8,9 +8,9 @@ Notifications.setNotificationHandler({
     })
   });
 
-export const schedulePushNotification = async (time) => {
-    console.log("Scheduling notification...")
-    return await Notifications.scheduleNotificationAsync({
+export const schedulePushNotification = async (time = 1) => {
+    console.log("Scheduling notification...", time)
+    Notifications.scheduleNotificationAsync({
         identifier: 'task_complete',
         content: {
             title: 'Got 5',
@@ -18,11 +18,16 @@ export const schedulePushNotification = async (time) => {
             sound: '352661__foolboymedia__complete-chime.mp3'
         },
         trigger: {
-            seconds: time || 1
+            seconds: time
         }
     })
 }
 
 export const cancelPushNotification = async (identifier) => {
-    await Notifications.cancelScheduledNotificationAsync(identifier)
+    Notifications.cancelScheduledNotificationAsync(identifier)
+}
+
+export const getScheduled = async () => {
+    const list = await Notifications.getAllScheduledNotificationsAsync();
+    console.log("Scheduled notifications:", list)
 }
