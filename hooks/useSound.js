@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react';
 
 export const useSound = (path) => {
 
-    const [soundToPlay, setSound] = useState();
+    const [soundToPlay, setSound] = useState(null);
 
     const playSound = async () => {
         try {
+            const playTime = new Date().toLocaleTimeString();
+            console.log("playing sound:", playTime)
             const { sound } = await Audio.Sound.createAsync(path)
             setSound(sound);
             await sound.playAsync();
@@ -16,9 +18,13 @@ export const useSound = (path) => {
     }
     
     useEffect(() => {
+        console.log("useSound useEffect firing...")
         return soundToPlay ?
-        () => {
-            soundToPlay.unloadAsync();
+         async () => {
+            const unloadTime = new Date().toLocaleTimeString();
+            console.debug("UNLOADING SOUND", unloadTime)
+            await soundToPlay.unloadAsync();
+            setSound(null);
         } : undefined
     }, [soundToPlay])
 

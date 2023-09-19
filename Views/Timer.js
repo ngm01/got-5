@@ -9,7 +9,7 @@ import TaskContext from '../state/TaskContext';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import basicStyles from '../styles/basicStyles';
 import timerStyles from '../styles/timerStyles';
-import { schedulePushNotification, cancelPushNotification, getScheduled } from "../util/handle-local-notification";
+import { schedulePushNotification, cancelPushNotification, getScheduled, getPermissions } from "../util/handle-local-notification";
 
 export default function Timer() {
 
@@ -29,7 +29,7 @@ export default function Timer() {
     const [playSound] = useSound(soundPaths.chime);
 
     const handleLocalPushNotification = async (time) => {
-      console.log("handling notification...")
+      //console.log("handling notification...")
       await schedulePushNotification(time).then(async () => {
         await getScheduled();
       })
@@ -43,6 +43,7 @@ export default function Timer() {
       if(isFocused) {
         appState.current = AppState.currentState;
         setIsTimerRunning(true);
+        getPermissions();
         playSound();
         setRestartKey(current => current + 1)
       }
@@ -55,7 +56,6 @@ export default function Timer() {
           (nextAppState === 'inactive' || nextAppState === 'background') && 
           timeRemaining.current  > 0
         ) {
-          console.log('App is in background');
           handleLocalPushNotification(timeRemaining.current)
           timeAtAppBackground.current = new Date();
         }
@@ -64,7 +64,6 @@ export default function Timer() {
           appState.current.match(/inactive|background/) &&
           nextAppState === 'active'
         ) {
-          console.log('App has come to the foreground!');
           cancelLocalPushNotification('task_complete')
         }
 

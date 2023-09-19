@@ -8,6 +8,27 @@ Notifications.setNotificationHandler({
     })
   });
 
+export const requestPermissionsAsync = async () => {
+  return await Notifications.requestPermissionsAsync({
+    ios: {
+      allowAlert: true,
+      allowBadge: true,
+      allowSound: true,
+      allowAnnouncements: true,
+    },
+  });
+}
+
+export const getTokenAsync = async () => {
+  let response = await Notifications.getExpoPushTokenAsync();
+  console.log("got permissions:", response)
+}
+
+export const getPermissions = async () => {
+  await requestPermissionsAsync();
+  await getTokenAsync();
+}
+
 export const schedulePushNotification = async (time = 1) => {
     console.log("Scheduling notification...", time)
     Notifications.scheduleNotificationAsync({
