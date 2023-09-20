@@ -43,7 +43,7 @@ export default function Timer() {
       if(isFocused) {
         appState.current = AppState.currentState;
         setIsTimerRunning(true);
-        getPermissions();
+        //getPermissions();
         playSound();
         setRestartKey(current => current + 1)
       }

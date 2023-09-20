@@ -1,4 +1,5 @@
 import * as Notifications from 'expo-notifications';
+import Constants from 'expo-constants';
 
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -25,8 +26,12 @@ export const getTokenAsync = async () => {
 }
 
 export const getPermissions = async () => {
-  await requestPermissionsAsync();
-  await getTokenAsync();
+  try {
+    await requestPermissionsAsync();
+    await getTokenAsync();
+  } catch (e) {
+    console.error("ERROR GETTING PERMISSIONS:", e)
+  }
 }
 
 export const schedulePushNotification = async (time = 1) => {
