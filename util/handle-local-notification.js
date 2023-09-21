@@ -1,5 +1,4 @@
 import * as Notifications from 'expo-notifications';
-import Constants from 'expo-constants';
 
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -20,28 +19,14 @@ export const requestPermissionsAsync = async () => {
   });
 }
 
-export const getTokenAsync = async () => {
-  let response = await Notifications.getExpoPushTokenAsync();
-  console.log("got permissions:", response)
-}
-
-export const getPermissions = async () => {
-  try {
-    await requestPermissionsAsync();
-    await getTokenAsync();
-  } catch (e) {
-    console.error("ERROR GETTING PERMISSIONS:", e)
-  }
-}
-
-export const schedulePushNotification = async (time = 1) => {
-    console.log("Scheduling notification...", time)
+export const schedulePushNotification = async (time = 1, taskTitle) => {
+    console.log("Scheduling notification...", time, taskTitle)
     Notifications.scheduleNotificationAsync({
         identifier: 'task_complete',
         content: {
-            title: 'Got 5',
-            body: "Finished!",
-            sound: '352661__foolboymedia__complete-chime.mp3'
+            title: 'Got 5?',
+            body: `Timer for task '${taskTitle}' has finished`,
+            sound: 'default'
         },
         trigger: {
             seconds: time

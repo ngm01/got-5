@@ -4,9 +4,9 @@
     "slug": "got-5",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo_hourglass.png",
+    "icon": "./assets/logo_alpha_big.png",
     "notification": {
-      "icon": "./assets/logo_hourglass.png",
+      "icon": "./assets/logo_alpha_big.png",
       "color": "#C3F458"
     },
     "plugins": [
@@ -38,13 +38,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo_hourglass.png",
+        "foregroundImage": "./assets/logo_alpha_big.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.anonymous.got5"
     },
     "web": {
-      "favicon": "./assets/logo_hourglass.png"
+      "favicon": "./aassets/logo_alpha_big.png"
     },
     "extra": {
       "eas": {

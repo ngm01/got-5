@@ -1,4 +1,5 @@
 node_modules/
+scratch/
 .expo/
 dist/
 npm-debug.*

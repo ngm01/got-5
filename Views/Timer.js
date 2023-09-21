@@ -16,34 +16,31 @@ export default function Timer() {
     const dispatch = useDispatch();
     const navigation = useNavigation()
     const isFocused = useIsFocused();
+    
+    const [currentTask, setCurrentTask] = useContext(TaskContext)
 
     const appState = useRef(null);
-    const timeAtAppBackground = useRef(null);
     const timeRemaining = useRef(null);
-
-    const [currentTask, setCurrentTask] = useContext(TaskContext)
 
     const [isTimerRunning, setIsTimerRunning] = useState(false);
     const [restartKey, setRestartKey] = useState(0);
     
     const [playSound] = useSound(soundPaths.chime);
 
-    const handleLocalPushNotification = async (time) => {
-      //console.log("handling notification...")
-      await schedulePushNotification(time).then(async () => {
-        await getScheduled();
-      })
-    }
+    // const handleLocalPushNotification = async (time, taskTitle) => {
+    //   await schedulePushNotification(time, taskTitle).then(async () => {
+    //     await getScheduled();
+    //   })
+    // }
 
-    const cancelLocalPushNotification = async (identifer) => {
-      await cancelPushNotification(identifer);
-    }
+    // const cancelLocalPushNotification = async (identifer) => {
+    //   await cancelPushNotification(identifer);
+    // }
 
     useEffect(() => {
       if(isFocused) {
         appState.current = AppState.currentState;
         setIsTimerRunning(true);
-        //getPermissions();
         playSound();
         setRestartKey(current => current + 1)
       }
@@ -51,22 +48,14 @@ export default function Timer() {
 
     useEffect(() => {
       const subscription = AppState.addEventListener('change', nextAppState => {
-        if (
-          appState.current.match(/active/) &&
-          (nextAppState === 'inactive' || nextAppState === 'background') && 
-          timeRemaining.current  > 0
-        ) {
-          handleLocalPushNotification(timeRemaining.current)
-          timeAtAppBackground.current = new Date();
+        if (appState.current.match(/^active|foreground/)  
+        && nextAppState.match(/inactive|background/)) {
+          schedulePushNotification(timeRemaining.current, currentTask?.title)
         }
-
-        if (
-          appState.current.match(/inactive|background/) &&
-          nextAppState === 'active'
-        ) {
-          cancelLocalPushNotification('task_complete')
+        else if (appState.current.match(/inactive|background/)  
+        && nextAppState.match(/^active|foreground/)) {
+          cancelPushNotification('task_complete')
         }
-
         appState.current = nextAppState;
       });
 
@@ -76,14 +65,6 @@ export default function Timer() {
     }, []);
 
     const formatCountdownTime = (remainingTime) => {
-
-        // if(timeAtAppBackground.current !== null) {
-        //     const backgroundTime = timeAtAppBackground.current.getTime();
-        //     const rightNow = new Date().getTime();
-        //     const timeDiff = Math.floor((rightNow - backgroundTime) / 1000);
-        //     remainingTime = remainingTime - timeDiff;
-        //     timeAtAppBackground.current = null;
-        // }
 
         timeRemaining.current = remainingTime;
 

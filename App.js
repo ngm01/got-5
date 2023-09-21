@@ -11,13 +11,18 @@ import Timer from './Views/Timer';
 import FinishedModal from './Views/FinishedModal';
 import { colors } from './styles/baseStyleDefinitions';
 import Settings from './Views/Settings';
-//import DarkTheme from './styles/themes/darkTheme';
+import { requestPermissionsAsync } from './util/handle-local-notification';
+import { useEffect } from 'react';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
  
   const [currentTask, setCurrentTask] = useState(null)
+
+  useEffect(() => {
+    requestPermissionsAsync();
+  }, [])
 
   return (
     <TaskContext.Provider value={[currentTask, setCurrentTask]}>
