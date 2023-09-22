@@ -9,7 +9,6 @@ function Settings() {
 
     return ( 
         <View style={basicStyles.settingsContainer}>
-            <Text style={basicStyles.textXLargeA}>Settings</Text>
             <Text style={basicStyles.textLargeA}>About</Text>
             <Text style={basicStyles.textMediumA}>Got 5? v1.0</Text>
             <Text style={basicStyles.textMediumA}>© 2023 Nathaniel Moore</Text>

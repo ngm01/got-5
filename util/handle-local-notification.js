@@ -19,7 +19,7 @@ export const requestPermissionsAsync = async () => {
   });
 }
 
-export const schedulePushNotification = async (time = 1, taskTitle) => {
+export const scheduleLocalNotification = async (time = 1, taskTitle) => {
     console.log("Scheduling notification...", time, taskTitle)
     Notifications.scheduleNotificationAsync({
         identifier: 'task_complete',
@@ -34,7 +34,7 @@ export const schedulePushNotification = async (time = 1, taskTitle) => {
     })
 }
 
-export const cancelPushNotification = async (identifier) => {
+export const cancelLocalNotification = async (identifier) => {
     Notifications.cancelScheduledNotificationAsync(identifier)
 }
 

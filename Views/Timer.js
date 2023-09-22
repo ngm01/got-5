@@ -9,7 +9,7 @@ import TaskContext from '../state/TaskContext';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import basicStyles from '../styles/basicStyles';
 import timerStyles from '../styles/timerStyles';
-import { schedulePushNotification, cancelPushNotification, getScheduled, getPermissions } from "../util/handle-local-notification";
+import { scheduleLocalNotification, cancelLocalNotification } from "../util/handle-local-notification";
 
 export default function Timer() {
 
@@ -27,16 +27,6 @@ export default function Timer() {
     
     const [playSound] = useSound(soundPaths.chime);
 
-    // const handleLocalPushNotification = async (time, taskTitle) => {
-    //   await schedulePushNotification(time, taskTitle).then(async () => {
-    //     await getScheduled();
-    //   })
-    // }
-
-    // const cancelLocalPushNotification = async (identifer) => {
-    //   await cancelPushNotification(identifer);
-    // }
-
     useEffect(() => {
       if(isFocused) {
         appState.current = AppState.currentState;
@@ -50,11 +40,11 @@ export default function Timer() {
       const subscription = AppState.addEventListener('change', nextAppState => {
         if (appState.current.match(/^active|foreground/)  
         && nextAppState.match(/inactive|background/)) {
-          schedulePushNotification(timeRemaining.current, currentTask?.title)
+          scheduleLocalNotification(timeRemaining.current, currentTask?.title)
         }
         else if (appState.current.match(/inactive|background/)  
         && nextAppState.match(/^active|foreground/)) {
-          cancelPushNotification('task_complete')
+          cancelLocalNotification('task_complete')
         }
         appState.current = nextAppState;
       });
@@ -90,7 +80,7 @@ export default function Timer() {
             dispatch(getTasks());
             playSound();
             //setCurrentTask(null);
-            cancelLocalPushNotification('task_complete')
+            cancelLocalNotification('task_complete')
             navigation.navigate('FinishedModal');
         } catch (e) {
             console.log("Error in Timer handleComplete:", e)
@@ -101,7 +91,7 @@ export default function Timer() {
     const handleCancel = () => {
         setIsTimerRunning(false);
         setCurrentTask(null);
-        cancelLocalPushNotification('task_complete')
+        cancelLocalNotification('task_complete')
         navigation.navigate('Home')
     }
 
