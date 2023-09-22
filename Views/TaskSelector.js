@@ -15,7 +15,7 @@ function TaskSelector() {
     const navigation = useNavigation()
     const tasks = useSelector(selectAllTasks);
     const [currentTask, setCurrentTask] = useContext(TaskContext);
-    const [taskTime, setTaskTime] = useState(0);
+    const [taskTime, setTaskTime] = useState('0');
     const [isInputFocused, setIsInputFocused] = useState(false);
     
     const timeInputRef = useRef()
