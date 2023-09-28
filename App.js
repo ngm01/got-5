@@ -1,6 +1,7 @@
 import store from './store';
 import { useState } from 'react';
 import {Provider} from 'react-redux';
+import {useWindowDimensions} from 'react-native';
 import {DefaultTheme, DarkTheme, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TaskContext from './state/TaskContext';
@@ -18,10 +19,13 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
  
+  const {height, width} = useWindowDimensions();
+
   const [currentTask, setCurrentTask] = useState(null)
 
   useEffect(() => {
     requestPermissionsAsync();
+
   }, [])
 
   return (

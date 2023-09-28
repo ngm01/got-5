@@ -10,6 +10,15 @@ const navbarStyles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: colors.surface
     },
+    navbarSmallScreen: {
+        ...flexRowFullWidth,
+        position: 'absolute',
+        height: 70,
+        bottom: 0,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        backgroundColor: colors.surface
+    },
     navbarButton: {
         display: 'flex',
         alignItems: 'center',
@@ -20,6 +29,13 @@ const navbarStyles = StyleSheet.create({
         // borderStyle: 'dashed',
         // borderColor: 'blue',
         // borderWidth: 1
+    },
+    navbarButtonSmall: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: colors.surface,
+        width: '33%',
     },
     navbarIcon: {
         color: colors.accent_a,
