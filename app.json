@@ -43,6 +43,9 @@
       },
       "package": "com.anonymous.got5"
     },
+    "react-native-google-mobile-ads": {
+      "ios_app_id": "ca-app-pub-5045241862276502~6844219374"
+    },
     "web": {
       "favicon": "./aassets/logo_alpha_big.png"
     },

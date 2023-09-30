@@ -1,4 +1,5 @@
 import { Pressable, Text, View } from 'react-native';
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { colors } from '../styles/baseStyleDefinitions';
@@ -7,6 +8,8 @@ import timerStyles from '../styles/timerStyles';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
 export default function FinishedModal () {
+
+    const adId = TestIds.BANNER;
 
     const navigation = useNavigation();
 
@@ -33,8 +36,15 @@ export default function FinishedModal () {
                 <Text style={basicStyles.textLargeB}>RESTART</Text>
             </Pressable>
         </View>
-        <View style={basicStyles.adBanner}>
+        {/* <View style={basicStyles.adBanner}>
                 <Text style={{'color': colors.accent_a}}>Add banner goes here</Text>
-        </View>
+        </View> */}
+        <BannerAd
+            unitId={adId}
+            size={BannerAdSize.INLINE_ADAPTIVE_BANNER}
+            requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+            }}
+        />
     </View>
 }
