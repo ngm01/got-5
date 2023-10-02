@@ -83,7 +83,7 @@ export default function Timer() {
             cancelLocalNotification('task_complete')
             navigation.navigate('FinishedModal');
         } catch (e) {
-            console.log("Error in Timer handleComplete:", e)
+            console.error("Error in Timer handleComplete:", e)
             navigation.navigate('FinishedModal');
         }
     }

@@ -1,4 +1,4 @@
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, SafeAreaView, Text, View } from 'react-native';
 import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -39,12 +39,14 @@ export default function FinishedModal () {
         {/* <View style={basicStyles.adBanner}>
                 <Text style={{'color': colors.accent_a}}>Add banner goes here</Text>
         </View> */}
-        <BannerAd
-            unitId={adId}
-            size={BannerAdSize.INLINE_ADAPTIVE_BANNER}
-            requestOptions={{
-            requestNonPersonalizedAdsOnly: true,
-            }}
-        />
+        <SafeAreaView>
+            <BannerAd
+                unitId={adId}
+                size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+                requestOptions={{
+                requestNonPersonalizedAdsOnly: true,
+                }}
+            />
+        </SafeAreaView>
     </View>
 }

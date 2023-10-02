@@ -67,7 +67,7 @@ export default function TaskForm({action, close, initialTask}) {
                 }
                 dispatch(getTasks());
             } catch (e) {
-                console.log(`error ${action}ing task:`, e);
+                console.error(`error ${action}ing task:`, e);
                 Alert.alert(`Sorry! \n We encoutered an error attempting to ${action} this task!`)
             }
             Alert.alert(`${action}d task:\n${taskTitle}`);

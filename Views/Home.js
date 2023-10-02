@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
 import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 import NavBar from './NavBar';
 import TaskSelector from './TaskSelector';
@@ -12,13 +12,15 @@ export default function Home() {
 
     return (
         <View style={basicStyles.homeContainer}>
-            <BannerAd
-                unitId={adId}
-                size={BannerAdSize.INLINE_ADAPTIVE_BANNER}
-                requestOptions={{
-                requestNonPersonalizedAdsOnly: true,
-                }}
-            />
+            <SafeAreaView>
+                <BannerAd
+                    unitId={adId}
+                    size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+                    requestOptions={{
+                    requestNonPersonalizedAdsOnly: true,
+                    }}
+                />
+            </SafeAreaView>
             {/* <View style={basicStyles.adBanner}>
                 <Text style={{'color': colors.accent_a}}>Add banner goes here</Text>
             </View> */}
