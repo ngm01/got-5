@@ -1,6 +1,8 @@
+import { useContext } from 'react';
 import { Pressable, SafeAreaView, Text, View } from 'react-native';
 import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 import { useNavigation } from '@react-navigation/native';
+import TaskContext from '../state/TaskContext';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { colors } from '../styles/baseStyleDefinitions';
 import basicStyles from '../styles/basicStyles';
@@ -13,6 +15,13 @@ export default function FinishedModal () {
 
     const navigation = useNavigation();
 
+    const [currentTask, setCurrentTask] = useContext(TaskContext);
+
+    const goHome = () => {
+        setCurrentTask(null);
+        navigation.navigate('Home');
+    }
+
     const restart = () => {
         navigation.navigate('Timer');
     } 
@@ -24,7 +33,7 @@ export default function FinishedModal () {
         </View>
         <View style={timerStyles.timerButtonsContainer}>
             <Pressable 
-                onPress={() => {navigation.navigate('Home')}}
+                onPress={goHome}
                 style={({ pressed }) => pressed ? timerStyles.timerButtonPressed : timerStyles.timerButton}
                 >
                 <Text style={basicStyles.textLargeB}>HOME</Text>

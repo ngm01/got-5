@@ -21,12 +21,13 @@ function TaskSelector() {
     const timeInputRef = useRef()
 
     useEffect(() => {
+        console.log("Loading TaskSelector")
         dispatch(getTasks());
         setTaskTime(null);
         setCurrentTask(null)
     }, [])
 
-    const handlePress = () => {
+    const getTask = () => {
         if(tasks.length === 0) {
             Alert.alert(
                 'Task List Empty', 
@@ -53,7 +54,7 @@ function TaskSelector() {
                 const selectedTask = availableTasks[Math.floor(Math.random() * availableTasks.length)]
                 setCurrentTask(selectedTask);
             } else {
-                Alert.alert("Looks like you've performed all your tasks! Enjoy some well-earned rest!")
+                Alert.alert("Looks like all your tasks have been completed! Enjoy some well-earned rest!")
             }
         }
     }
@@ -72,6 +73,12 @@ function TaskSelector() {
             return today > cadenceCheck;
         }
     }
+
+    const startTask = () => {
+        setTaskTime(null);
+        navigation.navigate('Timer');
+    }
+
     return ( 
         <View style={taskSelectorStyles.taskSelectorContainer}>
             <Text style={[basicStyles.textLargeA, {textAlign: 'center'}]}>How much time do you have?</Text>
@@ -89,7 +96,7 @@ function TaskSelector() {
                 <Text style={basicStyles.textLargeA}>minutes</Text>
             </View>
             <Pressable 
-                onPress={handlePress}
+                onPress={getTask}
                 style={({ pressed }) => pressed ? taskSelectorStyles.getTaskButtonPressed: taskSelectorStyles.getTaskButton}
                 >
                 <Text style={basicStyles.textLargeB}>{currentTask ? 'Get Another Task' : 'Get a Task'}</Text>
@@ -99,7 +106,7 @@ function TaskSelector() {
                 <Text style={basicStyles.textLargeA}>{currentTask ? formatTime(currentTask.time) : ''}</Text>
             </View>
             <Pressable 
-                onPress={() => {navigation.navigate('Timer')}}
+                onPress={startTask}
                 disabled={!currentTask}
                 style={({pressed}) => currentTask ? (pressed ? basicStyles.basicButtonPressed: basicStyles.basicButton) : basicStyles.basicButtonDisabled}
                 >

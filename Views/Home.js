@@ -3,7 +3,6 @@ import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads'
 import NavBar from './NavBar';
 import TaskSelector from './TaskSelector';
 import basicStyles from '../styles/basicStyles';
-import { colors } from '../styles/baseStyleDefinitions';
 
 export default function Home() {
 
@@ -21,10 +20,6 @@ export default function Home() {
                     }}
                 />
             </SafeAreaView>
-            {/* <View style={basicStyles.adBanner}>
-                <Text style={{'color': colors.accent_a}}>Add banner goes here</Text>
-            </View> */}
-
             <TaskSelector />
             <NavBar current="home"/>
         </View>
