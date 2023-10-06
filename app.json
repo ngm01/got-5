@@ -34,14 +34,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.got5"
+      "bundleIdentifier": "com.ngm01.got5"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo_alpha_big.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.anonymous.got5"
+      "package": "com.ngm01.got5"
     },
     "web": {
       "favicon": "./aassets/logo_alpha_big.png"
