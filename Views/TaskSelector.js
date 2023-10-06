@@ -21,7 +21,6 @@ function TaskSelector() {
     const timeInputRef = useRef()
 
     useEffect(() => {
-        console.log("Loading TaskSelector")
         dispatch(getTasks());
         setTaskTime(null);
         setCurrentTask(null)

@@ -8,10 +8,16 @@ import { colors } from '../styles/baseStyleDefinitions';
 import basicStyles from '../styles/basicStyles';
 import timerStyles from '../styles/timerStyles';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import AdMobAdIDs from '../util/adMobAdIDs';
 
 export default function FinishedModal () {
 
-    const adId = TestIds.BANNER;
+    let adID;
+    if(__DEV__) {
+        adID = TestIds.BANNER;
+    } else {
+        adID = AdMobAdIDs.g5_finished_screen_ad_id;
+    }
 
     const navigation = useNavigation();
 
@@ -45,12 +51,9 @@ export default function FinishedModal () {
                 <Text style={basicStyles.textLargeB}>RESTART</Text>
             </Pressable>
         </View>
-        {/* <View style={basicStyles.adBanner}>
-                <Text style={{'color': colors.accent_a}}>Add banner goes here</Text>
-        </View> */}
         <SafeAreaView>
             <BannerAd
-                unitId={adId}
+                unitId={adID}
                 size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
                 requestOptions={{
                 requestNonPersonalizedAdsOnly: true,
