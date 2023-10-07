@@ -1,5 +1,5 @@
-export const trimTaskTitle = (title) => {
-    if(title.length > 25) return title.slice(0, 25).trim() + '...'
+export const trimTaskTitle = (title, length = 25) => {
+    if(title.length > length) return title.slice(0, length).trim() + '...'
     return title;
 }
 

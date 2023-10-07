@@ -39,9 +39,9 @@ const taskListStyles = StyleSheet.create({
         borderWidth: 1,
         borderColor: colors.accent_a,
         //borderRadius: '5%',
-        borderRadius: .05,
+        borderRadius: 3,
         padding: '2%',
-        marginBottom: .02,
+        marginBottom: 10,
         //marginBottom: '2%',
         alignSelf: 'center',
         backgroundColor: colors.surface,
@@ -64,8 +64,8 @@ const taskListStyles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-around',
         //marginTop: '5%',
-        marginTop: .05,
-        marginBottom: .03
+        marginTop: 10,
+        marginBottom: 5,
         //marginBottom: '3%'
     },
     emptyList: {

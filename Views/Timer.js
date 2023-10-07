@@ -10,6 +10,7 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import basicStyles from '../styles/basicStyles';
 import timerStyles from '../styles/timerStyles';
 import { scheduleLocalNotification, cancelLocalNotification } from "../util/handle-local-notification";
+import { trimTaskTitle } from '../util/util';
 
 export default function Timer() {
 
@@ -31,7 +32,7 @@ export default function Timer() {
       if(isFocused) {
         appState.current = AppState.currentState;
         setIsTimerRunning(true);
-        playSound();
+        playSound('timerStart');
         setRestartKey(current => current + 1)
       }
     }, [isFocused])
@@ -78,8 +79,7 @@ export default function Timer() {
             const updatedTask = {...currentTask, lastPerformed: new Date(), timesPerformed: currentTask.timesPerformed ? ++currentTask.timesPerformed : 1}
             dispatch(updateTask(updatedTask));
             dispatch(getTasks());
-            playSound();
-            //setCurrentTask(null);
+            playSound('replay');
             cancelLocalNotification('task_complete')
             navigation.navigate('FinishedModal');
         } catch (e) {
@@ -96,7 +96,7 @@ export default function Timer() {
     }
 
     return <View style={timerStyles.timerContainer}>
-        <Text style={timerStyles.timerTaskText}>{currentTask?.title}</Text>
+        <Text style={timerStyles.timerTaskText}>{trimTaskTitle(currentTask?.title)}</Text>
         <CountdownCircleTimer
                 key={restartKey}
                 isPlaying={isTimerRunning}

@@ -32,7 +32,7 @@ function TaskSelector() {
                 'Task List Empty', 
                 "Looks like you haven't created any tasks. Would you like to create one now?", 
                 [
-                    {text: 'No Thanks', onPress: () => {}, style: 'cancel'},
+                    {text: 'Not Now', onPress: () => {}, style: 'default'},
                     {text: 'Yes, Create', onPress: () => navigation.navigate('TaskList'), style: 'default'}
                 ]
             )

@@ -12,7 +12,11 @@ const timerStyles = StyleSheet.create({
     timerTaskText: {
         ...text_xxlarge_a,
         textAlign: 'center',
-        padding: 20,
+        padding: 15,
+        top: 25,
+        // borderColor: 'red',
+        // borderWidth: 1,
+        // borderStyle: 'dashed'
     },
     timerButtonsContainer: {
         ...flexRowFullWidth,

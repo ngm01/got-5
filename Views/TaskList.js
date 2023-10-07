@@ -16,7 +16,7 @@ import sortButtonStyles from '../styles/sortButtonStyles';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { sorter, dummyTask } from '../util/util';
 
-export default function TaskList() {
+export default function TaskList({ openCreate }) {
 
     const navigation = useNavigation();
     const dispatch = useDispatch();
@@ -88,11 +88,24 @@ export default function TaskList() {
         return myDate;
     }
 
+    const parseCadence = (cadence) => {
+        switch (cadence) {
+            case 0:return 'One-time';
+            case 30: return 'Monthly';
+            case 14: return 'Biweekly';
+            case 7: return 'Weekly';
+            case 1:
+            default:
+                return 'Daily'
+        }
+    }
+
 
     function renderItem({item}) {
         return  <View style={taskListStyles.task}>
                     <Text style={[{...basicStyles.textSmallA, fontWeight: 'bold'}]}>{item.title}</Text>
                     <Text style={basicStyles.textSmallA}>{item.time} {item.time === 1 ? 'minute' : 'minutes'}</Text>
+                    <Text style={basicStyles.textSmallA}>{parseCadence(item.cadence)} task</Text>
                     <Text style={basicStyles.textSmallA}>Last performed on: {getDateString(item.lastPerformed)}</Text>
                     <Text style={basicStyles.textSmallA}>Times performed: {item.timesPerformed ? item.timesPerformed : '--'}</Text>
                     <View style={taskListStyles.taskButtonContainer}>
