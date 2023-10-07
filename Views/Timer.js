@@ -79,7 +79,7 @@ export default function Timer() {
             const updatedTask = {...currentTask, lastPerformed: new Date(), timesPerformed: currentTask.timesPerformed ? ++currentTask.timesPerformed : 1}
             dispatch(updateTask(updatedTask));
             dispatch(getTasks());
-            playSound('replay');
+            playSound('unload');
             cancelLocalNotification('task_complete')
             navigation.navigate('FinishedModal');
         } catch (e) {

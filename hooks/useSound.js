@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 export const useSound = (path) => {
 
     const [soundToPlay, setSound] = useState(null);
+    const [shouldUnload, setShouldUnload] = useState(false)
 
     const playSound = async (trigger) => {
         try {
@@ -11,8 +12,9 @@ export const useSound = (path) => {
             const playTime = new Date().toLocaleTimeString();
             const { sound } = await Audio.Sound.createAsync(path)
             setSound(sound);
-            if(trigger === 'replay') {
+            if(trigger === 'unload') {
                 await sound.replayAsync()
+                setShouldUnload(true);
             } else {
                 await sound.playAsync();
             }
@@ -25,10 +27,12 @@ export const useSound = (path) => {
         return soundToPlay ?
          async () => {
             const unloadTime = new Date().toLocaleTimeString();
-            await soundToPlay.unloadAsync();
+            if(shouldUnload) {
+                await soundToPlay.unloadAsync();
+            }
             setSound(null);
         } : undefined
-    }, [soundToPlay])
+    }, [soundToPlay, shouldUnload])
 
     return [playSound]
 
