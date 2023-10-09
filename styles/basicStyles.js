@@ -22,12 +22,6 @@ const basicStyles = StyleSheet.create({
         height: '100%',
         backgroundColor: colors.background
     },
-    settingsContainer: {
-        display: 'flex',
-        height: '100%',
-        alignItems: 'center',
-        backgroundColor: colors.background
-    },
     basicButton: {
         ...basicButton,
         backgroundColor: colors.primary
@@ -63,6 +57,29 @@ const basicStyles = StyleSheet.create({
         width: 1,
         height: 50,
         marginHorizontal: 5
+    },
+    settingsContainer: {
+        display: 'flex',
+        height: '100%',
+        alignItems: 'center',
+        backgroundColor: colors.background
+    },
+    settingsAbout: {
+        display: 'flex',
+        alignItems: 'center',
+        marginTop: 20
+    },
+    settingsLinksBlock: {
+        marginTop: 20,
+        display: 'flex',
+        flexDirection: 'row-wrap',
+        alignItems: 'center',
+        textAlign: 'center'
+    },
+    settingsLink: {
+        ...text_medium_b,
+        color: colors.primary,
+        textDecorationLine: 'underline'
     }
 })
 
