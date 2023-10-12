@@ -20,7 +20,6 @@ export const requestPermissionsAsync = async () => {
 }
 
 export const scheduleLocalNotification = async (time = 1, taskTitle) => {
-    console.log("Scheduling notification...", time, taskTitle)
     Notifications.scheduleNotificationAsync({
         identifier: 'task_complete',
         content: {

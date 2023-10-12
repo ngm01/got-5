@@ -8,7 +8,6 @@ export const useSound = (path) => {
 
     const playSound = async (trigger) => {
         try {
-            console.log("Playing sound:", trigger)
             const playTime = new Date().toLocaleTimeString();
             const { sound } = await Audio.Sound.createAsync(path)
             setSound(sound);
